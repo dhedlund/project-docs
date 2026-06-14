@@ -20,6 +20,7 @@ depends_on:
   - accounts-service
   - mysql
   - rabbitmq
+domain: billing
 tags: [billing, subscriptions]
 ---
 

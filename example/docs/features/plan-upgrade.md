@@ -26,6 +26,7 @@ uses_services:
 uses_models:
   - subscription
   - organization
+domain: billing
 tags: [billing, subscriptions]
 ---
 

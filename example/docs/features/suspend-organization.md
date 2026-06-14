@@ -18,6 +18,7 @@ uses_services:
   - messaging-service
 uses_models:
   - organization
+domain: accounts
 tags: [accounts, admin]
 ---
 

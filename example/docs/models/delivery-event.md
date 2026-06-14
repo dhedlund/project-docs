@@ -16,6 +16,7 @@ backing_stores:
 owned_by: messaging-service
 related_models:
   - subscription
+domain: messaging
 tags: [messaging, events]
 ---
 

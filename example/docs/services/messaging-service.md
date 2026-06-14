@@ -20,6 +20,9 @@ depends_on:
   - rabbitmq
   - postgresql
   - mongodb
+  - email-provider
+  - sms-provider
+domain: messaging
 tags: [messaging, events]
 ---
 

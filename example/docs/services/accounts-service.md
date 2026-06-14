@@ -9,6 +9,7 @@ owned_models:
   - organization
 depends_on:
   - mysql
+domain: accounts
 tags: [accounts]
 ---
 

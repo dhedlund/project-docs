@@ -7,6 +7,7 @@ last_reviewed: 2026-06-14
 owned_by: billing-service
 related_models:
   - subscription
+domain: billing
 tags: [billing]
 ---
 

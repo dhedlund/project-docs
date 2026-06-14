@@ -18,6 +18,7 @@ related_models:
   - subscription
 related_features:
   - plan-upgrade
+domain: accounts
 tags: [accounts]
 ---
 

@@ -7,9 +7,9 @@ as true.
 
 ## Code access
 
-- The four repos are kept as **read-only clones** on the build host at
+- The repos are kept as **read-only clones** on the build host at
   `~/code/beacon/<repo>` (`beacon-accounts`, `beacon-billing`, `beacon-messaging`,
-  `beacon-web`).
+  `beacon-web`, `beacon-sdks`).
 - They are mounted **read-only** into the toolkit container at `/src/<repo>` for
   authoring/audit work (`-v ~/code/beacon:/src:ro`).
 - Agents **read** the code; they never modify it. The clones are kept current by

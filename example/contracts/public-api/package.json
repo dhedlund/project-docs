@@ -1,0 +1,10 @@
+{
+  "name": "beacon-public-api-contract",
+  "private": true,
+  "description": "TypeSpec contract for the Beacon public messaging API.",
+  "dependencies": {
+    "@typespec/compiler": "1.11.0",
+    "@typespec/http": "1.11.0",
+    "@typespec/openapi3": "1.11.0"
+  }
+}

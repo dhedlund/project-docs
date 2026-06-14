@@ -21,6 +21,7 @@ related_models:
   - plan
 related_features:
   - plan-upgrade
+domain: billing
 tags: [billing, subscriptions]
 ---
 

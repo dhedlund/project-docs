@@ -41,6 +41,7 @@ plugins:
   - d2:
       dark_theme: 200   # emit a dark variant; toggles with Material's palette
   - glightbox
+  - swagger-ui-tag    # render the public Messaging API's OpenAPI in-site
 
 hooks:
   - /usr/local/lib/docs/hook.py
@@ -82,10 +83,31 @@ markdown_extensions:
 
 nav:
   - Home: index.md
+  - Domains:
+      - Accounts: domains/accounts.md
+      - Billing: domains/billing.md
+      - Messaging: domains/messaging.md
   - Features:
       - features/index.md
       - Plan upgrade: features/plan-upgrade.md
       - Suspend an organization: features/suspend-organization.md
+  - Flows:
+      - Send a message: flows/send-message.md
+  - Options:
+      - Message settings: options/message-settings.md
+  - Interfaces:
+      - API: interfaces/api/index.md
+      - Webhooks: interfaces/webhooks/index.md
+      - Python SDK: interfaces/sdks/python.md
+      - Auth: interfaces/auth.md
+  - Integrations:
+      - Email provider: integrations/email-provider.md
+      - SMS provider: integrations/sms-provider.md
+  - Surfaces:
+      - Merchant dashboard: surfaces/dashboard.md
+      - Admin console: surfaces/admin-console.md
+  - Access:
+      - Roles & permissions: access/roles.md
   - Services:
       - services/index.md
       - billing-service: services/billing-service.md
