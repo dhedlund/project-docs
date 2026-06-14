@@ -93,6 +93,11 @@ nav:
       - Subscription: models/subscription.md
       - Delivery event: models/delivery-event.md
       - Organization: models/organization.md
+  - Datastores:
+      - MySQL: datastores/mysql.md
+      - PostgreSQL: datastores/postgresql.md
+      - MongoDB: datastores/mongodb.md
+      - RabbitMQ: datastores/rabbitmq.md
   - Glossary: glossary.md
   - Decisions:
       - decisions/index.md
