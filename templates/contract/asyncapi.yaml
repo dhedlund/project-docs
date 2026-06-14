@@ -1,0 +1,26 @@
+# Event contract for <service-or-api> (RabbitMQ / Kafka / webhooks / etc.).
+# Optional — include only if the service emits or consumes events.
+# Backward-compat:  asyncapi diff old.yaml new.yaml
+asyncapi: 3.0.0
+info:
+  title: <Service> Events
+  version: 0.1.0
+channels:
+  exampleEvent:
+    address: <service>.<event>
+    messages:
+      exampleEvent:
+        $ref: "#/components/messages/ExampleEvent"
+operations:
+  onExampleEvent:
+    action: receive
+    channel:
+      $ref: "#/channels/exampleEvent"
+components:
+  messages:
+    ExampleEvent:
+      payload:
+        type: object
+        required: [id]
+        properties:
+          id: { type: string }

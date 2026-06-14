@@ -38,6 +38,11 @@ And **Datastore** pages (`docs/datastores/`, from `templates/datastore.md`) for 
 databases and queues services depend on. You only list what each store *holds*;
 each store's "Used by" is generated automatically from the services' `depends_on`.
 
+Formal interface **contracts** (TypeSpec → OpenAPI / AsyncAPI) live in `contracts/`,
+not `docs/` — they're specs, not pages. Start one from `templates/contract/`; service
+pages link to them and the verification tools (`oasdiff`/`schemathesis`/`prism`)
+consume them. See `contracts/README.md`.
+
 Pages link **up and down** between layers: a feature links down into the services
 and models it touches; a model links up to the features and service that use it.
 Start by maintaining links in whichever direction is natural to write; deriving

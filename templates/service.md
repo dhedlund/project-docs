@@ -37,8 +37,9 @@ What this service owns — and, just as important, what it explicitly does **not
 
 ## Interface (contracts)
 
-The formal, validatable surface. Author in TypeSpec; embed/link the compiled
-OpenAPI (HTTP) and AsyncAPI (RabbitMQ) here.
+The formal, validatable surface. The spec lives in `contracts/<this-service>/`
+(start it from `templates/contract/`); link/embed the compiled OpenAPI (HTTP) and
+AsyncAPI (events) here. See `contracts/README.md`.
 
 - **Provides:** …
 - **Consumes:** …

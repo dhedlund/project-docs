@@ -61,8 +61,8 @@ Write the answers down as you go (step 2 turns them into stewardship docs).
 ## Step 1 — Confirm the scaffold
 
 Ensure the repo has `templates/`, `docs/{features,services,models,decisions}/`,
-`docs/datastores/`, `docs/glossary.md`, `CONVENTIONS.md`, the toolkit
-(`Containerfile`, `Makefile`, `TOOLKIT.md`), and
+`docs/datastores/`, `docs/glossary.md`, `contracts/` (interface specs), `CONVENTIONS.md`,
+the toolkit (`Containerfile`, `Makefile`, `TOOLKIT.md`), and
 `agent_docs/process/{plan,backlog}.md` (present with the rules, ready to fill). If
 anything is missing, create it from this repo's existing shape. Don't reinvent —
 the scaffold already exists.

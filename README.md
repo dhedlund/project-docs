@@ -20,7 +20,8 @@ project-docs/
 │   ├── datastores/    # the databases & queues services depend on
 │   ├── glossary.md    # shared vocabulary
 │   └── decisions/     # L4 — architecture decision records (ADRs)
-├── templates/         # starting points for new pages (NOT part of the site)
+├── contracts/         # machine-readable interface specs (TypeSpec/OpenAPI/AsyncAPI)
+├── templates/         # starting points for new pages + a contract project skeleton
 ├── CONVENTIONS.md     # how we write these docs — read this first
 └── mkdocs.yml         # site config
 ```
