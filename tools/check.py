@@ -36,6 +36,8 @@ REL_FIELDS = [
     "related_models", "related_features", "related_services",
     "uses_services", "uses_models", "owned_models", "owned_by", "depends_on",
 ]
+# Pages derived from source code must record provenance (`sources`).
+CODE_DERIVED = {"model", "service", "feature"}
 
 
 def parse_frontmatter(text):
@@ -54,6 +56,7 @@ def main():
     docs = sys.argv[1] if len(sys.argv) > 1 else "docs"
     files = sorted(glob.glob(os.path.join(docs, "**", "*.md"), recursive=True))
     errors, warnings = [], []
+    today = datetime.date.today()
     pages = {}          # stem -> relpath
     meta_by_path = {}   # relpath -> meta
 
@@ -65,7 +68,11 @@ def main():
             warnings.append(f"{rel}: {err}")
             continue
         meta_by_path[rel] = meta
-        pages.setdefault(os.path.splitext(os.path.basename(f))[0], rel)
+        stem = os.path.splitext(os.path.basename(f))[0]
+        if stem in pages and stem != "index":
+            warnings.append(f"{rel}: duplicate page stem '{stem}' (also {pages[stem]}); cross-link refs are ambiguous")
+        else:
+            pages.setdefault(stem, rel)
 
         for k in ("title", "type", "status"):
             if not meta.get(k):
@@ -77,11 +84,12 @@ def main():
 
         rc = meta.get("reviewed_confidence")
         if rc not in (None, ""):
-            if not (isinstance(rc, int) and 1 <= rc <= 100):
+            if isinstance(rc, bool) or not isinstance(rc, int) or not (1 <= rc <= 100):
                 errors.append(f"{rel}: reviewed_confidence must be an int 1-100, got {rc!r}")
         if lr := meta.get("last_reviewed"):
             try:
-                datetime.date.fromisoformat(str(lr))
+                if datetime.date.fromisoformat(str(lr)) > today:
+                    warnings.append(f"{rel}: last_reviewed is in the future: {lr}")
             except ValueError:
                 errors.append(f"{rel}: last_reviewed not YYYY-MM-DD: {lr!r}")
 
@@ -93,8 +101,13 @@ def main():
                 for i, e in enumerate(src):
                     if not isinstance(e, dict) or not e.get("repo"):
                         warnings.append(f"{rel}: sources[{i}] needs at least 'repo'")
-                    elif not e.get("branch"):
+                        continue
+                    if not e.get("branch"):
                         warnings.append(f"{rel}: sources[{i}] missing 'branch' (record the canonical branch)")
+                    if e.get("paths") is not None and not isinstance(e["paths"], (list, str)):
+                        warnings.append(f"{rel}: sources[{i}].paths should be a list")
+        elif meta.get("type") in CODE_DERIVED and meta.get("status") != "stub":
+            errors.append(f"{rel}: code-derived page missing `sources` provenance (see CONVENTIONS -> Provenance)")
 
     # Relationship graph: dangling references + orphans.
     referenced = set()

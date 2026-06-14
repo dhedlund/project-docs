@@ -13,7 +13,11 @@ ENGINE ?= $(shell command -v podman >/dev/null 2>&1 && echo podman || echo docke
 # (The same flags work on both Podman and Docker.)
 RUN := $(ENGINE) run --rm \
        -v "$(CURDIR)":/docs:rw -w /docs \
-       --cap-drop=ALL --security-opt no-new-privileges
+       --cap-drop=ALL --security-opt no-new-privileges \
+       $(if $(filter docker,$(ENGINE)),--user $(shell id -u):$(shell id -g),)
+
+# Allocate a TTY only when stdin is one, so serve/shell also work non-interactively.
+TTY := $(shell [ -t 0 ] && echo -it)
 
 .DEFAULT_GOAL := help
 .PHONY: help image build check report drift ci serve shell versions clean
@@ -41,13 +45,13 @@ drift: image ## Drift vs source repos: make drift SRC=/path/to/code
 ci: build check ## The local gate: build + lint (what CI runs)
 
 serve: image ## Live-reload preview (http://localhost:8000)
-	$(RUN) -it -p $(PORT):8000 $(IMAGE) mkdocs serve -a 0.0.0.0:8000
+	$(RUN) $(TTY) -p $(PORT):8000 $(IMAGE) mkdocs serve -a 0.0.0.0:8000
 
 shell: image ## Shell inside the toolkit (tsp / prism / oasdiff / d2 / schemathesis)
-	$(RUN) -it $(IMAGE) bash
+	$(RUN) $(TTY) $(IMAGE) bash
 
 versions: image ## Print the resolved tool versions
-	$(RUN) --network none $(IMAGE) bash -lc '\
+	@$(RUN) --network none $(IMAGE) bash -lc '\
 	  echo "mkdocs:      $$(mkdocs --version)"; \
 	  echo "d2:          $$(d2 --version 2>/dev/null)"; \
 	  echo "oasdiff:     $$(oasdiff --version 2>/dev/null)"; \

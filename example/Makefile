@@ -12,7 +12,10 @@ ENGINE ?= $(shell command -v podman >/dev/null 2>&1 && echo podman || echo docke
 
 RUN := $(ENGINE) run --rm \
        -v "$(CURDIR)":/docs:rw -w /docs \
-       --cap-drop=ALL --security-opt no-new-privileges
+       --cap-drop=ALL --security-opt no-new-privileges \
+       $(if $(filter docker,$(ENGINE)),--user $(shell id -u):$(shell id -g),)
+
+TTY := $(shell [ -t 0 ] && echo -it)
 
 .DEFAULT_GOAL := help
 .PHONY: help image build check report drift ci serve shell clean
@@ -40,10 +43,10 @@ drift: image ## Drift vs source repos: make drift SRC=/path/to/code
 ci: build check ## The local gate: build + lint
 
 serve: image ## Live-reload preview (http://localhost:8001)
-	$(RUN) -it -p $(PORT):8000 $(IMAGE) mkdocs serve -a 0.0.0.0:8000
+	$(RUN) $(TTY) -p $(PORT):8000 $(IMAGE) mkdocs serve -a 0.0.0.0:8000
 
 shell: image ## Shell inside the toolkit
-	$(RUN) -it $(IMAGE) bash
+	$(RUN) $(TTY) $(IMAGE) bash
 
 clean: ## Remove the built site
 	rm -rf site

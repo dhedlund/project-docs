@@ -46,7 +46,7 @@ def main():
             continue
         rel = os.path.relpath(f, docs)
         conf = meta.get("reviewed_confidence")
-        conf = conf if isinstance(conf, int) else None
+        conf = conf if isinstance(conf, int) and not isinstance(conf, bool) else None
         lr = meta.get("last_reviewed")
         age = None
         if lr:
@@ -56,8 +56,8 @@ def main():
                 pass
         rows.append((rel, meta.get("status", "?"), conf, lr, age))
 
-    # Lowest confidence first (None last), then stalest first.
-    rows.sort(key=lambda r: (r[2] if r[2] is not None else 999, -(r[4] or 0)))
+    # Unscored first (most urgent), then lowest confidence, then stalest.
+    rows.sort(key=lambda r: (r[2] if r[2] is not None else -1, -(r[4] or 0)))
 
     print(f"{'conf':>4}  {'reviewed':<12} {'age':>5}  {'status':<10} page")
     print("-" * 66)
@@ -66,7 +66,10 @@ def main():
         c = str(conf) if conf is not None else "—"
         a = f"{age}d" if age is not None else "—"
         flag = ""
-        if conf is not None and conf < LOW_CONF:
+        if conf is None:
+            low += 1
+            flag += " [unscored]"
+        elif conf < LOW_CONF:
             low += 1
             flag += " [low]"
         if age is not None and age > STALE_DAYS:

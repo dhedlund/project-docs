@@ -4,6 +4,13 @@ type: model
 status: active
 reviewed_confidence: 85
 last_reviewed: 2026-06-14
+sources:
+  - repo: beacon-accounts
+    branch: main
+    sha: 4c5d6e7
+    committed: 2026-05-28
+    paths:
+      - src/main/java/com/beacon/accounts/Organization.java
 backing_stores:
   - mysql: accounts.organizations
 owned_by: accounts-service

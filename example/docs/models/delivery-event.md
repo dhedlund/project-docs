@@ -3,7 +3,14 @@ title: Delivery event
 type: model
 status: active
 reviewed_confidence: 62
-last_reviewed: 2026-06-14
+last_reviewed: 2026-03-10
+sources:
+  - repo: beacon-messaging
+    branch: main
+    sha: 7a8b9c0
+    committed: 2026-05-22
+    paths:
+      - lib/beacon/messaging/delivery_event.ex
 backing_stores:
   - mongo: messaging.delivery_events
 owned_by: messaging-service

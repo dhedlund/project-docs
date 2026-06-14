@@ -2,11 +2,11 @@
 
 Two jobs, both derived from frontmatter so authors never hand-maintain them:
 
-1. A **status badge** (confidence / last-reviewed / status) at the top of each
-   content page.
-2. A **"Used by"** backlinks section at the bottom — the reverse of every
-   `related_*` / `uses_*` / `owned_*` / `depends_on` reference, so links are
-   maintained in one direction only.
+1. A **status badge** (confidence / last-reviewed / status / provenance) near the
+   top of each content page.
+2. A **"Related pages"** block at the bottom, grouped by relationship type — the
+   reverse of every `related_*` / `uses_*` / `owned_*` / `depends_on` reference, so
+   links are maintained in one direction only.
 
 Baked into the toolkit image; referenced from mkdocs.yml as:
     hooks:
@@ -20,13 +20,23 @@ try:
 except ImportError:  # pragma: no cover
     yaml = None
 
-CONTENT_TYPES = {"model", "service", "feature", "glossary", "decision"}
-REL_FIELDS = [
-    "related_models", "related_features", "related_services",
-    "uses_services", "uses_models", "owned_models", "owned_by", "depends_on",
-]
+CONTENT_TYPES = {"model", "service", "feature", "glossary", "decision", "datastore"}
 
-_index = {}  # docs_dir -> {"refs": {name: [(src_uri, title)]}}
+# Each relationship field, and the label its *reverse* gets on the target page.
+FIELD_LABELS = {
+    "uses_services": "Used by",
+    "uses_models": "Used by",
+    "owned_models": "Owned by",
+    "owned_by": "Owns",
+    "depends_on": "Depended on by",
+    "related_models": "Related",
+    "related_features": "Related",
+    "related_services": "Related",
+}
+# Order in which grouped sections are emitted.
+LABEL_ORDER = ["Used by", "Owned by", "Depended on by", "Owns", "Related"]
+
+_index = {}  # docs_dir -> {"refs": {name: [(src_uri, title, label)]}}
 
 
 def _parse_frontmatter(text):
@@ -48,15 +58,43 @@ def _build_index(docs_dir):
         with open(f, encoding="utf-8") as fh:
             meta = _parse_frontmatter(fh.read())
         title = meta.get("title") or os.path.splitext(os.path.basename(f))[0]
-        for field in REL_FIELDS:
+        for field, label in FIELD_LABELS.items():
             vals = meta.get(field) or []
             if isinstance(vals, str):
                 vals = [vals]
             for v in vals:
                 name = str(v).strip()
                 if name:
-                    refs.setdefault(name, []).append((src, title))
+                    refs.setdefault(name, []).append((src, title, label))
     return {"refs": refs}
+
+
+def _first_h1_outside_fence(lines):
+    """Index of the first `# ` heading that is not inside a fenced code block."""
+    in_fence = False
+    for i, ln in enumerate(lines):
+        stripped = ln.lstrip()
+        if stripped.startswith("```") or stripped.startswith("~~~"):
+            in_fence = not in_fence
+            continue
+        if not in_fence and ln.startswith("# "):
+            return i
+    return None
+
+
+def _provenance(sources):
+    if not isinstance(sources, list):
+        return ""
+    parts = []
+    for s in sources:
+        if isinstance(s, dict) and s.get("repo"):
+            tag = s["repo"]
+            if s.get("sha"):
+                tag += f"@{s['sha']}"
+            if s.get("committed"):
+                tag += f" ({s['committed']})"
+            parts.append(tag)
+    return ", ".join(parts)
 
 
 def on_page_markdown(markdown, page, config, files):
@@ -67,36 +105,56 @@ def on_page_markdown(markdown, page, config, files):
     meta = page.meta or {}
     out = markdown
 
-    # 1. Status badge (content pages only), inserted just after the H1.
+    # 1. Status badge (content pages only), inserted after the first real H1.
     if meta.get("type") in CONTENT_TYPES:
+        paras = []
         bits = []
         conf = meta.get("reviewed_confidence")
-        if isinstance(conf, int):
+        if isinstance(conf, int) and not isinstance(conf, bool):
             bits.append(f"**Confidence:** {conf}/100")
         if meta.get("last_reviewed"):
             bits.append(f"**Last reviewed:** {meta['last_reviewed']}")
         if meta.get("status"):
             bits.append(f"**Status:** {meta['status']}")
         if bits:
-            badge = '!!! info ""\n    ' + " · ".join(bits)
+            paras.append(" · ".join(bits))
+        prov = _provenance(meta.get("sources"))
+        if prov:
+            paras.append(f"**Verified against:** {prov}")
+        if paras:
+            badge_lines = ['!!! info ""']
+            for i, p in enumerate(paras):
+                if i > 0:
+                    badge_lines.append("")
+                badge_lines.append("    " + p)
+            badge = "\n".join(badge_lines)
             lines = out.split("\n")
-            at = next((i + 1 for i, ln in enumerate(lines) if ln.startswith("# ")), 0)
+            h1 = _first_h1_outside_fence(lines)
+            at = (h1 + 1) if h1 is not None else 0
             lines.insert(at, "\n" + badge + "\n")
             out = "\n".join(lines)
 
-    # 2. "Used by" backlinks (reverse of the relationship fields).
+    # 2. "Related pages" — reverse links, grouped by relationship type.
     cur = page.file.src_uri
     stem = os.path.splitext(os.path.basename(cur))[0]
-    seen, uniq = set(), []
-    for src, title in idx["refs"].get(stem, []):
-        if src != cur and src not in seen:
-            seen.add(src)
-            uniq.append((src, title))
-    if uniq:
-        links = [
-            f"- [{title}]({os.path.relpath(src, os.path.dirname(cur))})"
-            for src, title in sorted(uniq, key=lambda x: x[1].lower())
-        ]
-        out += "\n\n## Used by\n\n" + "\n".join(links) + "\n"
+    groups = {}
+    seen = set()
+    for src, title, label in idx["refs"].get(stem, []):
+        if src == cur or (label, src) in seen:
+            continue
+        seen.add((label, src))
+        groups.setdefault(label, []).append((src, title))
+    if groups:
+        section = ["\n\n## Related pages\n"]
+        for label in LABEL_ORDER:
+            items = groups.get(label)
+            if not items:
+                continue
+            links = ", ".join(
+                f"[{t}]({os.path.relpath(s, os.path.dirname(cur))})"
+                for s, t in sorted(items, key=lambda x: x[1].lower())
+            )
+            section.append(f"**{label}:** {links}\n")
+        out += "\n".join(section) + "\n"
 
     return out

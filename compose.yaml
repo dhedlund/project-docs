@@ -17,7 +17,7 @@ x-toolkit: &toolkit
   volumes:
     - ./:/docs
   cap_drop: [ALL]
-  security_opt: [no-new-privileges]
+  security_opt: ["no-new-privileges:true"]
 
 services:
   serve:

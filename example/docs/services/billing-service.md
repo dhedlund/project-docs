@@ -4,6 +4,11 @@ type: service
 status: active
 reviewed_confidence: 82
 last_reviewed: 2026-06-14
+sources:
+  - repo: beacon-billing
+    branch: main
+    sha: a1b2c3d
+    committed: 2026-05-30
 language: ruby
 provides_contracts:
   - contracts/billing/openapi.yaml   # compiled from contracts/billing/main.tsp

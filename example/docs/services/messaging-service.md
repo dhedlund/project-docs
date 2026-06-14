@@ -4,6 +4,11 @@ type: service
 status: active
 reviewed_confidence: 70
 last_reviewed: 2026-06-14
+sources:
+  - repo: beacon-messaging
+    branch: main
+    sha: 7a8b9c0
+    committed: 2026-05-22
 language: elixir
 provides_contracts:
   - contracts/messaging/asyncapi.yaml
