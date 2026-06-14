@@ -61,6 +61,7 @@ nav:
       - Subscription: models/subscription.md
       - Delivery event: models/delivery-event.md
       - Organization: models/organization.md
+  - Glossary: glossary.md
   - Decisions:
       - decisions/index.md
       - "0001 — Delivery events in MongoDB": decisions/0001-delivery-events-in-mongodb.md

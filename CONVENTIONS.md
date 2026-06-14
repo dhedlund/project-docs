@@ -30,6 +30,10 @@ Concretely:
 | L3 Models | `docs/models/` | Data/domain models and how they map to physical storage |
 | L4 Decisions | `docs/decisions/` | ADRs — why things are the way they are |
 
+Plus a cross-cutting **Glossary** (`docs/glossary.md`, from `templates/glossary.md`)
+— the product's shared vocabulary; define each term once and link to the page that
+owns it.
+
 Pages link **up and down** between layers: a feature links down into the services
 and models it touches; a model links up to the features and service that use it.
 Start by maintaining links in whichever direction is natural to write; deriving
