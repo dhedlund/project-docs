@@ -11,16 +11,15 @@
 # Build:  podman build -t localhost/project-docs-toolkit:latest -f Containerfile .
 # Use:    see Makefile, compose.yaml, and TOOLKIT.md
 #
-# Versions are intentionally unpinned for now so the first build "just works"
-# against current releases. Pin them in a later convergence pass for
-# reproducibility (note the resolved versions printed by `make versions`).
+# Package versions are pinned (pip, npm, and the d2/oasdiff binaries) to avoid
+# surprise breaking changes — bump them deliberately; `make versions` prints what's
+# installed. Base images stay on their rolling tags so they keep receiving OS
+# security updates.
 
-# Pinned Node, copied into the Python base for a clean, known version.
+# Node, copied into the Python base for a clean, known major version.
 FROM node:20-bookworm-slim AS node
 
 FROM python:3.12-slim
-
-SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 # --- OS deps -------------------------------------------------------------
 RUN apt-get update \
@@ -43,17 +42,25 @@ RUN pip install --no-cache-dir -r /tmp/requirements.txt
 # TypeSpec (author -> OpenAPI), Prism (mock + validating proxy),
 # AsyncAPI CLI (async backward-compat diff).
 RUN npm install -g --no-fund --no-audit \
-      @typespec/compiler @typespec/http @typespec/openapi3 \
-      @stoplight/prism-cli \
-      @asyncapi/cli
+      @typespec/compiler@1.11.0 @typespec/http@1.11.0 @typespec/openapi3@1.11.0 \
+      @stoplight/prism-cli@5.14.2 \
+      @asyncapi/cli@4.1.1
 
-# d2 (diagram rendering, for when the D2 plugin is wired) and
-# oasdiff (OpenAPI breaking-change detection). Both install to /usr/local/bin.
-RUN curl -fsSL https://d2lang.com/install.sh | sh -s -- \
- && curl -fsSL https://raw.githubusercontent.com/oasdiff/oasdiff/main/install.sh | sh
+# d2 (diagram rendering) and oasdiff (OpenAPI breaking-change detection), pinned
+# and installed by direct release download (arch-detected: amd64 / arm64).
+ARG D2_VERSION=0.7.1
+ARG OASDIFF_VERSION=1.19.1
+RUN set -eux; \
+    arch="$(dpkg --print-architecture)"; \
+    curl -fsSL "https://github.com/terrastruct/d2/releases/download/v${D2_VERSION}/d2-v${D2_VERSION}-linux-${arch}.tar.gz" -o /tmp/d2.tgz; \
+    tar -C /tmp -xzf /tmp/d2.tgz; \
+    install "/tmp/d2-v${D2_VERSION}/bin/d2" /usr/local/bin/d2; \
+    curl -fsSL "https://github.com/oasdiff/oasdiff/releases/download/v${OASDIFF_VERSION}/oasdiff_${OASDIFF_VERSION}_linux_${arch}.tar.gz" -o /tmp/oasdiff.tgz; \
+    tar -C /usr/local/bin -xzf /tmp/oasdiff.tgz oasdiff; \
+    rm -rf /tmp/d2* /tmp/oasdiff*
 
 # Schemathesis (provider conformance) — Python, kept off the docs-core layer.
-RUN pip install --no-cache-dir schemathesis
+RUN pip install --no-cache-dir schemathesis==4.21.6
 
 # The repo's doc tools, baked in as `docs-check` / `docs-report` / `docs-drift`.
 COPY tools/check.py /usr/local/bin/docs-check

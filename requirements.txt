@@ -1,12 +1,13 @@
 # Docs site dependencies (installed into the toolkit image; also usable directly
-# with `pip install -r requirements.txt`).
+# with `pip install -r requirements.txt`). Pinned for reproducibility — bump
+# deliberately; `make versions` prints what's installed.
 #
 # mkdocs-material bundles mkdocs, the search/tags plugins, and the pymdownx
 # extensions used in mkdocs.yml.
-mkdocs-material
+mkdocs-material==9.7.6
 
 # Diagram-as-code: D2 (renders ```d2 blocks via the d2 binary in the toolkit image).
-mkdocs-d2-plugin
+mkdocs-d2-plugin==1.7.0
 
 # Image / diagram zoom (lightbox).
-mkdocs-glightbox
+mkdocs-glightbox==0.5.2
