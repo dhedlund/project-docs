@@ -43,6 +43,9 @@ jobs:
       - name: Lint frontmatter + cross-links
         run: docker run --rm --network none -v "$PWD":/docs -w /docs docs-toolkit docs-check docs
 
+      - name: Test the tools
+        run: docker run --rm --network none -v "$PWD":/docs -w /docs docs-toolkit python -m pytest tools/tests -q
+
   # ── Optional / future steps ────────────────────────────────────────────────
   #
   # Coverage / staleness report (informational):

@@ -23,7 +23,7 @@ RUN := $(ENGINE) run --rm \
 TTY := $(shell [ -t 0 ] && echo -it)
 
 .DEFAULT_GOAL := help
-.PHONY: help image build check report drift ci serve shell versions clean
+.PHONY: help image build check report drift ci test serve shell versions clean
 
 help: ## Show this help
 	@echo "Project docs — make targets (engine: $(ENGINE)):"
@@ -46,6 +46,9 @@ drift: image ## Drift vs source repos: make drift SRC=/path/to/code
 	$(RUN) $(if $(SRC),-v "$(SRC)":/src:ro,) --network none $(IMAGE) docs-drift docs /src
 
 ci: build check ## The local gate: build + lint (what CI runs)
+
+test: image ## Run the tooling test suite (tools/tests)
+	$(RUN) --network none $(IMAGE) python -m pytest tools/tests -q
 
 serve: image ## Live-reload preview (http://localhost:8000; LAN via BIND=0.0.0.0)
 	# Host-published on $(BIND) only. The container-internal 0.0.0.0 bind is not

@@ -8,6 +8,22 @@ The goal: rebuild a shared understanding of the system **layer by layer** — fr
 product features down through service boundaries to the data models behind them —
 and keep it discoverable, cross-linked, and honest about confidence.
 
+## Starting a new product
+
+This repo is the reusable scaffold. To document a product with it:
+
+1. **Copy it into a new repo** for that product (clone or copy this directory — it's
+   self-contained).
+2. **Keep `example/` as a reference** while you find your feet (it's the worked "what
+   good looks like" demo). Delete it when you no longer need it — it's disposable and
+   nothing depends on it.
+3. From the new repo, tell an agent **"set up new project"**. That runs the
+   [bootstrap](agent_docs/process/new-project-bootstrap.md), which **stops and asks**
+   the questions that shape everything (especially how agents reach your code), then
+   seeds the scaffold. After that, **"work on what's next"** drives the rest.
+
+You need Podman or Docker + `make`, nothing else (see [TOOLKIT.md](TOOLKIT.md)).
+
 ## How it's organized
 
 ```
