@@ -1,5 +1,5 @@
 # MkDocs build output
-/site/
+site/
 
 # Python tooling (if a local venv is used to build the site)
 .venv/

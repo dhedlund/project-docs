@@ -4,6 +4,21 @@ type: feature
 status: active
 reviewed_confidence: 78
 last_reviewed: 2026-06-14
+sources:
+  - repo: beacon-web
+    branch: main
+    sha: 9f8e7d6
+    committed: 2026-06-02
+    paths:
+      - src/settings/billing/UpgradeDialog.tsx
+  - repo: beacon-billing
+    branch: main
+    sha: a1b2c3d
+    committed: 2026-05-30
+  - repo: beacon-accounts
+    branch: main
+    sha: 4c5d6e7
+    committed: 2026-05-28
 uses_services:
   - billing-service
   - accounts-service

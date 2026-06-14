@@ -4,6 +4,14 @@ type: model
 status: active
 reviewed_confidence: 80
 last_reviewed: 2026-06-14
+sources:
+  - repo: beacon-billing
+    branch: main
+    sha: a1b2c3d
+    committed: 2026-05-30
+    paths:
+      - app/models/subscription.rb
+      - db/schema.rb
 backing_stores:
   - mysql: billing.subscriptions
   - mysql_view: billing.active_subscriptions_v

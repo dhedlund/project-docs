@@ -1,0 +1,37 @@
+# Alternative to the Makefile, for those who prefer compose.
+# Works with any compose provider:  `podman compose ...`,  `podman-compose ...`,
+# or  `docker compose ...`  (this file is standard, engine-agnostic compose).
+#
+#   podman compose run --rm build     # static build into ./site
+#   podman compose up serve           # preview at http://localhost:8000
+#   podman compose run --rm shell     # toolkit shell
+#
+# The Makefile is the recommended "just works" path (no compose provider needed).
+
+x-toolkit: &toolkit
+  image: localhost/project-docs-toolkit:latest
+  build:
+    context: .
+    dockerfile: Containerfile
+  working_dir: /docs
+  volumes:
+    - ./:/docs
+  cap_drop: [ALL]
+  security_opt: [no-new-privileges]
+
+services:
+  serve:
+    <<: *toolkit
+    command: mkdocs serve -a 0.0.0.0:8000
+    ports: ["8000:8000"]
+
+  build:
+    <<: *toolkit
+    network_mode: none
+    command: mkdocs build --strict
+
+  shell:
+    <<: *toolkit
+    command: bash
+    stdin_open: true
+    tty: true

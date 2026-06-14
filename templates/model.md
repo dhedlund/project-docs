@@ -25,6 +25,12 @@ type: model
 status: unknown
 reviewed_confidence:
 last_reviewed:
+sources:                  # provenance — see CONVENTIONS.md → Provenance
+  # - repo: <name>        # as named in stewardship/source-of-truth.md
+  #   branch: main        # canonical branch only — never a feature branch
+  #   sha:                # commit last verified against
+  #   committed:          # that commit's date (durable fallback if sha is rewritten)
+  #   paths: []           # optional: files/dirs this page depends on
 backing_stores:
   # - mysql: billing.subscriptions
   # - mysql_view: billing.active_subscriptions_v

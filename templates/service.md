@@ -12,6 +12,12 @@ type: service
 status: unknown
 reviewed_confidence:
 last_reviewed:
+sources:                  # provenance — see CONVENTIONS.md → Provenance
+  # - repo: <name>
+  #   branch: main
+  #   sha:
+  #   committed:
+  #   paths: []
 language:                 # java | ruby | elixir
 provides_contracts: []    # TypeSpec/OpenAPI/AsyncAPI specs this service exposes
 consumes_contracts: []    # contracts it depends on

@@ -111,3 +111,33 @@ discard that finding — record it where you found it:
 See the header comment in each `templates/*.md` file for the per-type fields.
 Only `title`, `type`, and `status` are required everywhere; everything else is a
 **suggested candidate** — include it when it's meaningful, omit it when it isn't.
+
+### Provenance: the `sources` field
+
+Pages that document code carry a `sources` list in frontmatter — the source state
+each page was last verified against. It's what lets a re-sweep diff "what changed
+since we last looked" and flag stale pages. One entry per source repo:
+
+```yaml
+sources:
+  - repo: <name>          # as named in stewardship/source-of-truth.md
+    branch: main          # ALWAYS the canonical branch — never a feature branch
+    sha: a1b2c3d          # the commit this page was last verified against
+    committed: 2026-05-30 # that commit's date — the durable fallback if the sha is
+                          # later rewritten away (squash / rebase / force-push)
+    paths:                # optional: the files/dirs this page actually depends on
+      - app/models/subscription.rb
+```
+
+- **A list** — a page may derive from several repos.
+- **Canonical branch only.** Recording a feature-branch sha is a process error —
+  its commits get squashed/rebased away and you lose your place.
+- **Keep both `sha` and `committed`.** The sha is the precise diff anchor while it's
+  reachable; the timestamp bounds a `--since` diff when it isn't.
+- **`paths` is optional but valuable** — it scopes drift detection to the files a
+  page depends on, so a re-sweep flags only genuinely-affected pages.
+- **Re-stamp** `sha` + `committed` (and `last_reviewed`) whenever you verify against
+  newer source.
+
+The diff procedure that consumes this lives in
+`agent_docs/stewardship/enrichment-and-currency.md`.

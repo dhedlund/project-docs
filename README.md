@@ -45,14 +45,20 @@ Read **[CONVENTIONS.md](CONVENTIONS.md)** before writing. The short version:
 - **D2** is reserved for large "hero" architecture diagrams where layout quality
   matters. It needs a render step (Kroki/D2), wired up later — see CONVENTIONS.
 
-## Building the site (later)
+## Building the site
 
-Tools are **not installed yet**. When ready:
+Everything runs through one portable container image — **Podman or Docker**, no
+host tooling beyond a container engine + `make` (works on Linux and macOS). The
+`make` targets auto-detect the engine; force one with `make build ENGINE=docker`.
+See [TOOLKIT.md](TOOLKIT.md).
 
 ```
-pip install -r requirements.txt
-mkdocs serve
+make build      # static site -> ./site  (offline, strict)
+make serve      # live preview at http://localhost:8000
 ```
+
+The same targets exist in [`example/`](example/) (preview on port 8001) and are
+the quickest way to confirm your setup works end to end.
 
 ## Service contracts
 

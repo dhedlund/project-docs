@@ -38,9 +38,16 @@ stack:
 | billing-service | Ruby / Rails | MySQL | plans, subscriptions, invoices |
 | messaging-service | Elixir / Phoenix | PostgreSQL, MongoDB, RabbitMQ | sends notifications, logs delivery events, emits/consumes events |
 
-## Building (when tools are installed)
+## Building
+
+Uses the same portable toolkit image as the root project (see
+[../TOOLKIT.md](../TOOLKIT.md)) — **Podman or Docker**, no host tooling beyond a
+container engine + `make`:
 
 ```
-pip install -r requirements.txt
-mkdocs serve            # serves this example site
+make build      # build the Beacon site -> ./site
+make serve      # preview at http://localhost:8001
 ```
+
+`make image` builds the shared image from the repo root. This is the quickest
+end-to-end check that the toolchain works.

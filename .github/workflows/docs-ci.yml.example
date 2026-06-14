@@ -1,0 +1,67 @@
+## ─────────────────────────────────────────────────────────────────────────
+## Docs CI — EXAMPLE / TEMPLATE (inert by default)
+##
+## This file ends in `.yml.example`, so GitHub Actions does NOT run it.
+## To enable it:
+##   1. Rename it to `docs-ci.yml` (drop `.example`).
+##   2. Adjust the trigger `paths:` and `working-directory` for your repo layout.
+##   3. Commit. It will run on push / PR.
+##
+## What it does once enabled: builds the docs site offline and strict, so a
+## broken link or invalid nav fails the PR — the same `make build` contract you
+## run locally, just on CI's runner.
+##
+## This is intentionally minimal and per-project customizable. See the commented
+## sections at the bottom for: building through the toolkit image (for full
+## parity), adding the frontmatter/link checks once they exist, and publishing.
+## ─────────────────────────────────────────────────────────────────────────
+
+name: docs-ci
+
+on:
+  push:
+    branches: [main]
+    # Only run when docs/config actually change. Adjust to your layout.
+    paths:
+      - "docs/**"
+      - "mkdocs.yml"
+      - "requirements.txt"
+  pull_request:
+    paths:
+      - "docs/**"
+      - "mkdocs.yml"
+      - "requirements.txt"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    # If this repo lives in a monorepo subdirectory, set the path here and the
+    # checkout/build will run relative to it (and update the `paths:` above).
+    # defaults:
+    #   run:
+    #     working-directory: project-docs
+    steps:
+      - uses: actions/checkout@v4
+
+      # Lightweight path: install just the docs core and build. Fast, and all CI
+      # needs for the "main thrust" (the contract toolchain isn't needed here).
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements.txt
+      - run: mkdocs build --strict
+
+  # ── Optional / future steps — uncomment and finish as the pieces land ───────
+  #
+  # Full parity (build through the toolkit image instead of pip). GitHub runners
+  # have Docker; the Containerfile is OCI-standard so `docker` builds it too:
+  #   - run: docker build -t docs-toolkit -f Containerfile .
+  #   - run: docker run --rm --network none -v "$PWD":/docs -w /docs docs-toolkit mkdocs build --strict
+  #
+  # Quality checks (add once the mechanical-wins tooling exists — see the backlog):
+  #   - run: make check        # frontmatter lint + orphan/dead-link graph report
+  #
+  # Publish to GitHub Pages (after `permissions: pages: write` + Pages config):
+  #   - uses: actions/upload-pages-artifact@v3
+  #     with: { path: site }
+  #   - uses: actions/deploy-pages@v4

@@ -1,0 +1,27 @@
+# Example (Beacon) compose — builds the shared toolkit image from the repo root
+# and serves the example site on port 8001.
+#
+#   podman compose run --rm build      # (or `docker compose ...`)
+#   podman compose up serve            # http://localhost:8001
+
+x-toolkit: &toolkit
+  image: localhost/project-docs-toolkit:latest
+  build:
+    context: ..
+    dockerfile: Containerfile
+  working_dir: /docs
+  volumes:
+    - ./:/docs
+  cap_drop: [ALL]
+  security_opt: [no-new-privileges]
+
+services:
+  serve:
+    <<: *toolkit
+    command: mkdocs serve -a 0.0.0.0:8000
+    ports: ["8001:8000"]
+
+  build:
+    <<: *toolkit
+    network_mode: none
+    command: mkdocs build --strict

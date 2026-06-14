@@ -11,6 +11,12 @@ type: feature
 status: unknown
 reviewed_confidence:
 last_reviewed:
+sources:                  # provenance — see CONVENTIONS.md → Provenance
+  # - repo: <name>
+  #   branch: main
+  #   sha:
+  #   committed:
+  #   paths: []
 uses_services: []
 uses_models: []
 tags: []
