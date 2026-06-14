@@ -55,10 +55,11 @@ RUN curl -fsSL https://d2lang.com/install.sh | sh -s -- \
 # Schemathesis (provider conformance) — Python, kept off the docs-core layer.
 RUN pip install --no-cache-dir schemathesis
 
-# The repo's doc tools, baked in as `docs-check` / `docs-report`.
+# The repo's doc tools, baked in as `docs-check` / `docs-report` / `docs-drift`.
 COPY tools/check.py /usr/local/bin/docs-check
 COPY tools/report.py /usr/local/bin/docs-report
-RUN chmod +x /usr/local/bin/docs-check /usr/local/bin/docs-report
+COPY tools/drift.py /usr/local/bin/docs-drift
+RUN chmod +x /usr/local/bin/docs-check /usr/local/bin/docs-report /usr/local/bin/docs-drift
 
 # mkdocs build hook: status badges + derived "Used by" backlinks. Referenced from
 # mkdocs.yml as /usr/local/lib/docs/hook.py (absolute, so root and example share it).

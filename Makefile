@@ -22,7 +22,7 @@ RUN := $(ENGINE) run --rm \
        -v "$(CURDIR)":/docs:rw -w /docs \
        --cap-drop=ALL --security-opt no-new-privileges
 
-.PHONY: image build serve shell versions check report clean
+.PHONY: image build serve shell versions check report drift clean
 
 image:
 	$(ENGINE) build -t $(IMAGE) -f Containerfile .
@@ -38,6 +38,11 @@ check: image
 # Coverage & staleness report — which pages are low-confidence or stale.
 report: image
 	$(RUN) --network none $(IMAGE) docs-report docs
+
+# Drift vs source repos. Mount the code clones read-only at /src:
+#   make drift SRC=/path/to/code      (omit SRC to see which repos it would check)
+drift: image
+	$(RUN) $(if $(SRC),-v "$(SRC)":/src:ro,) --network none $(IMAGE) docs-drift docs /src
 
 serve: image
 	$(RUN) -it -p $(PORT):8000 $(IMAGE) mkdocs serve -a 0.0.0.0:8000
