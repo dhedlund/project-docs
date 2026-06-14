@@ -85,15 +85,18 @@ nav:
   - Features:
       - features/index.md
       - Plan upgrade: features/plan-upgrade.md
+      - Suspend an organization: features/suspend-organization.md
   - Services:
       - services/index.md
       - billing-service: services/billing-service.md
       - messaging-service: services/messaging-service.md
+      - accounts-service: services/accounts-service.md
   - Models:
       - models/index.md
       - Subscription: models/subscription.md
       - Delivery event: models/delivery-event.md
       - Organization: models/organization.md
+      - Plan: models/plan.md
   - Datastores:
       - MySQL: datastores/mysql.md
       - PostgreSQL: datastores/postgresql.md
@@ -103,3 +106,4 @@ nav:
   - Decisions:
       - decisions/index.md
       - "0001 — Delivery events in MongoDB": decisions/0001-delivery-events-in-mongodb.md
+      - "0002 — Delivery-event schema validator": decisions/0002-delivery-event-schema-validator.md

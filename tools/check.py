@@ -88,7 +88,8 @@ def main():
                 errors.append(f"{rel}: reviewed_confidence must be an int 1-100, got {rc!r}")
         if lr := meta.get("last_reviewed"):
             try:
-                if datetime.date.fromisoformat(str(lr)) > today:
+                # 1-day grace absorbs build-host vs author timezone skew.
+                if datetime.date.fromisoformat(str(lr)) > today + datetime.timedelta(days=1):
                     warnings.append(f"{rel}: last_reviewed is in the future: {lr}")
             except ValueError:
                 errors.append(f"{rel}: last_reviewed not YYYY-MM-DD: {lr!r}")

@@ -1,7 +1,7 @@
 ---
 title: Delivery events in MongoDB
 type: decision
-status: accepted
+status: superseded
 date: 2026-06-14
 related_services:
   - messaging-service
@@ -11,6 +11,9 @@ tags: [messaging, storage]
 ---
 
 # 0001 — Delivery events in MongoDB
+
+> **Superseded by [0002](0002-delivery-event-schema-validator.md).** The storage
+> choice stands; its no-validation consequence was revised.
 
 ## Context
 
