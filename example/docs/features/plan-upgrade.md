@@ -27,6 +27,10 @@ uses_models:
   - subscription
   - organization
 domain: billing
+refs:
+  - BILL-1423
+  - ref: "https://help.beacon.example/upgrading"
+    note: the customer-facing description of upgrades
 tags: [billing, subscriptions]
 ---
 
@@ -82,6 +86,12 @@ sequenceDiagram
     The prorated amount is computed in `billing-service` (`Billing::Proration`), not
     by the database or the payment provider. The contract exposes the result but not
     the formula.
+
+!!! warning "Discrepancy"
+    The [help center](https://help.beacon.example/upgrading) says an upgrade is free
+    until the next billing cycle; the code charges the prorated difference
+    **immediately** (`Billing::Proration`). Code wins — the help article is stale
+    (BILL-1423).
 
 !!! danger "Suspected dead"
     The UI still sends a `coupon_code` field on upgrade, but `billing-service` ignores

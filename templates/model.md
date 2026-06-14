@@ -38,6 +38,7 @@ backing_stores:
 owned_by:
 related_models: []
 related_features: []
+refs: []        # secondary "why" sources: tickets / product-doc URLs (see CONVENTIONS)
 tags: []
 ---
 

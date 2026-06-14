@@ -19,6 +19,7 @@ sources:                  # provenance — see CONVENTIONS.md → Provenance
   #   paths: []
 uses_services: []
 uses_models: []
+refs: []        # secondary "why" sources: tickets / product-doc URLs (see CONVENTIONS)
 tags: []
 ---
 

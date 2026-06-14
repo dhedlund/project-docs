@@ -120,6 +120,10 @@ def main():
         elif meta.get("type") in CODE_DERIVED and meta.get("status") != "stub":
             errors.append(f"{rel}: code-derived page missing `sources` provenance (see CONVENTIONS -> Provenance)")
 
+        refs = meta.get("refs")
+        if refs is not None and not isinstance(refs, list):
+            warnings.append(f"{rel}: refs should be a list of tickets/URLs (see CONVENTIONS)")
+
     # Relationship graph: dangling references + orphans.
     referenced = set()
     for rel, meta in meta_by_path.items():

@@ -5,7 +5,7 @@
 
 IMAGE := localhost/project-docs-toolkit:latest
 PORT  ?= 8000
-# Host interface the preview binds to — localhost only by default (more secure).
+# Host interface the preview binds to — localhost only by default.
 # Override to expose on the LAN, e.g.  make serve BIND=0.0.0.0
 BIND  ?= 127.0.0.1
 

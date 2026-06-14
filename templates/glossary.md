@@ -18,6 +18,9 @@ consistently everywhere else. Keep definitions to a sentence or two; depth lives
 the linked page. This is what stops agents (and people) from naming the same thing
 three different ways across passes.
 
+For a hover **tooltip** on a term anywhere in the docs, also add a one-line
+`*[term]: short def` to `includes/abbreviations.md` (auto-appended to every page).
+
 <!-- One entry per term, alphabetical. Each `### Term` gets a #term anchor you can
      link to. End with the canonical page that owns the concept. -->
 

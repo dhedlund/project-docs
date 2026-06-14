@@ -10,8 +10,10 @@ Product docs, ticket histories (JIRA), and git history are **lower-confidence
 context**, valuable for *why* the system is the way it is — domain reasoning,
 history, intent — not for *what* it does.
 
-**Rule: link, don't merge.** Secondary sources are linked and cited, never written
-over a code-derived fact. Concretely:
+**Rule: link, don't merge.** Secondary sources are linked and cited (in `refs:`
+frontmatter and inline), never written over a code-derived fact; contradictions get a
+`Discrepancy` callout (see `CONVENTIONS.md` → Secondary sources & discrepancies).
+Concretely:
 
 - A product doc or ticket explains intent → cite it from the relevant page /ADR; it
   raises understanding, not the page's authority over facts.

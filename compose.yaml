@@ -23,7 +23,7 @@ services:
   serve:
     <<: *toolkit
     command: mkdocs serve -a 0.0.0.0:8000
-    # Host-published on localhost only by default (more secure); override the bind
+    # Host-published on localhost only by default; override the bind
     # interface and/or port:  BIND=0.0.0.0 PORT=9000 podman compose up serve
     ports: ["${BIND:-127.0.0.1}:${PORT:-8000}:8000"]
 

@@ -16,6 +16,7 @@ sources:
 uses_services: []
 uses_models: []
 domain:
+refs: []        # secondary "why" sources: tickets / product-doc URLs (see CONVENTIONS)
 tags: []
 ---
 

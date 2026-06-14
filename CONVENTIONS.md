@@ -32,7 +32,9 @@ Concretely:
 
 Plus a cross-cutting **Glossary** (`docs/glossary.md`, from `templates/glossary.md`)
 — the product's shared vocabulary; define each term once and link to the page that
-owns it.
+owns it. For in-prose **tooltips**, mirror terms as `*[term]: short def` in
+`includes/abbreviations.md` (auto-appended to every page; Material shows a hover
+definition on each occurrence).
 
 And **Datastore** pages (`docs/datastores/`, from `templates/datastore.md`) for the
 databases and queues services depend on. You only list what each store *holds*;
@@ -124,6 +126,36 @@ discard that finding — record it where you found it:
   Use a fenced ` ```d2 ` block; it renders to SVG at build time, with light and
   dark variants that follow the site's theme toggle. Mermaid stays the default for
   inline, sequence, and ER diagrams.
+
+## Secondary sources & discrepancies
+
+Code is ground truth (`agent_docs/stewardship/source-of-truth.md`). Product docs,
+tickets, and commit history are **secondary** — they carry the *why*, not the *what*.
+Link them; never merge them over code-derived facts.
+
+- **`refs:` frontmatter** records the secondary sources behind a page — tickets,
+  product-doc URLs, or commits that explain *why* it's this way. A bare string or a
+  mapping:
+
+  ```yaml
+  refs:
+    - JIRA-1423
+    - ref: "https://wiki/.../billing"
+      note: the original pricing rationale
+  ```
+
+- **A `Discrepancy` callout** flags where a secondary source contradicts the code.
+  The code-derived fact stays; the conflict is surfaced (and routed to a `FINDING`),
+  not silently resolved:
+
+  ```markdown
+  !!! warning "Discrepancy"
+      The pricing page says downgrades apply immediately; the code applies them at
+      period end (`Billing::Subscription`). Code wins — the pricing page is stale.
+  ```
+
+See `agent_docs/stewardship/enrichment-and-currency.md` for how these fold in over
+time. `refs:` is available on any page.
 
 ## Voice
 
