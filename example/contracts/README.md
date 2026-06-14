@@ -18,10 +18,18 @@ Author HTTP contracts in **TypeSpec** and compile to OpenAPI. The compiled
 `openapi.yaml` is the artifact every downstream tool reads (and what gets embedded
 into the [billing-service](../docs/services/billing-service.md) page).
 
+A TypeSpec contract is a small **project** — it resolves its libraries from a local
+`node_modules` (unlike the file-based tools below). `billing/` is set up that way:
+`package.json` pins the deps and `tspconfig.yaml` configures the emitter.
+
 ```bash
-# (tools not installed yet — reference commands)
-npx @typespec/compiler compile billing/main.tsp --emit @typespec/openapi3
+cd billing
+npm install            # one-time: fetch the pinned @typespec/* libraries
+tsp compile main.tsp   # -> _out/openapi.yaml ; copy to openapi.yaml when stable
 ```
+
+Run these from a toolkit shell (`make shell` at the repo root) so node / tsp /
+oasdiff / schemathesis / prism are all on PATH.
 
 ## Verification trio
 

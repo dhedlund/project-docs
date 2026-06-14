@@ -7,3 +7,10 @@ __pycache__/
 
 # macOS
 .DS_Store
+
+# Node / TypeSpec contract projects
+node_modules/
+_out/
+
+# npm cache (created when running npm inside a mounted project)
+.npm/

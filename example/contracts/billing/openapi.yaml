@@ -1,9 +1,8 @@
-# Compiled from main.tsp (representative output). This is the artifact the
-# verification tools (oasdiff / Schemathesis / Prism) actually consume.
 openapi: 3.0.0
 info:
   title: Beacon Billing
-  version: 0.1.0
+  version: 0.0.0
+tags: []
 paths:
   /subscriptions/{id}:
     get:
@@ -15,18 +14,18 @@ paths:
           schema:
             type: string
       responses:
-        "200":
-          description: The subscription.
+        '200':
+          description: The request has succeeded.
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Subscription"
+                $ref: '#/components/schemas/Subscription'
         default:
-          description: Error
+          description: An unexpected error response.
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Error"
+                $ref: '#/components/schemas/Error'
   /subscriptions/{id}/upgrade:
     post:
       operationId: Subscriptions_upgrade
@@ -36,53 +35,81 @@ paths:
           required: true
           schema:
             type: string
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Subscription'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/UpgradeRequest"
-      responses:
-        "200":
-          description: Updated subscription.
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Subscription"
-        default:
-          description: Error
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
+              $ref: '#/components/schemas/UpgradeRequest'
 components:
   schemas:
-    SubscriptionStatus:
-      type: string
-      enum: [trialing, active, past_due, canceled]
+    Error:
+      type: object
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: string
+        message:
+          type: string
     Subscription:
       type: object
-      required: [id, orgId, planId, status, seats, seatsInUse, currentPeriodEnd]
+      required:
+        - id
+        - orgId
+        - planId
+        - status
+        - seats
+        - seatsInUse
+        - currentPeriodEnd
       properties:
-        id: { type: string }
-        orgId: { type: string }
-        planId: { type: string }
-        status: { $ref: "#/components/schemas/SubscriptionStatus" }
-        seats: { type: integer, format: int32 }
+        id:
+          type: string
+        orgId:
+          type: string
+        planId:
+          type: string
+        status:
+          $ref: '#/components/schemas/SubscriptionStatus'
+        seats:
+          type: integer
+          format: int32
         seatsInUse:
           type: integer
           format: int32
+          description: Derived from a DB view (active_subscriptions_v); read-only.
           readOnly: true
-          description: Derived from the active_subscriptions_v view.
-        currentPeriodEnd: { type: string, format: date-time }
+        currentPeriodEnd:
+          type: string
+          format: date-time
+    SubscriptionStatus:
+      type: string
+      enum:
+        - trialing
+        - active
+        - past_due
+        - canceled
+      description: |-
+        Lifecycle status. Note: in the real service this is enforced in app code,
+        not the database — the contract just documents the allowed values.
     UpgradeRequest:
       type: object
-      required: [planId]
+      required:
+        - planId
       properties:
-        planId: { type: string }
-    Error:
-      type: object
-      required: [code, message]
-      properties:
-        code: { type: string }
-        message: { type: string }
+        planId:
+          type: string

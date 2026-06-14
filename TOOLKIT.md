@@ -66,8 +66,10 @@ make shell      # toolkit shell with tsp / oasdiff / schemathesis / prism
 
 Capabilities and what they look like in practice:
 
-- **Author → OpenAPI.** `tsp compile contracts/<svc>/main.tsp --emit @typespec/openapi3`
-  → the OpenAPI artifact the rest of the tools consume.
+- **Author → OpenAPI.** A TypeSpec contract is a small project (it pins its libs in
+  `package.json`): `cd contracts/<svc> && npm install && tsp compile main.tsp` →
+  the OpenAPI artifact the rest of the tools consume. (The file-based tools below
+  need no project — they read the spec directly.)
 - **Backward-compat gate (offline).** `oasdiff breaking old.yaml new.yaml --fail-on ERR`
   — pure spec-vs-spec; no stack needed. Safe in CI.
 - **Provider conformance (needs the service).**
