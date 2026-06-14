@@ -37,6 +37,11 @@ minutes); after that it's cached.
 > plain text — the browser blocks loading Mermaid's module over `file://`. Served
 > over HTTP they render fine. D2 is baked in at build time and shows either way.
 
+> **Localhost only by default (more secure).** `make serve` publishes the preview on
+> `127.0.0.1`, so it isn't reachable from the LAN. Override the bind interface and/or
+> port when you need to: `make serve BIND=0.0.0.0 PORT=9000` (or with compose,
+> `BIND=0.0.0.0 PORT=9000 podman compose up serve`).
+
 The [`example/`](example/) project has the same targets (preview on port 8001),
 which is the quickest way to confirm your setup works end-to-end:
 

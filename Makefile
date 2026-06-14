@@ -5,6 +5,9 @@
 
 IMAGE := localhost/project-docs-toolkit:latest
 PORT  ?= 8000
+# Host interface the preview binds to — localhost only by default (more secure).
+# Override to expose on the LAN, e.g.  make serve BIND=0.0.0.0
+BIND  ?= 127.0.0.1
 
 # Container engine: auto-detect Podman, else Docker. Override with: make ENGINE=docker
 ENGINE ?= $(shell command -v podman >/dev/null 2>&1 && echo podman || echo docker)
@@ -44,8 +47,10 @@ drift: image ## Drift vs source repos: make drift SRC=/path/to/code
 
 ci: build check ## The local gate: build + lint (what CI runs)
 
-serve: image ## Live-reload preview (http://localhost:8000)
-	$(RUN) $(TTY) -p $(PORT):8000 $(IMAGE) mkdocs serve -a 0.0.0.0:8000
+serve: image ## Live-reload preview (http://localhost:8000; LAN via BIND=0.0.0.0)
+	# Host-published on $(BIND) only. The container-internal 0.0.0.0 bind is not
+	# network-exposed except through this publish.
+	$(RUN) $(TTY) -p $(BIND):$(PORT):8000 $(IMAGE) mkdocs serve -a 0.0.0.0:8000
 
 shell: image ## Shell inside the toolkit (tsp / prism / oasdiff / d2 / schemathesis)
 	$(RUN) $(TTY) $(IMAGE) bash

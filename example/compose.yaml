@@ -19,7 +19,8 @@ services:
   serve:
     <<: *toolkit
     command: mkdocs serve -a 0.0.0.0:8000
-    ports: ["8001:8000"]
+    # localhost only by default; override BIND and/or PORT
+    ports: ["${BIND:-127.0.0.1}:${PORT:-8001}:8000"]
 
   build:
     <<: *toolkit
