@@ -7,13 +7,10 @@
 ##   2. Adjust the trigger `paths:` and `working-directory` for your repo layout.
 ##   3. Commit. It will run on push / PR.
 ##
-## What it does once enabled: builds the docs site offline and strict, so a
-## broken link or invalid nav fails the PR — the same `make build` contract you
-## run locally, just on CI's runner.
-##
-## This is intentionally minimal and per-project customizable. See the commented
-## sections at the bottom for: building through the toolkit image (for full
-## parity), adding the frontmatter/link checks once they exist, and publishing.
+## It builds the docs the SAME way you do locally — through the toolkit image — so
+## the image-baked build hook (status badges + "Used by" backlinks) and the
+## `docs-check` linter are present. A broken link, invalid nav, or frontmatter
+## error fails the PR.
 ## ─────────────────────────────────────────────────────────────────────────
 
 name: docs-ci
@@ -21,47 +18,39 @@ name: docs-ci
 on:
   push:
     branches: [main]
-    # Only run when docs/config actually change. Adjust to your layout.
-    paths:
-      - "docs/**"
-      - "mkdocs.yml"
-      - "requirements.txt"
+    paths: ["docs/**", "mkdocs.yml", "requirements.txt", "Containerfile", "tools/**"]
   pull_request:
-    paths:
-      - "docs/**"
-      - "mkdocs.yml"
-      - "requirements.txt"
+    paths: ["docs/**", "mkdocs.yml", "requirements.txt", "Containerfile", "tools/**"]
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    # If this repo lives in a monorepo subdirectory, set the path here and the
-    # checkout/build will run relative to it (and update the `paths:` above).
+    # If this repo lives in a monorepo subdirectory, set the path here (and update
+    # the `paths:` above to match).
     # defaults:
     #   run:
     #     working-directory: project-docs
     steps:
       - uses: actions/checkout@v4
 
-      # Lightweight path: install just the docs core and build. Fast, and all CI
-      # needs for the "main thrust" (the contract toolchain isn't needed here).
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-      - run: pip install -r requirements.txt
-      - run: mkdocs build --strict
-      - run: python tools/check.py docs   # frontmatter + cross-link lint
+      # GitHub runners ship Docker; the Containerfile is OCI-standard.
+      - name: Build toolkit image
+        run: docker build -t docs-toolkit -f Containerfile .
 
-  # ── Optional / future steps — uncomment and finish as the pieces land ───────
+      - name: Build site (offline, strict)
+        run: docker run --rm --network none -v "$PWD":/docs -w /docs docs-toolkit mkdocs build --strict
+
+      - name: Lint frontmatter + cross-links
+        run: docker run --rm --network none -v "$PWD":/docs -w /docs docs-toolkit docs-check docs
+
+  # ── Optional / future steps ────────────────────────────────────────────────
   #
-  # Full parity (build through the toolkit image instead of pip). GitHub runners
-  # have Docker; the Containerfile is OCI-standard so `docker` builds it too:
-  #   - run: docker build -t docs-toolkit -f Containerfile .
-  #   - run: docker run --rm --network none -v "$PWD":/docs -w /docs docs-toolkit mkdocs build --strict
+  # Coverage / staleness report (informational):
+  #   - run: docker run --rm --network none -v "$PWD":/docs -w /docs docs-toolkit docs-report docs
   #
-  # Drift check against the source repos (needs the code clones available — see
-  # agent_docs/stewardship/source-of-truth.md). Not wired here by default:
-  #   - run: docs-drift docs   # diff each page's `sources` vs the repos -> stale list
+  # Drift vs the source repos (needs the code clones mounted — see
+  # agent_docs/stewardship/source-of-truth.md):
+  #   - run: docker run --rm -v "$PWD":/docs -v /path/to/code:/src:ro -w /docs docs-toolkit docs-drift docs
   #
   # Publish to GitHub Pages (after `permissions: pages: write` + Pages config):
   #   - uses: actions/upload-pages-artifact@v3

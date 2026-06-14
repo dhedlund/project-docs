@@ -1,22 +1,25 @@
 site_name: Project Docs
 site_description: Product-wide knowledge base — features, services, and data models.
 
-# NOTE: tooling is not installed yet. This config targets `mkdocs-material`
-# (see requirements.txt). Plugins/extensions beyond Material are commented and
-# deferred to a later pass (e.g. Kroki/D2 rendering, macro-derived backlinks).
-
 theme:
   name: material
   features:
-    - navigation.instant      # SPA-like navigation
-    - navigation.tracking     # update URL with the active anchor
-    - navigation.sections     # top-level groups as sections
-    - navigation.indexes      # section landing pages (index.md)
-    - navigation.top          # back-to-top button
+    - navigation.instant
+    - navigation.instant.progress
+    - navigation.tracking
+    - navigation.sections
+    - navigation.indexes
+    - navigation.top
+    - navigation.path          # breadcrumbs
+    - navigation.footer
     - toc.follow
     - search.suggest
     - search.highlight
+    - search.share
     - content.code.copy
+    - content.code.annotate
+    - content.tabs.link
+    - content.tooltips
   palette:
     - media: "(prefers-color-scheme: light)"
       scheme: default
@@ -31,26 +34,48 @@ theme:
 
 plugins:
   - search
-  - tags                      # cross-cutting discovery via `tags:` frontmatter
+  - tags
+  - d2          # render ```d2 diagrams (uses the d2 binary in the toolkit image)
+  - glightbox   # click-to-zoom for images / diagrams
+
+# Status badges + derived "Used by" backlinks (baked into the toolkit image).
+hooks:
+  - /usr/local/lib/docs/hook.py
 
 markdown_extensions:
-  - admonition                # callouts (!!! note)
-  - pymdownx.details          # collapsible callouts (??? note)
+  - abbr
+  - admonition
   - attr_list
+  - def_list
+  - footnotes
   - md_in_html
   - tables
   - toc:
       permalink: true
+  - pymdownx.betterem
+  - pymdownx.caret
+  - pymdownx.critic
+  - pymdownx.details          # collapsible admonitions (??? )
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.snippets         # shared fragments to avoid duplication
   - pymdownx.superfences:
       custom_fences:
         - name: mermaid       # inline Mermaid diagrams
           class: mermaid
           format: !!python/name:pymdownx.superfences.fence_code_format
-  - pymdownx.snippets         # include shared fragments to avoid duplication
-
-# Future (convergence pass), needs extra packages — left out for now:
-#   - mkdocs-macros-plugin    # derive "used by" backlinks from frontmatter
-#   - kroki / d2 rendering    # for D2 "hero" architecture diagrams
+  - pymdownx.tabbed:
+      alternate_style: true   # content tabs (e.g. multi-language examples)
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
 
 nav:
   - Home: index.md

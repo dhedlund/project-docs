@@ -35,3 +35,18 @@ flowchart LR
   accounts --> mysql
   messaging --> pg[(PostgreSQL)]
 ```
+
+## The same flow as a D2 "hero" diagram
+
+```d2
+ui: Web UI
+billing: billing-service
+accounts: accounts-service
+mq: RabbitMQ {shape: queue}
+messaging: messaging-service
+ui -> billing
+ui -> accounts
+billing -> accounts
+billing -> mq: subscription.upgraded
+mq -> messaging
+```

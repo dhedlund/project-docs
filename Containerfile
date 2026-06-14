@@ -60,6 +60,10 @@ COPY tools/check.py /usr/local/bin/docs-check
 COPY tools/report.py /usr/local/bin/docs-report
 RUN chmod +x /usr/local/bin/docs-check /usr/local/bin/docs-report
 
+# mkdocs build hook: status badges + derived "Used by" backlinks. Referenced from
+# mkdocs.yml as /usr/local/lib/docs/hook.py (absolute, so root and example share it).
+COPY tools/mkdocs_hook.py /usr/local/lib/docs/hook.py
+
 WORKDIR /docs
 EXPOSE 8000
 
