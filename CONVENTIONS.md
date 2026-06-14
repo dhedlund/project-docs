@@ -114,6 +114,12 @@ discard that finding — record it where you found it:
   It is **not wired up yet** (needs Kroki or the D2 CLI); until then, prefer
   Mermaid and leave a note where a D2 diagram should eventually go.
 
+## Voice
+
+How our docs should *read* — friendly, clear, example-first — lives in
+`agent_docs/stewardship/voice-and-tone.md`. It's guidance, not a rulebook: clarity
+and natural reading always win over staying "on style."
+
 ## Frontmatter
 
 See the header comment in each `templates/*.md` file for the per-type fields.

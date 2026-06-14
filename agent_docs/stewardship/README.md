@@ -18,6 +18,8 @@ These are **product-specific** and are written/filled during the
   and audit cadence.
 - **`enrichment-and-currency.md`** — how product docs / tickets / git history fold
   in (link, don't merge) and how source changes re-enter the loop.
+- **`voice-and-tone.md`** — how the docs should read (friendly, clear,
+  example-first). Guidance, not a rulebook.
 
 **Product-specific** (written during the bootstrap):
 

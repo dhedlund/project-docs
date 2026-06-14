@@ -48,6 +48,8 @@ Match the user's intent to a routine and follow that document:
 - **Changes ripple** — when a fact changes, follow the links to the pages it
   affects (a new model field often surfaces in the owning service's contract and in
   features) and update or flag them; don't fix one page in isolation.
+- **Write for humans** — friendly, clear, example-first prose
+  (see `agent_docs/stewardship/voice-and-tone.md`); clarity always wins over rules.
 
 ## Build
 
