@@ -17,6 +17,9 @@ answers your question.
   responsibilities and its formal, testable contracts.
 - **[Models](models/index.md)** — the data and domain models, and how they map to
   the databases and queues behind them.
+- **[Datastores](datastores/index.md)** — the databases and queues the services
+  depend on, and what each one holds.
+- **[Glossary](glossary.md)** — the product's shared vocabulary.
 - **[Decisions](decisions/index.md)** — the *why*: architecture decision records.
 
 ## How to read this

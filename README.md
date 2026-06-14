@@ -17,6 +17,8 @@ project-docs/
 │   ├── features/      # L1 — product-facing capabilities & journeys
 │   ├── services/      # L2 — services as black boxes + their contracts
 │   ├── models/        # L3 — data/domain models and how they map to storage
+│   ├── datastores/    # the databases & queues services depend on
+│   ├── glossary.md    # shared vocabulary
 │   └── decisions/     # L4 — architecture decision records (ADRs)
 ├── templates/         # starting points for new pages (NOT part of the site)
 ├── CONVENTIONS.md     # how we write these docs — read this first

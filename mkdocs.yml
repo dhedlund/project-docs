@@ -83,4 +83,6 @@ nav:
   - Features: features/index.md
   - Services: services/index.md
   - Models: models/index.md
+  - Datastores: datastores/index.md
+  - Glossary: glossary.md
   - Decisions: decisions/index.md
