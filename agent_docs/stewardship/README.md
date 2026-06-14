@@ -20,6 +20,8 @@ These are **product-specific** and are written/filled during the
   in (link, don't merge) and how source changes re-enter the loop.
 - **`voice-and-tone.md`** — how the docs should read (friendly, clear,
   example-first). Guidance, not a rulebook.
+- **`information-architecture.md`** — the map of where each kind of doc lives (the
+  routing authority): product, surfaces, interfaces, internals, integrations, specs.
 
 **Product-specific** (written during the bootstrap):
 

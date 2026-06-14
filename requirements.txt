@@ -11,3 +11,7 @@ mkdocs-d2-plugin==1.7.0
 
 # Image / diagram zoom (lightbox).
 mkdocs-glightbox==0.5.2
+
+# Render OpenAPI specs in-site (bundles Swagger UI assets statically — offline-capable).
+# Present in the image; enable per-project in mkdocs.yml only when there's an API to render.
+mkdocs-swagger-ui-tag==0.8.0

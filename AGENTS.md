@@ -50,6 +50,9 @@ Match the user's intent to a routine and follow that document:
   features) and update or flag them; don't fix one page in isolation.
 - **Write for humans** — friendly, clear, example-first prose
   (see `agent_docs/stewardship/voice-and-tone.md`); clarity always wins over rules.
+- **Everything has a home** — route each kind of doc to its place per the IA map
+  (`agent_docs/stewardship/information-architecture.md`): product / surfaces /
+  interfaces / internals / integrations / specs.
 
 ## Build
 

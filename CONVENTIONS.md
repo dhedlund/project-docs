@@ -43,6 +43,11 @@ not `docs/` — they're specs, not pages. Start one from `templates/contract/`; 
 pages link to them and the verification tools (`oasdiff`/`schemathesis`/`prism`)
 consume them. See `contracts/README.md`.
 
+There are more homes than the core layers — **domains, flows, options, surfaces,
+interfaces (API/webhooks/SDKs), integrations, roles**. The full map of what lives
+where (and which template to use) is the IA map:
+`agent_docs/stewardship/information-architecture.md`.
+
 Pages link **up and down** between layers: a feature links down into the services
 and models it touches; a model links up to the features and service that use it.
 Start by maintaining links in whichever direction is natural to write; deriving

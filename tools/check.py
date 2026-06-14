@@ -25,8 +25,14 @@ except ImportError:
     sys.exit("PyYAML not available — run via `make check` (inside the container).")
 
 PAGE_TYPES = {
-    "model", "service", "feature", "decision",
-    "index", "overview", "domain", "datastore", "glossary",
+    # internals
+    "model", "service", "feature", "decision", "datastore",
+    # navigation / overview
+    "index", "overview", "domain", "glossary", "capability",
+    # product behaviour
+    "options", "flow", "roles",
+    # external / integration surface
+    "api", "webhook", "sdk", "integration", "surface", "auth",
 }
 STATUSES = {
     "active", "deprecated", "partial", "unknown", "stub",
@@ -35,9 +41,13 @@ STATUSES = {
 REL_FIELDS = [
     "related_models", "related_features", "related_services",
     "uses_services", "uses_models", "owned_models", "owned_by", "depends_on",
+    "domain", "surfaces",
 ]
 # Pages derived from source code must record provenance (`sources`).
-CODE_DERIVED = {"model", "service", "feature"}
+CODE_DERIVED = {
+    "model", "service", "feature",
+    "api", "webhook", "sdk", "integration", "surface", "options", "flow",
+}
 
 
 def parse_frontmatter(text):

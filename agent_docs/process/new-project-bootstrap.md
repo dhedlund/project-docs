@@ -49,6 +49,18 @@ with a low-confidence assumption. **Code access (group 3) must be answered.**
 - Confirm a single docs repo (default: yes).
 - Any CI or hosting target to keep in mind?
 
+### 7. The integration & product surface
+- **Public / partner API?** (REST / GraphQL) — and **webhooks** it sends? **Client
+  SDKs** (which languages)? What's the **API auth** model?
+- **Frontends / surfaces** — which apps exist (B2C app, B2B / partner portal, admin
+  console, marketing / status site)?
+- **Third-party integrations** the product depends on (payments, email/SMS, CRM,
+  storage, …)?
+- **Roles** — the main user/admin roles, if there's meaningful access control.
+
+These decide which homes to create (see
+`agent_docs/stewardship/information-architecture.md`); make only the ones that apply.
+
 Write the answers down as you go (step 2 turns them into stewardship docs).
 
 ---
@@ -86,6 +98,13 @@ features you can identify (don't deep-dive). For each, create a **stub page** fr
 the matching `templates/` file under `docs/`, with `status: stub` and a low
 `reviewed_confidence`. The goal is breadth and a real cross-link graph, not depth.
 
+Then, for each zone group 7 says exists, **create its home and a stub** per the IA
+map (`agent_docs/stewardship/information-architecture.md`): e.g. `docs/interfaces/`
+(`api/`, `webhooks/`, `sdks/`, `auth.md`), `docs/integrations/`, `docs/surfaces/`,
+`docs/access/`, plus `docs/domains/` for the domains from group 1. Add each new
+section to `mkdocs.yml` nav as you create it (`--strict` requires it). Don't create
+homes for zones the product doesn't have.
+
 ## Step 5 — Seed the queue
 
 Fill in `agent_docs/process/plan.md` and `backlog.md` — they ship in the scaffold
@@ -104,10 +123,10 @@ placeholders and seed the queue:
 ## Step 6 — Verify it builds
 
 ```bash
-make build
+make ci
 ```
 
-Fix anything `--strict` flags before handing off.
+Fix anything `make ci` (build `--strict` + lint) flags before handing off.
 
 ## Step 7 — Hand off
 

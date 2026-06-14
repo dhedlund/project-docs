@@ -20,7 +20,11 @@ try:
 except ImportError:  # pragma: no cover
     yaml = None
 
-CONTENT_TYPES = {"model", "service", "feature", "glossary", "decision", "datastore"}
+CONTENT_TYPES = {
+    "model", "service", "feature", "glossary", "decision", "datastore",
+    "domain", "capability", "options", "flow", "roles",
+    "api", "webhook", "sdk", "integration", "surface", "auth",
+}
 
 # Each relationship field, and the label its *reverse* gets on the target page.
 FIELD_LABELS = {
@@ -29,12 +33,15 @@ FIELD_LABELS = {
     "owned_models": "Owned by",
     "owned_by": "Owns",
     "depends_on": "Depended on by",
+    "domain": "In this domain",
+    "surfaces": "Surfaced here",
     "related_models": "Related",
     "related_features": "Related",
     "related_services": "Related",
 }
 # Order in which grouped sections are emitted.
-LABEL_ORDER = ["Used by", "Owned by", "Depended on by", "Owns", "Related"]
+LABEL_ORDER = ["Used by", "Owned by", "Depended on by", "In this domain",
+               "Surfaced here", "Owns", "Related"]
 
 _index = {}  # docs_dir -> {"refs": {name: [(src_uri, title, label)]}}
 

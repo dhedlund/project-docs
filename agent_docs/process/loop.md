@@ -110,6 +110,7 @@ Skipping silently is the failure mode this loop exists to prevent.
 | A change that ripples to related pages (e.g. a model field the contract exposes) | Update the impacted page in-pass if verified; else `DOC-VERIFY` naming the ripple |
 | Contradiction with product docs or tickets | Page `Discrepancy` callout + backlog (don't overwrite code-derived facts) |
 | Contract (TypeSpec/OpenAPI/AsyncAPI) work | `CONTRACT` backlog entry |
+| API / webhook / SDK / integration / surface / flow / options / roles / domain info | File it in that kind's home per `agent_docs/stewardship/information-architecture.md` |
 | Durable domain learning | `agent_docs/stewardship/product.md` or the glossary |
 | New idea (tactical) | `plan.md` *Open questions* or `backlog.md` |
 | Decided out of scope | `backlog.md` *Out of scope* (named, so a cold reader sees the decline) |
