@@ -33,8 +33,8 @@ and contained. See `TOOLKIT.md`.
 The docs repo on `main` stays buildable at every commit:
 
 - always on `main`, never a stray branch;
-- never holds a broken `make build`;
-- `make build` (`--strict`) green at every commit boundary.
+- never holds a broken `make ci`;
+- `make ci` (build + check) green at every commit boundary.
 
 Implementation work happens in isolated worktrees/branches; `main` integrates
 finished work.
@@ -57,6 +57,12 @@ execution detail inside it, not a second plan stream. The real contention here i
 - **Shared base.** Reset each worktree to current `main` before dispatch.
 - **Disjoint only.** Two agents reshaping the same pages — or the same cross-link
   neighbourhood — serialize.
+- **Ripple becomes a backlog entry, not a cross-agent edit.** The loop's ripple
+  discipline (a change propagating to related pages) is a cross-link-neighbourhood
+  operation, which fights disjointness. Under orchestration, a ripple that reaches
+  into another in-flight agent's pages is filed as a `DOC-VERIFY` (the orchestrator
+  reconciles overlapping ripple entries at integration), never edited in-pass.
+  Parallelism trades ripple-immediacy for throughput.
 - **Self-contained briefs.** A brief carries everything a cold agent needs: the
   page(s) and their definition of done (the `audit-checklist.md` type), how to
   reach the source, constraints, and where findings route. It doubles as the
@@ -83,9 +89,9 @@ Per merge batch, in order:
 2. **Verify your own state** — `pwd` + `git log` before merging; after worktree
    hopping the CWD is often not where you think.
 3. **Linear history** — ff-only / rebase / cherry-pick; no merge commits.
-4. **Build gates the batch** — `make build` (`--strict`) green on the integrated
+4. **CI gates the batch** — `make ci` (build + check) green on the integrated
    result before it counts as landed.
 5. **Verify `main`'s state** — on `main`, clean, fast-forwarded.
 6. **Clean up** — delete merged branches; reset/remove worktrees.
 
-Work is "done" only when `make build` is green on `main` and `plan.md` reflects it.
+Work is "done" only when `make ci` is green on `main` and `plan.md` reflects it.

@@ -5,19 +5,24 @@ short by design. This is the routine behind "work on what's next."
 
 ## At a glance
 
-1. **Read context.** `AGENTS.md`, this file, `plan.md`, `CONVENTIONS.md`. Read
-   `agent_docs/stewardship/source-of-truth.md` to know how to reach the code.
-   `backlog.md` is consulted only when choosing the next item — not every
-   iteration.
+1. **Read context & re-ground.** `AGENTS.md`, this file, `plan.md`, `CONVENTIONS.md`.
+   Read `agent_docs/stewardship/source-of-truth.md` to know how to reach the code.
+   **At session start, if code access is configured, run `make drift SRC=…` and
+   `make report`** and file any `STALE` / `[stale]` / `[unscored]` output as
+   `DOC-VERIFY` entries before proceeding — this is how source changes re-enter the
+   loop. `backlog.md` is read when choosing the next item and when checking whether
+   the queue has thinned.
 2. **Identify Now.** Find the *Now* item in `plan.md`. Confirm its definition of
    done (the page type's checklist in `audit-checklist.md`).
 3. **Do the work.** Read the source (per source-of-truth access). Write/update the
    page(s) per `CONVENTIONS.md` — right template, the depth ladder, progressive
    disclosure. **Document only what you verify in the source; lower confidence
    rather than invent.**
-4. **Verify.** `make build` clean (`--strict`); the page meets its type's
-   checklist; `reviewed_confidence` set honestly and `last_reviewed` dated;
-   provenance recorded (which source, which ref).
+4. **Verify.** `make ci` clean — that's `make build` (`--strict` links/nav) **plus
+   `make check`** (frontmatter, provenance, cross-link lint). The page meets its
+   type's checklist; `reviewed_confidence` set honestly and `last_reviewed` dated;
+   provenance (`sources`) recorded — `make check` *requires* it on code-derived
+   pages.
 5. **Reflect & capture.** Answer the step-5 questions in writing, before commit.
 6. **Route findings.** Distil answers into the right destinations (step-6 table).
 7. **Commit.** Page work and plan update land together.
@@ -26,14 +31,19 @@ short by design. This is the routine behind "work on what's next."
    commit message — never leave a "DONE" tombstone), and pull the next item from
    *Up next* or the top-ranked fitting `backlog.md` entry into *Now*. If your
    context has faded, re-ground (step 1) first.
-9. **Anti-coast: when the backlog thins, refill it.** If *Now*, *Up next*, and
-   every regular `backlog.md` entry are resolved, **do not declare done.** Dispatch
-   a standing **research thread** (see below). Its output — new backlog entries —
-   becomes the next *Now* candidate. For a living system the loop also re-opens
-   whenever the **source code or tickets change**: a diff becomes `DOC-VERIFY`
-   entries for the affected pages. Done fires only when coverage is at target, no
-   findings are open, and the research threads are quiescent — and that state is
-   always momentary.
+9. **Anti-coast: when the backlog thins, refill — then know when to stop.** If
+   *Now*, *Up next*, and every regular `backlog.md` entry are resolved, don't stop
+   yet: dispatch a standing **research thread** (see below); its output becomes the
+   next *Now* candidate. **When to actually stop the session:**
+   - if the user set an **iteration budget** ("work the next N items," "for an
+     hour"), stop when it's spent;
+   - otherwise, stop when you **run out of useful work** — the backlog is empty
+     *and* the research threads turn up nothing actionable for a round or two *and*
+     no source has changed since the last drift run.
+
+   A full "done" is an ideal you rarely hold (any source change re-opens work), so
+   don't manufacture make-work to avoid stopping, and don't claim a false done. A
+   quiet steady state is a fine place to end a session.
 
 If the plan is stale (the *Now* item's definition of done is already met, sections
 don't match reality, or *Recent discoveries* is non-empty from a prior iteration),
@@ -122,7 +132,10 @@ backlog entries. Dispatch one whenever the regular backlog thins:
 - **Glossary / consistency sweep** — terms named inconsistently across pages →
   reconcile, grow the glossary.
 
-The threads are never permanently empty for a living system — that's the point.
+For a living system the threads rarely stay empty for long — a source or ticket
+change refills them. But within a session they *can* come up dry; when they do (and
+the backlog is empty and nothing has changed), that's your signal to stop, not to
+invent work.
 
 ## Anti-rot
 

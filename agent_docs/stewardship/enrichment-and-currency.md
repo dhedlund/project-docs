@@ -30,21 +30,29 @@ to import wholesale (they drift worse than code and carry no enforcement).
 ## Currency: the feedback loop that fights rot
 
 The docs track a living system, so the loop must **re-open when the source
-changes**. The mechanism:
+changes**. The mechanism, made concrete:
 
 1. Each page records, in its `sources` frontmatter, the `repo` / `branch` / `sha` /
-   `committed` it was last verified against (see `CONVENTIONS.md` → Provenance).
-2. To find drift, per source: fetch the canonical branch, then diff —
-   `git log <sha>..origin/<branch> -- <paths>` when the sha is still reachable, or
-   `git log --since=<committed> origin/<branch> -- <paths>` when it was rewritten
-   away (squash / rebase / force-push). A non-empty diff means the page is stale.
-3. Stale pages become **`DOC-VERIFY`** entries; the drift audit
-   (`confidence-and-freshness.md`) works them down, re-verifying and re-stamping
-   `sources` + confidence + `last_reviewed`.
+   `committed` (+ optional `paths`) it was last verified against (see
+   `CONVENTIONS.md` → Provenance). `make check` *requires* this on code-derived
+   pages, so provenance coverage isn't optional.
+2. **`make drift SRC=<code>`** (the `docs-drift` tool) diffs each page's `sources`
+   against the clones: `git log <sha>..<branch> -- <paths>` when the sha is
+   reachable, else `git log --since=<committed> <branch> -- <paths>` when it was
+   rewritten away. Git/branch/sha errors are reported, never silently swallowed.
+3. **It runs automatically, not on a whim.** The loop runs `make drift` + `make
+   report` at **session start** (`loop.md` step 1), and a scheduled CI job can run
+   it without an agent (`.github/workflows/docs-ci.yml.example`). The output is filed
+   as `DOC-VERIFY` before the session proceeds — that's the re-entry path.
+4. The drift audit (`confidence-and-freshness.md`) then works those entries down,
+   re-verifying against current source and re-stamping `sources` + confidence +
+   `last_reviewed`.
 
-This is the concrete form of "keep the docs up to date by feeding changes back in."
-Until a change-feed is wired, the time-based drift audit is the fallback — it finds
-the same drift, just less precisely.
+**The `--since` fallback is approximate.** After a rebase/squash, commit dates
+shift, so it can over-report — `docs-drift` marks those `APPROX`. Treat an APPROX
+hit as "re-anchor the `sha` (re-verify only if the content actually changed),"
+not a full re-read. A precise commit/ticket **change-feed** is optional automation
+on top; until it's wired, session-start `make drift` is the dependable path.
 
 ## What this is not
 

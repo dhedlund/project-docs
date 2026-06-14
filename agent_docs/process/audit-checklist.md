@@ -6,12 +6,14 @@ and the **verification list** when running a drift/freshness audit pass.
 
 ## Every page (all types)
 
-- `make build` is green (`--strict`) — no broken internal links, valid nav.
+- `make ci` is green — `make build` (`--strict`: links/nav) **and** `make check`
+  (frontmatter, provenance, cross-link lint).
 - Frontmatter: `title`, `type`, `status` present; `reviewed_confidence` is an
   honest 1–100; `last_reviewed` is today's date for this pass.
 - **Provenance** recorded in `sources` frontmatter — `repo` / `branch` / `sha` /
-  `committed` per source (see `CONVENTIONS.md` → Provenance); re-stamped this pass
-  if verified against newer source.
+  `committed` per source (see `CONVENTIONS.md` → Provenance); **required on
+  code-derived pages** (model/service/feature) — `make check` errors if missing;
+  re-stamped this pass if verified against newer source.
 - Leads with what matters now; nuance/history/cleanup pushed into collapsible
   blocks (progressive disclosure).
 - Anything broken/unreachable found while writing is captured in a callout
@@ -65,6 +67,8 @@ and the **verification list** when running a drift/freshness audit pass.
 2. Re-verify the page against the **current** source (not memory, not the old
    page). Update facts that drifted.
 3. Re-set `reviewed_confidence` and `last_reviewed` to reflect this pass.
+   **Raising confidence means you actually re-read the source** — note what you
+   confirmed; don't just bump the date/sha (that hides drift instead of clearing it).
 4. Route anything found (drift, new dead code, missing pages) per the loop's
    routing table.
 5. If the source changed materially since `last_reviewed`, that's expected — the

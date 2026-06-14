@@ -11,8 +11,17 @@ See `agent_docs/process/loop.md` for how work flows through it.
 > prerequisite when it genuinely sharpens the remaining work ("build X on the
 > now-landed Y"), but a past-tense done-record is not a forward entry.
 
+> **Exception — `FINDING`s.** A finding that resolves *without* a doc change (e.g.
+> "looked again, the code is live, not dead") has no commit or page artifact to be
+> its record. Before removing it, record the resolution where it's reachable — update
+> the relevant page's `Suspected dead` / `Discrepancy` callout ("confirmed live" /
+> "confirmed dead, removed upstream in [ticket]"). The page, not the deletion
+> commit, is the durable home.
+
 **Grooming** rides chunk boundaries: delete done, reclassify stale, promote ripe.
-No line budget here (unlike `plan.md`) — the queue may grow.
+No line budget here (unlike `plan.md`) — the queue may grow. The **Research threads**
+section below is *standing*: grooming and delete-on-completion apply to work items,
+never to the threads themselves.
 
 ## Classification
 

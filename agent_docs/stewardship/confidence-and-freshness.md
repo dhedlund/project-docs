@@ -6,19 +6,30 @@ and `last_reviewed` are how we make trustworthiness legible instead.
 
 ## The confidence scale (1–100)
 
-`reviewed_confidence` is the reviewing pass's honest gut-feel of how **accurate and
-complete** the page is *right now*. A number (not a bucket) so agents can express
-nuance — they're bad at picking a bucket, fine at "about 70." Use the full range.
-Rough bands, not strict thresholds:
+`reviewed_confidence` is the reviewing pass's honest gut-feel of the page's quality
+*right now*, across three dimensions:
 
-- **80–100** — verified against the source recently; few or no known gaps.
-- **50–79** — solid on the essentials; some corners unverified or known-incomplete.
+- **Accuracy** — is what it says correct against the source?
+- **Completeness** — are the important parts present, or are there gaps?
+- **Whole story** — does it tell the relevant story (the nuances, gotchas, and the
+  "why" a reader needs), not just the bare facts?
+
+A number, not a bucket, so you can express real nuance — "72" carries more than a
+coarse high/medium/low. Use the full range. Rough bands, not strict thresholds:
+
+- **80–100** — accurate, reasonably complete, tells the story; few known gaps.
+- **50–79** — solid on the essentials; corners unverified, incomplete, or thin on
+  the "why."
 - **1–49** — provisional or largely inferred; treat as a lead, not a fact.
+
+It's a **signal, not a gate.** Confidence guides where the next pass goes (deepen,
+re-verify); it does **not** decide whether a page "counts" as covered — that's
+structural (`scope-and-completeness.md`).
 
 Obligations that come with the number:
 - **Never round up.** If unsure, lower confidence rather than assert.
-- **Low confidence must say *what* is uncertain** (a note, a callout) — a bare low
-  number isn't actionable.
+- **Low confidence must say *what* is uncertain or missing** (a note, a callout) — a
+  bare low number isn't actionable.
 - Confidence is meaningful only against a recorded source — see provenance in
   `source-of-truth.md`.
 
@@ -45,6 +56,7 @@ memory), updates drifted facts, and **re-sets both** `reviewed_confidence` and
 
 ## Surfacing (make it actionable)
 
-These fields earn their keep only when visible: render a confidence/freshness
-**badge** on each page, and aggregate a **coverage/staleness report** so the next
-audit knows where to look. (Tooling — see the mechanical-wins backlog.)
+These fields earn their keep only when visible. The build hook renders a
+confidence/freshness **badge** (with provenance) at the top of each content page,
+and **`make report`** aggregates a coverage/staleness table — unscored and stalest
+pages first — so the next audit knows where to look.
