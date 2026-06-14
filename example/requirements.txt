@@ -1,0 +1,3 @@
+# Same deps as the root project — kept here so example/ is self-contained and
+# can be built/served on its own as a testbed.
+mkdocs-material

@@ -1,0 +1,88 @@
+# Compiled from main.tsp (representative output). This is the artifact the
+# verification tools (oasdiff / Schemathesis / Prism) actually consume.
+openapi: 3.0.0
+info:
+  title: Beacon Billing
+  version: 0.1.0
+paths:
+  /subscriptions/{id}:
+    get:
+      operationId: Subscriptions_get
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: The subscription.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Subscription"
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /subscriptions/{id}/upgrade:
+    post:
+      operationId: Subscriptions_upgrade
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpgradeRequest"
+      responses:
+        "200":
+          description: Updated subscription.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Subscription"
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+components:
+  schemas:
+    SubscriptionStatus:
+      type: string
+      enum: [trialing, active, past_due, canceled]
+    Subscription:
+      type: object
+      required: [id, orgId, planId, status, seats, seatsInUse, currentPeriodEnd]
+      properties:
+        id: { type: string }
+        orgId: { type: string }
+        planId: { type: string }
+        status: { $ref: "#/components/schemas/SubscriptionStatus" }
+        seats: { type: integer, format: int32 }
+        seatsInUse:
+          type: integer
+          format: int32
+          readOnly: true
+          description: Derived from the active_subscriptions_v view.
+        currentPeriodEnd: { type: string, format: date-time }
+    UpgradeRequest:
+      type: object
+      required: [planId]
+      properties:
+        planId: { type: string }
+    Error:
+      type: object
+      required: [code, message]
+      properties:
+        code: { type: string }
+        message: { type: string }

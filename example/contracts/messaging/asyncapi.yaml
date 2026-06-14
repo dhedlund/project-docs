@@ -1,0 +1,50 @@
+# Beacon messaging-service — event contract (AsyncAPI / RabbitMQ).
+# oasdiff is OpenAPI-only; for backward-compat use:  asyncapi diff <old> <new>
+asyncapi: 3.0.0
+info:
+  title: Beacon Messaging
+  version: 0.1.0
+servers:
+  rabbitmq:
+    host: rabbitmq:5672
+    protocol: amqp
+channels:
+  subscriptionUpgraded:
+    address: subscription.upgraded
+    description: Consumed from billing-service; triggers a confirmation message.
+    messages:
+      subscriptionUpgraded:
+        $ref: "#/components/messages/SubscriptionUpgraded"
+  messageDelivered:
+    address: message.delivered
+    description: Produced after a successful send.
+    messages:
+      messageDelivered:
+        $ref: "#/components/messages/MessageDelivered"
+operations:
+  onSubscriptionUpgraded:
+    action: receive
+    channel:
+      $ref: "#/channels/subscriptionUpgraded"
+  sendMessageDelivered:
+    action: send
+    channel:
+      $ref: "#/channels/messageDelivered"
+components:
+  messages:
+    SubscriptionUpgraded:
+      payload:
+        type: object
+        required: [subscriptionId, orgId, planId]
+        properties:
+          subscriptionId: { type: string }
+          orgId: { type: string }
+          planId: { type: string }
+    MessageDelivered:
+      payload:
+        type: object
+        required: [messageId, orgId, status]
+        properties:
+          messageId: { type: string }
+          orgId: { type: string }
+          status: { type: string, enum: [delivered, failed, bounced] }

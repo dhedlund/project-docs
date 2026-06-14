@@ -1,0 +1,10 @@
+# Docs site dependencies. NOT installed yet — install when ready to build:
+#   pip install -r requirements.txt && mkdocs serve
+#
+# mkdocs-material bundles mkdocs, the search/tags plugins, and the pymdownx
+# extensions (superfences, details, snippets) used in mkdocs.yml.
+mkdocs-material
+
+# Deferred to the convergence pass (uncomment when adopted):
+# mkdocs-macros-plugin     # derive backlinks ("used by") from frontmatter
+# mkdocs-kroki-plugin      # render D2 / other diagram-as-code via Kroki

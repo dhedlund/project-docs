@@ -1,0 +1,66 @@
+site_name: Beacon Docs (example)
+site_description: Fictional reference product — demonstrates the docs patterns.
+
+# Canonical-while-it-exists: prove config changes here, then promote to the root
+# mkdocs.yml. Mirrors the root config plus an explicit nav over the worked pages.
+
+theme:
+  name: material
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.sections
+    - navigation.indexes
+    - navigation.top
+    - toc.follow
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+
+plugins:
+  - search
+  - tags
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - attr_list
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.snippets
+
+nav:
+  - Home: index.md
+  - Features:
+      - features/index.md
+      - Plan upgrade: features/plan-upgrade.md
+  - Services:
+      - services/index.md
+      - billing-service: services/billing-service.md
+      - messaging-service: services/messaging-service.md
+  - Models:
+      - models/index.md
+      - Subscription: models/subscription.md
+      - Delivery event: models/delivery-event.md
+      - Organization: models/organization.md
+  - Decisions:
+      - decisions/index.md
+      - "0001 — Delivery events in MongoDB": decisions/0001-delivery-events-in-mongodb.md

@@ -1,0 +1,60 @@
+site_name: Project Docs
+site_description: Product-wide knowledge base — features, services, and data models.
+
+# NOTE: tooling is not installed yet. This config targets `mkdocs-material`
+# (see requirements.txt). Plugins/extensions beyond Material are commented and
+# deferred to a later pass (e.g. Kroki/D2 rendering, macro-derived backlinks).
+
+theme:
+  name: material
+  features:
+    - navigation.instant      # SPA-like navigation
+    - navigation.tracking     # update URL with the active anchor
+    - navigation.sections     # top-level groups as sections
+    - navigation.indexes      # section landing pages (index.md)
+    - navigation.top          # back-to-top button
+    - toc.follow
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+
+plugins:
+  - search
+  - tags                      # cross-cutting discovery via `tags:` frontmatter
+
+markdown_extensions:
+  - admonition                # callouts (!!! note)
+  - pymdownx.details          # collapsible callouts (??? note)
+  - attr_list
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid       # inline Mermaid diagrams
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.snippets         # include shared fragments to avoid duplication
+
+# Future (convergence pass), needs extra packages — left out for now:
+#   - mkdocs-macros-plugin    # derive "used by" backlinks from frontmatter
+#   - kroki / d2 rendering    # for D2 "hero" architecture diagrams
+
+nav:
+  - Home: index.md
+  - Features: features/index.md
+  - Services: services/index.md
+  - Models: models/index.md
+  - Decisions: decisions/index.md
