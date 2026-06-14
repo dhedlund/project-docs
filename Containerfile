@@ -55,6 +55,11 @@ RUN curl -fsSL https://d2lang.com/install.sh | sh -s -- \
 # Schemathesis (provider conformance) — Python, kept off the docs-core layer.
 RUN pip install --no-cache-dir schemathesis
 
+# The repo's doc tools, baked in as `docs-check` / `docs-report`.
+COPY tools/check.py /usr/local/bin/docs-check
+COPY tools/report.py /usr/local/bin/docs-report
+RUN chmod +x /usr/local/bin/docs-check /usr/local/bin/docs-report
+
 WORKDIR /docs
 EXPOSE 8000
 

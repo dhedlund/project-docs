@@ -50,6 +50,7 @@ jobs:
           python-version: "3.12"
       - run: pip install -r requirements.txt
       - run: mkdocs build --strict
+      - run: python tools/check.py docs   # frontmatter + cross-link lint
 
   # ── Optional / future steps — uncomment and finish as the pieces land ───────
   #
@@ -58,8 +59,9 @@ jobs:
   #   - run: docker build -t docs-toolkit -f Containerfile .
   #   - run: docker run --rm --network none -v "$PWD":/docs -w /docs docs-toolkit mkdocs build --strict
   #
-  # Quality checks (add once the mechanical-wins tooling exists — see the backlog):
-  #   - run: make check        # frontmatter lint + orphan/dead-link graph report
+  # Drift check against the source repos (needs the code clones available — see
+  # agent_docs/stewardship/source-of-truth.md). Not wired here by default:
+  #   - run: docs-drift docs   # diff each page's `sources` vs the repos -> stale list
   #
   # Publish to GitHub Pages (after `permissions: pages: write` + Pages config):
   #   - uses: actions/upload-pages-artifact@v3

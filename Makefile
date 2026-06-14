@@ -22,7 +22,7 @@ RUN := $(ENGINE) run --rm \
        -v "$(CURDIR)":/docs:rw -w /docs \
        --cap-drop=ALL --security-opt no-new-privileges
 
-.PHONY: image build serve shell versions clean
+.PHONY: image build serve shell versions check report clean
 
 image:
 	$(ENGINE) build -t $(IMAGE) -f Containerfile .
@@ -30,6 +30,14 @@ image:
 # Building docs needs zero network — enforce that (and prove no exfiltration).
 build: image
 	$(RUN) --network none $(IMAGE) mkdocs build --strict
+
+# Lint frontmatter + cross-link graph (complements `mkdocs --strict`). Offline.
+check: image
+	$(RUN) --network none $(IMAGE) docs-check docs
+
+# Coverage & staleness report — which pages are low-confidence or stale.
+report: image
+	$(RUN) --network none $(IMAGE) docs-report docs
 
 serve: image
 	$(RUN) -it -p $(PORT):8000 $(IMAGE) mkdocs serve -a 0.0.0.0:8000

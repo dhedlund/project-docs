@@ -17,13 +17,19 @@ RUN := $(ENGINE) run --rm \
        -v "$(CURDIR)":/docs:rw -w /docs \
        --cap-drop=ALL --security-opt no-new-privileges
 
-.PHONY: image build serve shell clean
+.PHONY: image build serve shell check report clean
 
 image:
 	$(ENGINE) build -t $(IMAGE) -f ../Containerfile ..
 
 build: image
 	$(RUN) --network none $(IMAGE) mkdocs build --strict
+
+check: image
+	$(RUN) --network none $(IMAGE) docs-check docs
+
+report: image
+	$(RUN) --network none $(IMAGE) docs-report docs
 
 serve: image
 	$(RUN) -it -p $(PORT):8000 $(IMAGE) mkdocs serve -a 0.0.0.0:8000
