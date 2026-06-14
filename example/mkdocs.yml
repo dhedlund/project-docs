@@ -38,7 +38,8 @@ theme:
 plugins:
   - search
   - tags
-  - d2
+  - d2:
+      dark_theme: 200   # emit a dark variant; toggles with Material's palette
   - glightbox
 
 hooks:

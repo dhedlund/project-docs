@@ -35,7 +35,8 @@ theme:
 plugins:
   - search
   - tags
-  - d2          # render ```d2 diagrams (uses the d2 binary in the toolkit image)
+  - d2:         # render ```d2 diagrams (uses the d2 binary in the toolkit image)
+      dark_theme: 200   # also emit a dark variant; toggles with Material's palette
   - glightbox   # click-to-zoom for images / diagrams
 
 # Status badges + derived "Used by" backlinks (baked into the toolkit image).

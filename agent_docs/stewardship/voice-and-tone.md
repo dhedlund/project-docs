@@ -10,19 +10,20 @@ sentence worse, break it. Awkward prose that satisfies every rule is worse than
 natural prose that bends a few. Don't write in a narrow, stilted band trying to
 stay "on style."
 
-## Study the feel, don't memorize rules
+## The feel we're after
 
-The fastest way to internalize this voice is to read docs that already have it.
-The **Elixir / HexDocs guides** are a strong model: warm, direct, example-first,
-and never condescending. Skim a couple before a big writing pass and aim for that
-feel. ([Writing Documentation](https://hexdocs.pm/elixir/writing-documentation.html)
-is a good short read on the philosophy.)
+This voice is distilled from documentation widely regarded as friendly and
+approachable. **Everything you need to write well is in this doc — it's
+self-contained.** You don't need to go read anything, and you shouldn't fetch
+remote sites mid-loop. (For human curiosity: the Elixir / HexDocs guides are a good
+touchstone for the feel — warm, direct, example-first, never condescending — and we
+borrow Diátaxis's idea of organizing by purpose. Inspiration and credit, not
+required reading.)
 
-We also organize by purpose, [Diátaxis](https://diataxis.fr/)-style: a **guide**
-walks someone along a path (narrative, second person, hands-on); **reference**
-states the shape precisely and scannably; our model/service/feature pages run
-business → technical (the depth ladder in `CONVENTIONS.md`). Match the mode you're
-in.
+Organize by purpose: a **guide** walks someone along a path (narrative, second
+person, hands-on); **reference** states the shape precisely and scannably; our
+model/service/feature pages run business → technical (the depth ladder in
+`CONVENTIONS.md`). Match the mode you're in.
 
 ## The principles
 

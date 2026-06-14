@@ -14,3 +14,6 @@ _out/
 
 # npm cache (created when running npm inside a mounted project)
 .npm/
+
+# Plugin caches (d2 render cache, etc.)
+.cache/

@@ -32,6 +32,11 @@ make versions   # show the resolved tool versions
 container drops all Linux capabilities. First run builds the image (a few
 minutes); after that it's cached.
 
+> **Preview over HTTP, not `file://`.** Use `make serve`. If you open the built
+> `site/` files directly (`file://`), client-rendered diagrams (Mermaid) stay as
+> plain text — the browser blocks loading Mermaid's module over `file://`. Served
+> over HTTP they render fine. D2 is baked in at build time and shows either way.
+
 The [`example/`](example/) project has the same targets (preview on port 8001),
 which is the quickest way to confirm your setup works end-to-end:
 
@@ -44,7 +49,7 @@ cd example && make build && make serve
 | Tool | Purpose |
 |------|---------|
 | `mkdocs` + Material | build/serve the docs site (the core) |
-| `d2` | render D2 "hero" diagrams (binary present; plugin wired later) |
+| `d2` | render fenced `d2` "hero" diagrams to SVG (light + dark variants) |
 | `tsp` (TypeSpec) | author API contracts → compile to OpenAPI |
 | `oasdiff` | detect breaking changes between OpenAPI versions |
 | `schemathesis` | property-based provider conformance against a spec |

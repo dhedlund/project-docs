@@ -110,9 +110,10 @@ discard that finding — record it where you found it:
 - **Mermaid** by default — inline, reviewable, well-understood. Use fenced
   ` ```mermaid ` blocks. Good for sequence (flows), `erDiagram` (models),
   `flowchart`, `stateDiagram`.
-- **D2** only for large architecture diagrams where auto-layout quality matters.
-  It is **not wired up yet** (needs Kroki or the D2 CLI); until then, prefer
-  Mermaid and leave a note where a D2 diagram should eventually go.
+- **D2** for large "hero" architecture diagrams where auto-layout quality matters.
+  Use a fenced ` ```d2 ` block; it renders to SVG at build time, with light and
+  dark variants that follow the site's theme toggle. Mermaid stays the default for
+  inline, sequence, and ER diagrams.
 
 ## Voice
 
