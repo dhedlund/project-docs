@@ -53,8 +53,12 @@ host tooling beyond a container engine + `make` (works on Linux and macOS). The
 See [TOOLKIT.md](TOOLKIT.md).
 
 ```
+make            # list all targets
 make build      # static site -> ./site  (offline, strict)
 make serve      # live preview at http://localhost:8000
+make check      # lint frontmatter + cross-link graph
+make report     # coverage / staleness report
+make ci         # build + check (the local gate; what CI runs)
 ```
 
 The same targets exist in [`example/`](example/) (preview on port 8001) and are

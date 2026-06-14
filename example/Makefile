@@ -1,9 +1,6 @@
 # Example (Beacon) docs — builds with the SAME shared toolkit image as the root
 # project, proving the toolchain end-to-end on the fiction. Uses port 8001 so it
-# can run alongside the root site.
-#
-#   make build     # build the Beacon site into ./site
-#   make serve     # preview at http://localhost:8001
+# can run alongside the root site. Run `make` for help.
 #
 # `make image` builds the shared image from the repo root (../Containerfile).
 
@@ -17,29 +14,36 @@ RUN := $(ENGINE) run --rm \
        -v "$(CURDIR)":/docs:rw -w /docs \
        --cap-drop=ALL --security-opt no-new-privileges
 
-.PHONY: image build serve shell check report drift clean
+.DEFAULT_GOAL := help
+.PHONY: help image build check report drift ci serve shell clean
 
-image:
+help: ## Show this help
+	@echo "Beacon example docs — make targets (engine: $(ENGINE)):"
+	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | \
+	  awk 'BEGIN {FS = ":.*?## "}; {printf "  \033[36m%-9s\033[0m %s\n", $$1, $$2}'
+
+image: ## Build the shared toolkit image from the repo root
 	$(ENGINE) build -t $(IMAGE) -f ../Containerfile ..
 
-build: image
+build: image ## Build the Beacon site into ./site (offline, strict)
 	$(RUN) --network none $(IMAGE) mkdocs build --strict
 
-check: image
+check: image ## Lint frontmatter + cross-link graph
 	$(RUN) --network none $(IMAGE) docs-check docs
 
-report: image
+report: image ## Coverage & staleness report
 	$(RUN) --network none $(IMAGE) docs-report docs
 
-# Drift vs source repos (mount the code clones read-only): make drift SRC=/path/to/code
-drift: image
+drift: image ## Drift vs source repos: make drift SRC=/path/to/code
 	$(RUN) $(if $(SRC),-v "$(SRC)":/src:ro,) --network none $(IMAGE) docs-drift docs /src
 
-serve: image
+ci: build check ## The local gate: build + lint
+
+serve: image ## Live-reload preview (http://localhost:8001)
 	$(RUN) -it -p $(PORT):8000 $(IMAGE) mkdocs serve -a 0.0.0.0:8000
 
-shell: image
+shell: image ## Shell inside the toolkit
 	$(RUN) -it $(IMAGE) bash
 
-clean:
+clean: ## Remove the built site
 	rm -rf site
