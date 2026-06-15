@@ -10,8 +10,8 @@ theme:
     - navigation.instant
     - navigation.instant.progress
     - navigation.tracking
-    - navigation.sections
     - navigation.indexes
+    - navigation.prune         # render only the active branch — keeps a large nav short
     - navigation.top
     - navigation.path
     - navigation.footer
@@ -42,6 +42,17 @@ plugins:
       dark_theme: 200   # emit a dark variant; toggles with Material's palette
   - glightbox
   - swagger-ui-tag    # render the public Messaging API's OpenAPI in-site
+
+extra_css:
+  - stylesheets/extra.css
+extra_javascript:
+  - javascripts/diagram-zoom.js   # fullscreen pan/zoom for Mermaid & D2 diagrams
+
+extra:
+  status:
+    stub: Stub — incomplete, needs work
+    superseded: Superseded
+    deprecated: Deprecated
 
 hooks:
   - /usr/local/lib/docs/hook.py

@@ -56,7 +56,8 @@ memory), updates drifted facts, and **re-sets both** `reviewed_confidence` and
 
 ## Surfacing (make it actionable)
 
-These fields earn their keep only when visible. The build hook renders a
-confidence/freshness **badge** (with provenance) at the top of each content page,
-and **`make report`** aggregates a coverage/staleness table — unscored and stalest
-pages first — so the next audit knows where to look.
+These fields earn their keep only when visible — but they shouldn't shout. The
+build hook renders a quiet confidence/freshness **footer** (with provenance) at the
+very bottom of each content page, and **`make report`** aggregates a
+coverage/staleness table — unscored and stalest pages first — so the next audit
+knows where to look.

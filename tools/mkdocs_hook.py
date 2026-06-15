@@ -2,11 +2,12 @@
 
 Two jobs, both derived from frontmatter so authors never hand-maintain them:
 
-1. A **status badge** (confidence / last-reviewed / status / provenance) near the
-   top of each content page.
-2. A **"Related pages"** block at the bottom, grouped by relationship type — the
-   reverse of every `related_*` / `uses_*` / `owned_*` / `depends_on` reference, so
-   links are maintained in one direction only.
+1. A **"Related pages"** block, grouped by relationship type — the reverse of every
+   `related_*` / `uses_*` / `owned_*` / `depends_on` reference, so links are
+   maintained in one direction only.
+2. A **provenance footer** (confidence / last-reviewed / status / sources) at the
+   very bottom of each content page, kept quiet (styled via .doc-provenance) so it
+   doesn't compete with the content once a page is mature.
 
 Baked into the toolkit image; referenced from mkdocs.yml as:
     hooks:
@@ -112,36 +113,7 @@ def on_page_markdown(markdown, page, config, files):
     meta = page.meta or {}
     out = markdown
 
-    # 1. Status badge (content pages only), inserted after the first real H1.
-    if meta.get("type") in CONTENT_TYPES:
-        paras = []
-        bits = []
-        conf = meta.get("reviewed_confidence")
-        if isinstance(conf, int) and not isinstance(conf, bool):
-            bits.append(f"**Confidence:** {conf}/100")
-        if meta.get("last_reviewed"):
-            bits.append(f"**Last reviewed:** {meta['last_reviewed']}")
-        if meta.get("status"):
-            bits.append(f"**Status:** {meta['status']}")
-        if bits:
-            paras.append(" · ".join(bits))
-        prov = _provenance(meta.get("sources"))
-        if prov:
-            paras.append(f"**Verified against:** {prov}")
-        if paras:
-            badge_lines = ['!!! info ""']
-            for i, p in enumerate(paras):
-                if i > 0:
-                    badge_lines.append("")
-                badge_lines.append("    " + p)
-            badge = "\n".join(badge_lines)
-            lines = out.split("\n")
-            h1 = _first_h1_outside_fence(lines)
-            at = (h1 + 1) if h1 is not None else 0
-            lines.insert(at, "\n" + badge + "\n")
-            out = "\n".join(lines)
-
-    # 2. "Related pages" — reverse links, grouped by relationship type.
+    # 1. "Related pages" — reverse links, grouped by relationship type.
     cur = page.file.src_uri
     stem = os.path.splitext(os.path.basename(cur))[0]
     groups = {}
@@ -163,5 +135,32 @@ def on_page_markdown(markdown, page, config, files):
             )
             section.append(f"**{label}:** {links}\n")
         out += "\n".join(section) + "\n"
+
+    # 2. Provenance footer (content pages only): confidence / last reviewed /
+    #    status / sources, kept deliberately quiet at the very bottom of the page
+    #    (styled small + muted via .doc-provenance in stylesheets/extra.css).
+    #    Most readers don't need it once a page is mature and we're in
+    #    maintenance; it stays available for audits and drift checks.
+    if meta.get("type") in CONTENT_TYPES:
+        bits = []
+        conf = meta.get("reviewed_confidence")
+        if isinstance(conf, int) and not isinstance(conf, bool):
+            bits.append(f"**Confidence:** {conf}/100")
+        if meta.get("last_reviewed"):
+            bits.append(f"**Last reviewed:** {meta['last_reviewed']}")
+        if meta.get("status"):
+            bits.append(f"**Status:** {meta['status']}")
+        paras = []
+        if bits:
+            paras.append(" · ".join(bits))
+        prov = _provenance(meta.get("sources"))
+        if prov:
+            paras.append(f"**Verified against:** {prov}")
+        if paras:
+            out += (
+                '\n\n<div class="doc-provenance" markdown>\n\n'
+                + "\n\n".join(paras)
+                + "\n\n</div>\n"
+            )
 
     return out

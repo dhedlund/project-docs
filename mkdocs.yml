@@ -7,8 +7,8 @@ theme:
     - navigation.instant
     - navigation.instant.progress
     - navigation.tracking
-    - navigation.sections
     - navigation.indexes
+    - navigation.prune         # render only the active branch — keeps a large nav short
     - navigation.top
     - navigation.path          # breadcrumbs
     - navigation.footer
@@ -37,9 +37,22 @@ plugins:
   - tags
   - d2:         # render ```d2 diagrams (uses the d2 binary in the toolkit image)
       dark_theme: 200   # also emit a dark variant; toggles with Material's palette
-  - glightbox   # click-to-zoom for images / diagrams
+  - glightbox   # click-to-zoom for raster images
 
-# Status badges + derived "Used by" backlinks (baked into the toolkit image).
+extra_css:
+  - stylesheets/extra.css
+extra_javascript:
+  - javascripts/diagram-zoom.js   # fullscreen pan/zoom for Mermaid & D2 diagrams
+
+# Tooltips for the nav status icons we keep (normal states are hidden in
+# extra.css; only attention-worthy ones show an icon while browsing).
+extra:
+  status:
+    stub: Stub — incomplete, needs work
+    superseded: Superseded
+    deprecated: Deprecated
+
+# Provenance footer + derived "Used by" backlinks (baked into the toolkit image).
 hooks:
   - /usr/local/lib/docs/hook.py
 

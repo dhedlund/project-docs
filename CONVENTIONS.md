@@ -126,6 +126,10 @@ discard that finding — record it where you found it:
   Use a fenced ` ```d2 ` block; it renders to SVG at build time, with light and
   dark variants that follow the site's theme toggle. Mermaid stays the default for
   inline, sequence, and ER diagrams.
+- **Every diagram gets a fullscreen view.** On the rendered site, each Mermaid/D2
+  diagram has an expand button (top-right on hover) opening a pan/zoom modal, so a
+  dense diagram stays readable. Author for the page first, but don't shy away from a
+  detailed diagram when it tells the story better — readers can zoom in.
 
 ## Secondary sources & discrepancies
 
