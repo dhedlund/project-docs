@@ -19,11 +19,15 @@ asking them cold.
 **Before changing any files, ask the user just these, and wait — then proceed.**
 Keep it short; this is not a survey.
 
-1. **Code access — REQUIRED.** How should an agent read the source? e.g. a read-only
-   clone/mirror on this host (which path?), mounted read-only into the toolkit
-   container (which path?), the agent runs where the code already lives, or a
-   snapshot the user provides. Note any constraints (private repos, secrets, VPN).
-   Confirm the code is **read-only** to agents — we document it, never modify it.
+1. **Sources & how to read them — REQUIRED.** What should I document *from*, and how
+   do I read each? Take the list the user gives and pin down:
+   - **Code repos** — the load-bearing source. Where each lives and how an agent
+     reads it (read-only clone path? mounted at `/src`? the agent runs where the code
+     is?). Confirm the code is **read-only** — we document it, never modify it.
+   - **Other sources to fold in** *(optional)* — a ticket system (e.g. a JIRA project
+     and the CLI to query it), a product-docs site, etc. These are *enrichment* (the
+     "why") — linked, never merged over code.
+   Note any access constraints (private repos, secrets, VPN).
 2. **Product, in one line** — name + what it does. *Skip if it's obvious from the
    repos;* confirm what you infer.
 3. **Anything off-limits or known out of scope?** *(Optional — you'll also propose
@@ -32,8 +36,8 @@ Keep it short; this is not a survey.
 Everything else — domains, languages, datastores, queues, public API, webhooks,
 SDKs, auth, frontends, integrations, roles — **you will discover in Step 1. Don't
 ask for it.** If the user can't answer something critical, record the gap and
-proceed with a low-confidence assumption. **Code access must be answered** before
-you touch files.
+proceed with a low-confidence assumption. **At least one code source must be
+answered** before you touch files.
 
 ---
 
@@ -94,14 +98,20 @@ the toolkit (`Containerfile`, `Makefile`, `TOOLKIT.md`), and
 anything is missing, create it from this repo's existing shape. Don't reinvent —
 the scaffold already exists.
 
-## Step 4 — Write stewardship (from discovery + the answers)
+## Step 4 — Write the facts (from discovery + the answers)
 
+- `agent_docs/stewardship/source-of-truth.md` — the **sources registry**: every
+  source from Step 0 (code = ground truth; tickets / product docs = enrichment),
+  each with its location, **how to read it** (paths / commands — never secrets), and
+  trust level, plus the **provenance convention** (default: cite as `repo@<short-sha>`
+  — adopt unless the user wants another). Every later pass reads this to reach and
+  cite the sources.
+- `agent_docs/stewardship/standing-instructions.md` — seed it with any **durable
+  directives** the user gave (priorities, preferences, "remember X"), each dated.
+  Keep it short; it grows over time. If there are none yet, create it with a one-line
+  note saying so.
 - `agent_docs/stewardship/product.md` — identity, domains, scope and non-goals
   (from Step 1 plus the Step 2 confirmation).
-- `agent_docs/stewardship/source-of-truth.md` — **the authoritative code-access
-  model** captured from Step 0, plus the **provenance convention** (default:
-  cite sources as `repo@<short-sha>` — adopt it unless the user wants another).
-  Every later pass reads this to know how to reach the code and how to cite it.
 
 ## Step 5 — Fill in product specifics
 

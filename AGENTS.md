@@ -17,6 +17,7 @@ Match the user's intent to a routine and follow that document:
 |---------------------------|---------|
 | "set up new project", "set this up", "bootstrap", "onboard a new product" | Follow **[agent_docs/process/new-project-bootstrap.md](agent_docs/process/new-project-bootstrap.md)**. **It stops and asks for a couple of essentials (above all, code access) first — don't skip that — then discovers the rest from the code.** |
 | "work on what's next", "continue", "work the backlog", "keep going" | Follow **[agent_docs/process/loop.md](agent_docs/process/loop.md)**: take the *Now* item from `agent_docs/process/plan.md`, do it, reflect, route findings, commit, repeat. |
+| "incorporate / add these sources", "add a repo", "document this too" | Follow **[agent_docs/process/incorporate-sources.md](agent_docs/process/incorporate-sources.md)**: register the new sources, explore them, stub/home, enqueue. |
 | "audit", "check the docs are accurate", "re-verify" | Run an audit pass per `agent_docs/process/loop.md` against the audit checklist. |
 | author or edit a page directly | Read **[CONVENTIONS.md](CONVENTIONS.md)** and copy the right file from `templates/`. |
 

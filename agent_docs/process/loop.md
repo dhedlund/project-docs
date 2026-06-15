@@ -6,7 +6,9 @@ short by design. This is the routine behind "work on what's next."
 ## At a glance
 
 1. **Read context & re-ground.** `AGENTS.md`, this file, `plan.md`, `CONVENTIONS.md`.
-   Read `agent_docs/stewardship/source-of-truth.md` to know how to reach the code.
+   Read `agent_docs/stewardship/source-of-truth.md` to know how to reach the sources,
+   and `agent_docs/stewardship/standing-instructions.md` for the user's durable
+   directives — so "just keep going" still honours their standing guidance.
    **At session start, if code access is configured, run `make drift SRC=…` and
    `make report`** and file any `STALE` / `[stale]` / `[unscored]` output as
    `DOC-VERIFY` entries before proceeding — this is how source changes re-enter the

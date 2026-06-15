@@ -54,19 +54,33 @@ coding agent — e.g. Claude Code — to drive it.)
 No host tooling beyond Podman/Docker + `make` — everything runs in one portable
 toolkit image (see [TOOLKIT.md](TOOLKIT.md)).
 
-### The bootstrap prompt
+### Bootstrap prompts
 
-You only need to tell the agent **where the code is** — it discovers the rest
-(domains, stack, datastores, APIs, webhooks, SDKs, surfaces, integrations, roles) by
-reading the source, and asks you only what it can't:
+You only tell the agent **what to document from** — it discovers the shape of your
+system (domains, stack, datastores, APIs, webhooks, SDKs, surfaces, integrations,
+roles) by reading those sources, and asks only what it can't.
+
+**Set up a new product** — list your sources (code repos, plus optionally a ticket
+system or product docs to fold in as background):
 
 ```text
-Read AGENTS.md and set up a new project. The source is at <where / how to read it —
-e.g. read-only clones in ~/code/<product>/, or mounted read-only at /src>.
+Read AGENTS.md and any supporting docs, then set up a new project from these sources:
+- ~/projects/foo/bar
+- ~/projects/baz/qux
+- JIRA project ABC (read-only, via the `jira` CLI)
 ```
 
-Don't have the access details handy? Just **`Read AGENTS.md and set up a new
-project.`** — it'll ask.
+**Add more later** — point an already-set-up project at new material:
+
+```text
+Read AGENTS.md and any supporting docs, then incorporate these sources into the
+project:
+- ~/projects/foo/new-service
+```
+
+Code is treated as ground truth; tickets and docs are linked as the "why", never
+merged over the code. Don't have the details handy? Just **`Read AGENTS.md and set
+up a new project.`** — it'll ask.
 
 ## What's in the box
 

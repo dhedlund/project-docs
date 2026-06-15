@@ -27,9 +27,15 @@ These are **product-specific** and are written/filled during the
 
 - **`product.md`** — what this product is, its domains, the repositories that make
   it up, and the documentation scope and explicit non-goals.
-- **`source-of-truth.md`** — the load-bearing axis. How agents reach the source
-  code (the code-access model), the provenance/ref convention, and the rule that
-  **code-derived facts outrank product docs and tickets**.
+- **`source-of-truth.md`** — the load-bearing axis. How agents reach **every
+  source** (code repos, ticket systems, product docs) — each with its location, how
+  to read it, and its trust level — plus the provenance/ref convention and the rule
+  that **code-derived facts outrank tickets and product docs**.
+- **`standing-instructions.md`** — durable directives, preferences, and context the
+  user has given over time that don't belong in `product.md` (identity/scope),
+  `source-of-truth.md` (access), or `backlog.md` (the work). The loop reads it at
+  session start, so "just keep going" still carries your standing guidance. Keep it
+  short, dated, and curated.
 
 Add further axis docs only when an axis is genuinely in play.
 
