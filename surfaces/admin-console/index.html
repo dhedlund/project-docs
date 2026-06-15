@@ -1,0 +1,1812 @@
+<!DOCTYPE html><html lang="en" class="no-js"><head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Fictional reference product — demonstrates the docs patterns.">
+      
+      
+      
+        <link rel="canonical" href="https://dhedlund.github.io/project-docs/surfaces/admin-console/">
+      
+      
+        <link rel="prev" href="../dashboard/">
+      
+      
+        <link rel="next" href="../../access/roles/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Admin console - Beacon Docs (example)</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/mkdocs_d2_plugin.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="../../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color); }
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
+        </style></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#admin-console" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Beacon Docs (example)" class="md-header__button md-logo" aria-label="Beacon Docs (example)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Beacon Docs (example)
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Admin console
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo" aria-label="Switch to dark mode" type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden="">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"></path></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo" aria-label="Switch to light mode" type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden="">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"></path></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required="">
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard="" data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"></path></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix="">
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Beacon Docs (example)" class="md-nav__button md-logo" aria-label="Beacon Docs (example)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
+
+    </a>
+    Beacon Docs (example)
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix="">
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../domains/accounts/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Domains
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../features/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Features
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../flows/send-message/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Flows
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../options/message-settings/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Options
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../interfaces/api/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interfaces
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../integrations/email-provider/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Integrations
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked="">
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Surfaces
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Surfaces
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dashboard/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Merchant dashboard
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Admin console
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Admin console
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#what-it-offers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What it offers
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="What it offers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-a-capability-maps-to-who-can-use-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How a capability maps to who can use it
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-screens" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key screens
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Key screens">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#org-detail" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Org detail
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delivery-search" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Delivery search
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#roles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Roles
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-fits-together" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How it fits together
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#notes-nuances" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Notes &amp; nuances
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-pages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related pages
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../access/roles/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Access
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../services/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Services
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../models/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Models
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../datastores/mysql/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Datastores
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glossary
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../decisions/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Decisions
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#what-it-offers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What it offers
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="What it offers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-a-capability-maps-to-who-can-use-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How a capability maps to who can use it
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-screens" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key screens
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Key screens">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#org-detail" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Org detail
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delivery-search" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Delivery search
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#roles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Roles
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-fits-together" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How it fits together
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#notes-nuances" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Notes &amp; nuances
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-pages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related pages
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigation">
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../.." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Home
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../dashboard/" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Surfaces
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  <nav class="md-tags">
+    
+      
+      
+      
+      
+        <span class="md-tag">admin</span>
+      
+    
+  </nav>
+
+
+
+<h1 id="admin-console">Admin console<a class="headerlink" href="#admin-console" title="Permanent link">¶</a></h1>
+<blockquote>
+<p>The internal app Beacon staff use to support customers — look up orgs, inspect
+deliveries, and suspend abusive accounts. Not customer-facing.</p>
+</blockquote>
+<p>The admin console is the window Beacon's own people use to look <em>into</em> a customer's
+account without being a user inside it. When a customer emails "did my receipts go
+out this morning?" or finance flags an org that stopped paying, this is where a
+support or ops person goes to find the answer and, in one case, to act on it. It is
+the staff-facing counterpart to the customer-facing
+<a href="../dashboard/">dashboard</a>: same product, opposite side of the glass.</p>
+<p>Two things define this surface, and both are deliberate constraints rather than
+missing features:</p>
+<ul>
+<li><strong>It is cross-org by nature.</strong> A staff user isn't a member of any single
+  <a href="../../models/organization/">organization</a>; they can pull up <em>any</em> of them. That
+  reach is exactly why the console is kept narrow and read-leaning — see
+  <a href="#roles">Roles</a>.</li>
+<li><strong>It is overwhelmingly read-only.</strong> The console is built to <em>see</em> customer state,
+  not change it. There is precisely one mutating action a human can take here —
+  <a href="../../features/suspend-organization/">suspend / reinstate</a> — and everything else is
+  lookup. If you come to the console expecting to "fix" a customer's billing or
+  resend their messages, you've come to the wrong place: those live in the customer
+  <a href="../dashboard/">dashboard</a> or in the owning service, by design.</li>
+</ul>
+<p>That posture is the whole story of this page. A tool that can reach every customer is
+a tool you want to be unable to do much damage. So the console reads broadly and
+writes almost nothing.</p>
+<h2 id="what-it-offers">What it offers<a class="headerlink" href="#what-it-offers" title="Permanent link">¶</a></h2>
+<p>The capabilities a staff member actually reaches for, in the order they come up day
+to day:</p>
+<ul>
+<li><strong>Org lookup</strong> — find and inspect any <a href="../../models/organization/">Organization</a>:
+  its <code>status</code> (active or suspended), the <a href="../../models/plan/">plan</a> and
+  <a href="../../models/subscription/">Subscription</a> it's on, seat usage, and recent activity.
+  This is the bread-and-butter "what's going on with this account?" view and the
+  starting point for almost every support conversation.</li>
+<li><strong>Delivery inspection</strong> — search <a href="../../models/delivery-event/">delivery events</a>
+  <em>across</em> orgs to answer the single most common support question in a messaging
+  product: "did my message actually send?" You can scope by org and a recent time
+  window and read each attempt's outcome (<code>delivered</code> / <code>failed</code> / <code>bounced</code>).</li>
+<li><strong>Suspend / reinstate</strong> — the one lever. An ops user can flip an org to
+  <code>suspended</code> (blocking all sends) or back to <code>active</code>. This is the only place in
+  Beacon a human can take a customer offline. See
+  <a href="../../features/suspend-organization/">Suspend an organization</a> for the full flow,
+  failure modes, and why the block is checked at send time rather than pushed.</li>
+</ul>
+<p>Notice what's deliberately <strong>absent</strong>. The console can't send a message as a
+customer, can't edit their billing or change their plan, can't rotate their
+<a href="../../interfaces/auth/">API keys</a>, and can't manage their members. Those are all
+customer-owned actions that live on the <a href="../dashboard/">dashboard</a> under
+the org's own <a href="../../access/roles/">roles</a>. Keeping them out of the console isn't an
+oversight — it's the blast-radius boundary that makes a cross-org tool safe to hand
+to support.</p>
+<h3 id="how-a-capability-maps-to-who-can-use-it">How a capability maps to who can use it<a class="headerlink" href="#how-a-capability-maps-to-who-can-use-it" title="Permanent link">¶</a></h3>
+<p>The same surface behaves differently depending on the staff member's
+<a href="../../access/roles/#internal-roles-beacon-staff">internal role</a>. The two read
+capabilities are open to everyone; the one write capability is gated to Ops.</p>
+<table>
+<thead>
+<tr>
+<th>Capability</th>
+<th>Support</th>
+<th>Ops</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Org lookup</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Delivery inspection (cross-org)</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Suspend / reinstate an org</td>
+<td>—</td>
+<td>✅</td>
+</tr>
+</tbody>
+</table>
+<p>That single ✅ in the Ops column is the entire mutating surface of the console. A
+routine lookup by a Support user can never accidentally take a customer offline,
+because the action simply isn't available to them.</p>
+<h2 id="key-screens">Key screens<a class="headerlink" href="#key-screens" title="Permanent link">¶</a></h2>
+<p>The console is small — two screens carry almost all the work.</p>
+<h3 id="org-detail">Org detail<a class="headerlink" href="#org-detail" title="Permanent link">¶</a></h3>
+<p>The hub. Open an org and you see its current <code>status</code>, the
+<a href="../../models/plan/">plan</a> / <a href="../../models/subscription/">Subscription</a> it carries,
+seat usage, recent activity, and — for an Ops user — the <strong>Suspend</strong> (or
+<strong>Unsuspend</strong>) action.</p>
+<p>A subtlety worth internalizing: the values on this screen are <em>read fresh</em>, not
+cached. The org's <code>status</code> comes straight from
+<a href="../../services/accounts-service/">accounts-service</a>, which is the
+<a href="../../models/organization/#notes-nuances">sole writer of org state</a>; the
+subscription, plan, and seat figures come from
+<a href="../../services/billing-service/">billing-service</a>. The console is a <em>viewer</em> stitched
+from those services' APIs, so what you see is what they currently hold — there's no
+console-owned copy to go stale. This matters in practice: if you suspend an org and
+refresh, the new <code>suspended</code> status is real the instant accounts-service accepts the
+write, and the <a href="../../features/suspend-organization/#why-check-at-send-time-not-at-suspend-time">next send is blocked immediately</a>
+because messaging-service re-reads status on every send rather than trusting a cache.</p>
+<p>The suspend action itself requires a reason — there is no "suspend without saying
+why." The reason is an operator-to-operator audit note (think "non-payment, <abbr title="the automated retry-and-notify process after a failed payment, before cancellation">dunning</abbr>
+exhausted (BILL-…)" or "T&amp;S: phishing report #…"), and it matters because <em>anyone</em>
+on the team can reinstate, so the next person needs to know why the account is in
+this state and whether it's safe to lift. The mechanics, the reason trail, and the
+open questions about exactly where the reason and actor are persisted all live on
+<a href="../../features/suspend-organization/">Suspend an organization</a>.</p>
+<h3 id="delivery-search">Delivery search<a class="headerlink" href="#delivery-search" title="Permanent link">¶</a></h3>
+<p>The cross-org delivery-event lookup. Search <a href="../../models/delivery-event/">delivery events</a>
+by org and a recent time window and read each send attempt's outcome.</p>
+<p>Two things to keep in mind when you read this screen, both inherited from how the
+<a href="../../models/delivery-event/">delivery-event model</a> is stored:</p>
+<ul>
+<li><strong>The log is immutable and per-attempt.</strong> Each row is a <em>fact about one send
+  attempt</em> — it never updates. If a message was retried, you'll see two rows, not one
+  row that "became delivered." Read it as a stream of observations, not the current
+  state of a message.</li>
+<li><strong>Older rows carry fewer fields.</strong> The collection is schemaless and has accreted
+  fields over the years, so <code>region</code> (records on or after 2024-07), <code>provider_id</code>
+  (on or after 2024-03), and <code>attempts</code> (oldest rows) can simply be absent on older
+  events. Don't read a missing field as an error — it's expected drift. The
+  <a href="../../models/delivery-event/#reading-defensively">delivery-event page</a>
+  has the cutoffs if a report looks lopsided across a date range.</li>
+</ul>
+<p>The screen is shaped for the same two read patterns the store is optimized for:
+recent-window, per-org lookups ("what happened to this org's sends lately?") and
+the occasional aggregate ("what's their bounce rate this week?").</p>
+<h2 id="roles">Roles<a class="headerlink" href="#roles" title="Permanent link">¶</a></h2>
+<p>Internal roles only; see <a href="../../access/roles/">Roles &amp; permissions</a>. The console is
+the home of Beacon's two <strong>staff</strong> roles, which are entirely separate from the
+customer Owner/Admin/Member roles on the <a href="../dashboard/">dashboard</a> — a
+customer is never staff, and staff never appear in a customer's member list.</p>
+<ul>
+<li><strong>Support</strong> — read-only. Look up any org and search deliveries across orgs to
+  answer "did it send?" questions. Support can <em>see</em> customer state but never change
+  it.</li>
+<li><strong>Ops</strong> — everything Support can do, <strong>plus</strong> suspend / reinstate. This is the only
+  mutating action any internal role can take through the console, and it's
+  deliberately Ops-only so a routine lookup can't take a customer offline.</li>
+</ul>
+<p>It's a simple ladder — Ops is Support plus the one lever — mirroring the customer-side
+ladder on the dashboard.</p>
+<div class="admonition info">
+<p class="admonition-title">Where this is enforced</p>
+<p>There is no central authorization service. Internal-role checks are enforced
+<strong>in the admin console's own app code</strong> (<code>beacon-web</code>), not by a shared policy
+engine — the same app-only pattern the rest of Beacon uses (customer roles are
+enforced by the dashboard and <a href="../../services/accounts-service/">accounts-service</a>;
+API calls by <a href="../../interfaces/auth/">key scopes</a>). The
+<a href="../../access/roles/#permission-matrix">permission matrix</a> is the human-readable
+contract, not a single config you can point at. The exact roles allowed to
+suspend/reinstate, and where the actor and reason are persisted, are worth
+confirming against <code>beacon-accounts</code> and <code>beacon-web</code> on the next deepening pass —
+part of why this page's confidence sits at 55.</p>
+</div>
+<h2 id="how-it-fits-together">How it fits together<a class="headerlink" href="#how-it-fits-together" title="Permanent link">¶</a></h2>
+<p>The console doesn't own any data of its own. It's a thin staff-facing UI over the
+same services the customer dashboard talks to — it just reads across every org
+instead of one, and exposes a single write. The read paths fan out to the owning
+services; the one write goes to accounts-service and takes effect on the next send.</p>
+<pre class="mermaid"><code>flowchart LR
+  Staff([Support / Ops])
+  Console[Admin console\nbeacon-web]
+  Accounts[accounts-service\norg status]
+  Billing[billing-service\nplan / subscription]
+  Messaging[messaging-service\ndelivery events]
+
+  Staff --&gt; Console
+  Console --&gt;|org lookup: read status| Accounts
+  Console --&gt;|plan / seats: read| Billing
+  Console --&gt;|delivery search: read| Messaging
+  Console -.-&gt;|"suspend / reinstate (Ops only): write status"| Accounts</code></pre>
+<p>The dotted line is the only write on the whole diagram. Everything else is the
+console reading the truth from whichever service owns it — never holding its own
+copy. That's the same "read it fresh at decision time" discipline the
+<a href="../../models/organization/#notes-nuances">Organization authority boundary</a> calls
+for, applied to a UI: because the console caches nothing, it can never show a
+suspended org as active, and a suspend it issues is true the moment accounts-service
+accepts it.</p>
+<p>For the deeper detail on each side: the owning services are
+<a href="../../services/accounts-service/">accounts-service</a>,
+<a href="../../services/billing-service/">billing-service</a>, and
+<a href="../../services/messaging-service/">messaging-service</a>; the data behind the screens is
+<a href="../../models/organization/">Organization</a>, <a href="../../models/subscription/">Subscription</a>,
+and <a href="../../models/delivery-event/">Delivery event</a>; the one feature with real teeth is
+<a href="../../features/suspend-organization/">Suspend an organization</a>.</p>
+<h2 id="notes-nuances">Notes &amp; nuances<a class="headerlink" href="#notes-nuances" title="Permanent link">¶</a></h2>
+<details class="note">
+<summary>Read-only by design, with exactly one exception</summary>
+<p>The console's near-total read-only posture is the safety model for a tool that can
+reach every customer. The only human-driven write is suspend / reinstate, and it's
+gated to Ops. If a support workflow seems to call for changing customer state
+(re-pricing, resending, key rotation), that's a signal it belongs in the customer
+<a href="../dashboard/">dashboard</a> or the owning service — not a gap to fill in
+the console.</p>
+</details>
+<details class="note">
+<summary>It mirrors, it doesn't own</summary>
+<p>Nothing the console shows is stored by the console. Org status is owned by
+accounts-service, plan/subscription by billing-service, delivery events by
+messaging-service. The console is a viewer; treat anomalies as questions for the
+owning service, not bugs in the console's data.</p>
+</details>
+<div class="admonition danger">
+<p class="admonition-title">Suspected dead</p>
+<p>A "bulk message replay" tool exists in the console but its endpoint returns 501;
+likely never finished. This squares with the broader picture — the console isn't
+meant to <em>send</em>, and replaying messages would be a mutating, customer-impacting
+action well outside its read-only remit. Confirm against <code>beacon-web</code> whether the
+UI entry point should simply be removed.</p>
+</div>
+<div class="admonition danger">
+<p class="admonition-title">Suspected dead</p>
+<p>The suspend dialog still offers a "suspend for N days" auto-reinstate option, but
+the backend ignores the duration — the same unfinished timed-suspension path
+flagged on <a href="../../features/suspend-organization/">Suspend an organization</a>. Confirm
+whether timed suspension was ever wired before relying on it.</p>
+</div>
+<div class="admonition question">
+<p class="admonition-title">Open: console internals not yet verified from source</p>
+<p>This page is written largely from the consuming side and the cross-org product
+behavior; a few things should be pinned against <code>beacon-web</code> on the next pass and
+are why confidence sits at 55:</p>
+<ul>
+<li><strong>Auth &amp; role enforcement</strong> — how staff sign in to the console and where the
+  Support/Ops check is actually made in <code>beacon-web</code>.</li>
+<li><strong>The read APIs it calls</strong> — whether delivery search hits messaging-service
+  directly or via an aggregation endpoint, and how org detail composes
+  accounts-service + billing-service responses.</li>
+<li><strong>Audit trail</strong> — whether console reads (not just suspends) are logged, given
+  the cross-org reach.</li>
+</ul>
+</div>
+<h2 id="related-pages">Related pages<a class="headerlink" href="#related-pages" title="Permanent link">¶</a></h2>
+<p><strong>Surfaced here:</strong> <a href="../../access/roles/">Roles &amp; permissions</a></p>
+<div class="doc-provenance">
+<p><strong>Confidence:</strong> 55/100 · <strong>Last reviewed:</strong> 2026-06-14 · <strong>Status:</strong> active</p>
+<p><strong>Verified against:</strong> beacon-web@9f8e7d6 (2026-06-02)</p>
+</div>
+<!-- Glossary tooltips for Beacon — auto-appended to every page. Define a term once
+     here and every prose occurrence gets a hover definition. Keep in sync with
+     docs/glossary.md. Case-sensitive. -->
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden="">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"></path></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer">
+        
+          
+          <a href="../dashboard/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Merchant dashboard">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Merchant dashboard
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../access/roles/" class="md-footer__link md-footer__link--next" aria-label="Next: Roles &amp; permissions">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Roles &amp; permissions
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"></path></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.indexes", "navigation.prune", "navigation.top", "navigation.path", "navigation.footer", "toc.follow", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.tabs.link", "content.tooltips"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../javascripts/diagram-zoom.js"></script>
+      
+    
+  
+<script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(()=>{ lightbox.reload(); });
+</script></body></html>

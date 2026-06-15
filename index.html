@@ -1,0 +1,2155 @@
+<!DOCTYPE html><html lang="en" class="no-js"><head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Fictional reference product — demonstrates the docs patterns.">
+      
+      
+      
+        <link rel="canonical" href="https://dhedlund.github.io/project-docs/">
+      
+      
+      
+        <link rel="next" href="domains/accounts/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Overview - Beacon Docs (example)</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="assets/stylesheets/mkdocs_d2_plugin.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  <link href="assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color); }
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
+        </style></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#beacon" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="." title="Beacon Docs (example)" class="md-header__button md-logo" aria-label="Beacon Docs (example)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Beacon Docs (example)
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Overview
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo" aria-label="Switch to dark mode" type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden="">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"></path></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo" aria-label="Switch to light mode" type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden="">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"></path></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required="">
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard="" data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"></path></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix="">
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="." title="Beacon Docs (example)" class="md-nav__button md-logo" aria-label="Beacon Docs (example)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
+
+    </a>
+    Beacon Docs (example)
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix="">
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="." class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#start-here-by-who-you-are" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Start here, by who you are
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-three-domains" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The three domains
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The three domains">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#accounts-who-is-the-customer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Accounts — who is the customer?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#billing-what-is-the-customer-paying-for" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Billing — what is the customer paying for?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#messaging-did-the-message-get-there" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Messaging — did the message get there?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-beacon-fits-together" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How Beacon fits together
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-same-flow-as-a-d2-hero-diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The same flow as a D2 "hero" diagram
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-flow-end-to-end-a-plan-upgrade" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A flow end to end: a plan upgrade
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-services" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The services
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-core-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The core models
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#where-data-lives" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Where data lives
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-documentation-layers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The documentation layers
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-few-terms-worth-knowing-up-front" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A few terms worth knowing up front
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#where-to-go-next" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Where to go next
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="domains/accounts/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Domains
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="features/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Features
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="flows/send-message/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Flows
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="options/message-settings/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Options
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="interfaces/api/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interfaces
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="integrations/email-provider/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Integrations
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="surfaces/dashboard/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Surfaces
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="access/roles/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Access
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="services/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Services
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="models/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Models
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="datastores/mysql/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Datastores
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glossary
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="decisions/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Decisions
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#start-here-by-who-you-are" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Start here, by who you are
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-three-domains" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The three domains
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The three domains">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#accounts-who-is-the-customer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Accounts — who is the customer?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#billing-what-is-the-customer-paying-for" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Billing — what is the customer paying for?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#messaging-did-the-message-get-there" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Messaging — did the message get there?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-beacon-fits-together" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How Beacon fits together
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-same-flow-as-a-d2-hero-diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The same flow as a D2 "hero" diagram
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-flow-end-to-end-a-plan-upgrade" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A flow end to end: a plan upgrade
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-services" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The services
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-core-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The core models
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#where-data-lives" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Where data lives
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-documentation-layers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The documentation layers
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-few-terms-worth-knowing-up-front" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A few terms worth knowing up front
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#where-to-go-next" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Where to go next
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  <nav class="md-tags">
+    
+      
+      
+      
+      
+        <span class="md-tag">index</span>
+      
+    
+      
+      
+      
+      
+        <span class="md-tag">map</span>
+      
+    
+      
+      
+      
+      
+        <span class="md-tag">overview</span>
+      
+    
+  </nav>
+
+
+
+<h1 id="beacon">Beacon<a class="headerlink" href="#beacon" title="Permanent link">¶</a></h1>
+<blockquote>
+<p><strong>Fictional reference product.</strong> Beacon is a customer-messaging SaaS: organizations
+subscribe to a plan, then send their customers transactional and campaign messages.
+Use these pages as a style reference — none of it is real.</p>
+</blockquote>
+<p>Beacon sells one promise: <strong>let a company talk to its customers reliably, at scale,
+without running messaging infrastructure itself.</strong> A company signs up as an
+<em>organization</em>, picks a <em>plan</em>, and from then on sends two kinds of messages — the
+<em>transactional</em> ones a customer expects right now (a receipt, a password reset, a
+shipping update) and the <em>campaign</em> ones the company chooses to send (a product
+announcement, a seasonal offer). Beacon renders those messages from templates, hands
+them to the right provider for the channel, and records what happened to each one.</p>
+<p>That's the whole product, and almost everything in these docs is a detail hanging off
+it. If you remember one sentence, make it this: <strong>organizations subscribe (Billing),
+made of users (Accounts), so they can send messages and see what was delivered
+(Messaging).</strong> The three words in parentheses are Beacon's three domains, and they
+are the spine of the entire knowledge base.</p>
+<p>This page is <strong>L0 — the map.</strong> It tells you what Beacon is, how the pieces fit, and
+where to go next. It deliberately stays shallow: every claim here is explained in
+depth one or two clicks down. If you're new, read this top to bottom once, then jump
+to whichever domain or service you actually need.</p>
+<h2 id="start-here-by-who-you-are">Start here, by who you are<a class="headerlink" href="#start-here-by-who-you-are" title="Permanent link">¶</a></h2>
+<p>Different readers need different first clicks. Pick the row that fits.</p>
+<table>
+<thead>
+<tr>
+<th>If you're…</th>
+<th>Start with</th>
+<th>Then</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>New to Beacon</td>
+<td>This page, top to bottom</td>
+<td>A <a href="#the-three-domains">domain</a> that interests you</td>
+</tr>
+<tr>
+<td>A product/PM reader</td>
+<td><a href="features/">Features</a> and the <a href="glossary/">Glossary</a></td>
+<td>The <a href="#the-three-domains">domains</a> behind them</td>
+</tr>
+<tr>
+<td>Integrating against the API</td>
+<td>The <a href="interfaces/api/">public API</a> and <a href="interfaces/webhooks/"><abbr title="HTTP callbacks Beacon sends to your endpoint when events occur">webhooks</abbr></a></td>
+<td><a href="interfaces/auth/">auth</a></td>
+</tr>
+<tr>
+<td>Working in a service</td>
+<td>The <a href="services/">service</a> you own</td>
+<td>Its <a href="models/">models</a> and <a href="#where-data-lives">datastores</a></td>
+</tr>
+<tr>
+<td>Hunting <em>why</em> a thing is the way it is</td>
+<td>The <a href="decisions/">decisions</a> (ADRs)</td>
+<td>The model or service the ADR touches</td>
+</tr>
+</tbody>
+</table>
+<h2 id="the-three-domains">The three domains<a class="headerlink" href="#the-three-domains" title="Permanent link">¶</a></h2>
+<p>Beacon is organized around three business domains. Each one owns a clear question,
+and the rest of the system reads from it rather than re-deriving its answers. Keeping
+these boundaries crisp is what stops Beacon turning into a tangle where everyone
+caches everyone else's data.</p>
+<h3 id="accounts-who-is-the-customer">Accounts — <em>who is the customer?</em><a class="headerlink" href="#accounts-who-is-the-customer" title="Permanent link">¶</a></h3>
+<p><a href="domains/accounts/">Accounts</a> is the tenant and identity layer: <strong>organizations</strong>
+and the <strong>users</strong> inside them. It is the layer every other domain reads from to learn
+who exists, who belongs to whom, and whether an org is allowed to operate at all (an
+org can be <code>suspended</code>). Accounts is the <strong>sole writer</strong> of organization and user
+data — other domains read it over the API and must not treat a cached copy as
+long-term truth.</p>
+<h3 id="billing-what-is-the-customer-paying-for">Billing — <em>what is the customer paying for?</em><a class="headerlink" href="#billing-what-is-the-customer-paying-for" title="Permanent link">¶</a></h3>
+<p><a href="domains/billing/">Billing</a> is the authority on money and entitlement: <strong>plans</strong>,
+<strong>subscriptions</strong>, <strong>invoices</strong>, and the <abbr title="charging the prorated difference when a plan changes mid-cycle">proration</abbr> math when a plan changes
+mid-cycle. When you need to know whether an org is entitled to a feature, how many
+seats it bought, or whether its last payment failed, Billing is the source of truth.
+It does <strong>not</strong> own users or seats (it reads those from Accounts) and it does <strong>not</strong>
+send messages — it only emits the events that <em>cause</em> messages to be sent.</p>
+<h3 id="messaging-did-the-message-get-there">Messaging — <em>did the message get there?</em><a class="headerlink" href="#messaging-did-the-message-get-there" title="Permanent link">¶</a></h3>
+<p><a href="domains/messaging/">Messaging</a> owns the send flow end to end: message
+<strong>templates</strong>, send <strong>scheduling</strong>, the dispatch across channels (email, SMS, push),
+and the <strong>delivery-event log</strong> that records the outcome. Its scope is bounded
+precisely — it starts at "send" and ends at "delivered / failed." It reacts to
+events from Billing (for example, sending a confirmation when a subscription is
+upgraded) and owns no subscription or org state of its own.</p>
+<p>A useful way to hold the three together: <strong>Accounts says who, Billing says what
+they're owed, Messaging does the actual talking.</strong> Each owns its truth; none reaches
+into another's database.</p>
+<h2 id="how-beacon-fits-together">How Beacon fits together<a class="headerlink" href="#how-beacon-fits-together" title="Permanent link">¶</a></h2>
+<p>The diagram below is the canonical picture of the runtime. The Web UI talks to the
+two HTTP services directly; Billing reads Accounts for org status and seat counts;
+and the only path into Messaging is <strong>asynchronous, over RabbitMQ.</strong> That last point
+is deliberate and worth internalizing — Messaging is event-driven, so a slow or
+down messaging-service never blocks a billing operation.</p>
+<pre class="mermaid"><code>flowchart LR
+  UI[Web UI] --&gt; billing[billing-service]
+  UI --&gt; accounts[accounts-service]
+  billing --&gt; accounts
+  billing -- subscription.upgraded --&gt; mq[(RabbitMQ)]
+  mq --&gt; messaging[messaging-service]
+  messaging --&gt; mongo[(MongoDB&lt;br/&gt;delivery events)]
+  billing --&gt; mysql[(MySQL)]
+  accounts --&gt; mysql
+  messaging --&gt; pg[(PostgreSQL)]</code></pre>
+<h2 id="the-same-flow-as-a-d2-hero-diagram">The same flow as a D2 "hero" diagram<a class="headerlink" href="#the-same-flow-as-a-d2-hero-diagram" title="Permanent link">¶</a></h2>
+<div class="d2"><div class="d2-light"><svg data-d2-version="v0.7.1" preserveAspectRatio="xMinYMin meet" viewBox="0 0 598 787" role="img" aria-label="Diagram"><svg class="d2-8b44acab21f64ed8a44cfe355f718132 d2-svg" width="598" height="787" viewBox="-101 -101 598 787"><rect x="-101.000000" y="-101.000000" width="598.000000" height="787.000000" rx="0.000000" fill="#FFFFFF" class=" fill-N7" stroke-width="0"></rect><style type="text/css">
+.d2-8b44acab21f64ed8a44cfe355f718132 .text-bold {
+	font-family: "d2-8b44acab21f64ed8a44cfe355f718132-font-bold";
+}
+@font-face {
+	font-family: d2-8b44acab21f64ed8a44cfe355f718132-font-bold;
+	src: url("data:application/font-woff;base64,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");
+}
+.d2-8b44acab21f64ed8a44cfe355f718132 .text-italic {
+	font-family: "d2-8b44acab21f64ed8a44cfe355f718132-font-italic";
+}
+@font-face {
+	font-family: d2-8b44acab21f64ed8a44cfe355f718132-font-italic;
+	src: url("data:application/font-woff;base64,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");
+}</style><style type="text/css">.shape {
+  shape-rendering: geometricPrecision;
+  stroke-linejoin: round;
+}
+.connection {
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.blend {
+  mix-blend-mode: multiply;
+  opacity: 0.5;
+}
+
+		.d2-8b44acab21f64ed8a44cfe355f718132 .fill-N1{fill:#0A0F25;}
+		.d2-8b44acab21f64ed8a44cfe355f718132 .fill-N2{fill:#676C7E;}
+		.d2-8b44acab21f64ed8a44cfe355f718132 .fill-N3{fill:#9499AB;}
+		.d2-8b44acab21f64ed8a44cfe355f718132 .fill-N4{fill:#CFD2DD;}
+		.d2-8b44acab21f64ed8a44cfe355f718132 .fill-N5{fill:#DEE1EB;}
+		.d2-8b44acab21f64ed8a44cfe355f718132 .fill-N6{fill:#EEF1F8;}
+		.d2-8b44acab21f64ed8a44cfe355f718132 .fill-N7{fill:#FFFFFF;}
+		.d2-8b44acab21f64ed8a44cfe355f718132 .fill-B1{fill:#0D32B2;}
+		.d2-8b44acab21f64ed8a44cfe355f718132 .fill-B2{fill:#0D32B2;}
+		.d2-8b44acab21f64ed8a44cfe355f718132 .fill-B3{fill:#E3E9FD;}
+		.d2-8b44acab21f64ed8a44cfe355f718132 .fill-B4{fill:#E3E9FD;}
+		.d2-8b44acab21f64ed8a44cfe355f718132 .fill-B5{fill:#EDF0FD;}
+		.d2-8b44acab21f64ed8a44cfe355f718132 .fill-B6{fill:#F7F8FE;}
+		.d2-8b44acab21f64ed8a44cfe355f718132 .fill-AA2{fill:#4A6FF3;}
+		.d2-8b44acab21f64ed8a44cfe355f718132 .fill-AA4{fill:#EDF0FD;}
+		.d2-8b44acab21f64ed8a44cfe355f718132 .fill-AA5{fill:#F7F8FE;}
+		.d2-8b44acab21f64ed8a44cfe355f718132 .fill-AB4{fill:#EDF0FD;}
+		.d2-8b44acab21f64ed8a44cfe355f718132 .fill-AB5{fill:#F7F8FE;}
+		.d2-8b44acab21f64ed8a44cfe355f718132 .stroke-N1{stroke:#0A0F25;}
+		.d2-8b44acab21f64ed8a44cfe355f718132 .stroke-N2{stroke:#676C7E;}
+		.d2-8b44acab21f64ed8a44cfe355f718132 .stroke-N3{stroke:#9499AB;}
+		.d2-8b44acab21f64ed8a44cfe355f718132 .stroke-N4{stroke:#CFD2DD;}
+		.d2-8b44acab21f64ed8a44cfe355f718132 .stroke-N5{stroke:#DEE1EB;}
+		.d2-8b44acab21f64ed8a44cfe355f718132 .stroke-N6{stroke:#EEF1F8;}
+		.d2-8b44acab21f64ed8a44cfe355f718132 .stroke-N7{stroke:#FFFFFF;}
+		.d2-8b44acab21f64ed8a44cfe355f718132 .stroke-B1{stroke:#0D32B2;}
+		.d2-8b44acab21f64ed8a44cfe355f718132 .stroke-B2{stroke:#0D32B2;}
+		.d2-8b44acab21f64ed8a44cfe355f718132 .stroke-B3{stroke:#E3E9FD;}
+		.d2-8b44acab21f64ed8a44cfe355f718132 .stroke-B4{stroke:#E3E9FD;}
+		.d2-8b44acab21f64ed8a44cfe355f718132 .stroke-B5{stroke:#EDF0FD;}
+		.d2-8b44acab21f64ed8a44cfe355f718132 .stroke-B6{stroke:#F7F8FE;}
+		.d2-8b44acab21f64ed8a44cfe355f718132 .stroke-AA2{stroke:#4A6FF3;}
+		.d2-8b44acab21f64ed8a44cfe355f718132 .stroke-AA4{stroke:#EDF0FD;}
+		.d2-8b44acab21f64ed8a44cfe355f718132 .stroke-AA5{stroke:#F7F8FE;}
+		.d2-8b44acab21f64ed8a44cfe355f718132 .stroke-AB4{stroke:#EDF0FD;}
+		.d2-8b44acab21f64ed8a44cfe355f718132 .stroke-AB5{stroke:#F7F8FE;}
+		.d2-8b44acab21f64ed8a44cfe355f718132 .background-color-N1{background-color:#0A0F25;}
+		.d2-8b44acab21f64ed8a44cfe355f718132 .background-color-N2{background-color:#676C7E;}
+		.d2-8b44acab21f64ed8a44cfe355f718132 .background-color-N3{background-color:#9499AB;}
+		.d2-8b44acab21f64ed8a44cfe355f718132 .background-color-N4{background-color:#CFD2DD;}
+		.d2-8b44acab21f64ed8a44cfe355f718132 .background-color-N5{background-color:#DEE1EB;}
+		.d2-8b44acab21f64ed8a44cfe355f718132 .background-color-N6{background-color:#EEF1F8;}
+		.d2-8b44acab21f64ed8a44cfe355f718132 .background-color-N7{background-color:#FFFFFF;}
+		.d2-8b44acab21f64ed8a44cfe355f718132 .background-color-B1{background-color:#0D32B2;}
+		.d2-8b44acab21f64ed8a44cfe355f718132 .background-color-B2{background-color:#0D32B2;}
+		.d2-8b44acab21f64ed8a44cfe355f718132 .background-color-B3{background-color:#E3E9FD;}
+		.d2-8b44acab21f64ed8a44cfe355f718132 .background-color-B4{background-color:#E3E9FD;}
+		.d2-8b44acab21f64ed8a44cfe355f718132 .background-color-B5{background-color:#EDF0FD;}
+		.d2-8b44acab21f64ed8a44cfe355f718132 .background-color-B6{background-color:#F7F8FE;}
+		.d2-8b44acab21f64ed8a44cfe355f718132 .background-color-AA2{background-color:#4A6FF3;}
+		.d2-8b44acab21f64ed8a44cfe355f718132 .background-color-AA4{background-color:#EDF0FD;}
+		.d2-8b44acab21f64ed8a44cfe355f718132 .background-color-AA5{background-color:#F7F8FE;}
+		.d2-8b44acab21f64ed8a44cfe355f718132 .background-color-AB4{background-color:#EDF0FD;}
+		.d2-8b44acab21f64ed8a44cfe355f718132 .background-color-AB5{background-color:#F7F8FE;}
+		.d2-8b44acab21f64ed8a44cfe355f718132 .color-N1{color:#0A0F25;}
+		.d2-8b44acab21f64ed8a44cfe355f718132 .color-N2{color:#676C7E;}
+		.d2-8b44acab21f64ed8a44cfe355f718132 .color-N3{color:#9499AB;}
+		.d2-8b44acab21f64ed8a44cfe355f718132 .color-N4{color:#CFD2DD;}
+		.d2-8b44acab21f64ed8a44cfe355f718132 .color-N5{color:#DEE1EB;}
+		.d2-8b44acab21f64ed8a44cfe355f718132 .color-N6{color:#EEF1F8;}
+		.d2-8b44acab21f64ed8a44cfe355f718132 .color-N7{color:#FFFFFF;}
+		.d2-8b44acab21f64ed8a44cfe355f718132 .color-B1{color:#0D32B2;}
+		.d2-8b44acab21f64ed8a44cfe355f718132 .color-B2{color:#0D32B2;}
+		.d2-8b44acab21f64ed8a44cfe355f718132 .color-B3{color:#E3E9FD;}
+		.d2-8b44acab21f64ed8a44cfe355f718132 .color-B4{color:#E3E9FD;}
+		.d2-8b44acab21f64ed8a44cfe355f718132 .color-B5{color:#EDF0FD;}
+		.d2-8b44acab21f64ed8a44cfe355f718132 .color-B6{color:#F7F8FE;}
+		.d2-8b44acab21f64ed8a44cfe355f718132 .color-AA2{color:#4A6FF3;}
+		.d2-8b44acab21f64ed8a44cfe355f718132 .color-AA4{color:#EDF0FD;}
+		.d2-8b44acab21f64ed8a44cfe355f718132 .color-AA5{color:#F7F8FE;}
+		.d2-8b44acab21f64ed8a44cfe355f718132 .color-AB4{color:#EDF0FD;}
+		.d2-8b44acab21f64ed8a44cfe355f718132 .color-AB5{color:#F7F8FE;}.appendix text.text{fill:#0A0F25}.md{--color-fg-default:#0A0F25;--color-fg-muted:#676C7E;--color-fg-subtle:#9499AB;--color-canvas-default:#FFFFFF;--color-canvas-subtle:#EEF1F8;--color-border-default:#0D32B2;--color-border-muted:#0D32B2;--color-neutral-muted:#EEF1F8;--color-accent-fg:#0D32B2;--color-accent-emphasis:#0D32B2;--color-attention-subtle:#676C7E;--color-danger-fg:red;}.sketch-overlay-B1{fill:url(#streaks-darker-d2-8b44acab21f64ed8a44cfe355f718132);mix-blend-mode:lighten}.sketch-overlay-B2{fill:url(#streaks-darker-d2-8b44acab21f64ed8a44cfe355f718132);mix-blend-mode:lighten}.sketch-overlay-B3{fill:url(#streaks-bright-d2-8b44acab21f64ed8a44cfe355f718132);mix-blend-mode:darken}.sketch-overlay-B4{fill:url(#streaks-bright-d2-8b44acab21f64ed8a44cfe355f718132);mix-blend-mode:darken}.sketch-overlay-B5{fill:url(#streaks-bright-d2-8b44acab21f64ed8a44cfe355f718132);mix-blend-mode:darken}.sketch-overlay-B6{fill:url(#streaks-bright-d2-8b44acab21f64ed8a44cfe355f718132);mix-blend-mode:darken}.sketch-overlay-AA2{fill:url(#streaks-dark-d2-8b44acab21f64ed8a44cfe355f718132);mix-blend-mode:overlay}.sketch-overlay-AA4{fill:url(#streaks-bright-d2-8b44acab21f64ed8a44cfe355f718132);mix-blend-mode:darken}.sketch-overlay-AA5{fill:url(#streaks-bright-d2-8b44acab21f64ed8a44cfe355f718132);mix-blend-mode:darken}.sketch-overlay-AB4{fill:url(#streaks-bright-d2-8b44acab21f64ed8a44cfe355f718132);mix-blend-mode:darken}.sketch-overlay-AB5{fill:url(#streaks-bright-d2-8b44acab21f64ed8a44cfe355f718132);mix-blend-mode:darken}.sketch-overlay-N1{fill:url(#streaks-darker-d2-8b44acab21f64ed8a44cfe355f718132);mix-blend-mode:lighten}.sketch-overlay-N2{fill:url(#streaks-dark-d2-8b44acab21f64ed8a44cfe355f718132);mix-blend-mode:overlay}.sketch-overlay-N3{fill:url(#streaks-normal-d2-8b44acab21f64ed8a44cfe355f718132);mix-blend-mode:color-burn}.sketch-overlay-N4{fill:url(#streaks-normal-d2-8b44acab21f64ed8a44cfe355f718132);mix-blend-mode:color-burn}.sketch-overlay-N5{fill:url(#streaks-bright-d2-8b44acab21f64ed8a44cfe355f718132);mix-blend-mode:darken}.sketch-overlay-N6{fill:url(#streaks-bright-d2-8b44acab21f64ed8a44cfe355f718132);mix-blend-mode:darken}.sketch-overlay-N7{fill:url(#streaks-bright-d2-8b44acab21f64ed8a44cfe355f718132);mix-blend-mode:darken}.light-code{display: block}.dark-code{display: none}</style><g class="dWk="><g class="shape"><rect x="149.000000" y="0.000000" width="94.000000" height="66.000000" stroke="#0D32B2" fill="#F7F8FE" class=" stroke-B1 fill-B6" style="stroke-width:2;"></rect></g><text x="196.000000" y="38.500000" fill="#0A0F25" class="text-bold fill-N1" style="text-anchor:middle;font-size:16px">Web UI</text></g><g class="YmlsbGluZw=="><g class="shape"><rect x="188.000000" y="166.000000" width="145.000000" height="66.000000" stroke="#0D32B2" fill="#F7F8FE" class=" stroke-B1 fill-B6" style="stroke-width:2;"></rect></g><text x="260.500000" y="204.500000" fill="#0A0F25" class="text-bold fill-N1" style="text-anchor:middle;font-size:16px">billing-service</text></g><g class="YWNjb3VudHM="><g class="shape"><rect x="0.000000" y="353.000000" width="165.000000" height="66.000000" stroke="#0D32B2" fill="#F7F8FE" class=" stroke-B1 fill-B6" style="stroke-width:2;"></rect></g><text x="82.500000" y="391.500000" fill="#0A0F25" class="text-bold fill-N1" style="text-anchor:middle;font-size:16px">accounts-service</text></g><g class="bXE="><g class="shape"><path d="M 249 353 H 368 C 392 353 392 383 392 386 C 392 389 392 419 368 419 H 249 C 225 419 225 389 225 386 C 225 383 225 353 249 353 Z" stroke="#0D32B2" fill="#DEE1EB" class=" stroke-B1 fill-N5" style="stroke-width:2;"></path><path d="M 368 353 C 344 353 344 383 344 386 C 344 389 344 419 368 419" stroke="#0D32B2" fill="#DEE1EB" class=" stroke-B1 fill-N5" style="stroke-width:2;"></path></g><text x="296.500000" y="391.500000" fill="#0A0F25" class="text-bold fill-N1" style="text-anchor:middle;font-size:16px">RabbitMQ</text></g><g class="bWVzc2FnaW5n"><g class="shape"><rect x="221.000000" y="519.000000" width="175.000000" height="66.000000" stroke="#0D32B2" fill="#F7F8FE" class=" stroke-B1 fill-B6" style="stroke-width:2;"></rect></g><text x="308.500000" y="557.500000" fill="#0A0F25" class="text-bold fill-N1" style="text-anchor:middle;font-size:16px">messaging-service</text></g><g class="KHVpIC0mZ3Q7IGJpbGxpbmcpWzBd"><marker id="mk-d2-8b44acab21f64ed8a44cfe355f718132-3488378134" markerWidth="10.000000" markerHeight="12.000000" refX="7.000000" refY="6.000000" viewBox="0.000000 0.000000 10.000000 12.000000" orient="auto" markerUnits="userSpaceOnUse"> <polygon points="0.000000,0.000000 10.000000,6.000000 0.000000,12.000000" fill="#0D32B2" class="connection fill-B1" stroke-width="2"></polygon> </marker><path d="M 222.980064 67.577005 C 252.949997 106.000000 260.750000 126.000000 260.750000 162.000000" stroke="#0D32B2" fill="none" class="connection stroke-B1" style="stroke-width:2;" marker-end="url(#mk-d2-8b44acab21f64ed8a44cfe355f718132-3488378134)" mask="url(#d2-8b44acab21f64ed8a44cfe355f718132)"></path></g><g class="KHVpIC0mZ3Q7IGFjY291bnRzKVswXQ=="><path d="M 146.842142 65.833705 C 87.698997 105.742996 72.500000 132.600006 72.500000 157.500000 C 72.500000 182.399994 73.699997 304.700012 78.108447 349.519210" stroke="#0D32B2" fill="none" class="connection stroke-B1" style="stroke-width:2;" marker-end="url(#mk-d2-8b44acab21f64ed8a44cfe355f718132-3488378134)" mask="url(#d2-8b44acab21f64ed8a44cfe355f718132)"></path></g><g class="KGJpbGxpbmcgLSZndDsgYWNjb3VudHMpWzBd"><path d="M 219.215282 232.782435 C 162.350006 280.299988 139.350006 304.700012 108.018408 350.205409" stroke="#0D32B2" fill="none" class="connection stroke-B1" style="stroke-width:2;" marker-end="url(#mk-d2-8b44acab21f64ed8a44cfe355f718132-3488378134)" mask="url(#d2-8b44acab21f64ed8a44cfe355f718132)"></path></g><g class="KGJpbGxpbmcgLSZndDsgbXEpWzBd"><path d="M 278.406100 233.282970 C 302.299988 280.299988 308.600006 304.600006 308.966944 349.000137" stroke="#0D32B2" fill="none" class="connection stroke-B1" style="stroke-width:2;" marker-end="url(#mk-d2-8b44acab21f64ed8a44cfe355f718132-3488378134)" mask="url(#d2-8b44acab21f64ed8a44cfe355f718132)"></path><text x="304.500000" y="295.000000" fill="#676C7E" class="text-italic fill-N2" style="text-anchor:middle;font-size:16px">subscription.upgraded</text></g><g class="KG1xIC0mZ3Q7IG1lc3NhZ2luZylbMF0="><path d="M 308.019999 420.999900 C 308.399994 459.000000 308.500000 479.000000 308.500000 515.000000" stroke="#0D32B2" fill="none" class="connection stroke-B1" style="stroke-width:2;" marker-end="url(#mk-d2-8b44acab21f64ed8a44cfe355f718132-3488378134)" mask="url(#d2-8b44acab21f64ed8a44cfe355f718132)"></path></g><mask id="d2-8b44acab21f64ed8a44cfe355f718132" maskUnits="userSpaceOnUse" x="-101" y="-101" width="598" height="787">
+<rect x="-101" y="-101" width="598" height="787" fill="white"></rect>
+<rect x="227.000000" y="279.000000" width="155" height="21" fill="black"></rect>
+</mask></svg></svg></div><div class="d2-dark"><svg data-d2-version="v0.7.1" preserveAspectRatio="xMinYMin meet" viewBox="0 0 598 787" role="img" aria-label="Diagram"><svg class="d2-4d5b579e7c5d4c0c97576bcc5cc5ce29 d2-svg" width="598" height="787" viewBox="-101 -101 598 787"><rect x="-101.000000" y="-101.000000" width="598.000000" height="787.000000" rx="0.000000" fill="#1E1E2E" class=" fill-N7" stroke-width="0"></rect><style type="text/css">
+.d2-4d5b579e7c5d4c0c97576bcc5cc5ce29 .text-bold {
+	font-family: "d2-4d5b579e7c5d4c0c97576bcc5cc5ce29-font-bold";
+}
+@font-face {
+	font-family: d2-4d5b579e7c5d4c0c97576bcc5cc5ce29-font-bold;
+	src: url("data:application/font-woff;base64,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");
+}
+.d2-4d5b579e7c5d4c0c97576bcc5cc5ce29 .text-italic {
+	font-family: "d2-4d5b579e7c5d4c0c97576bcc5cc5ce29-font-italic";
+}
+@font-face {
+	font-family: d2-4d5b579e7c5d4c0c97576bcc5cc5ce29-font-italic;
+	src: url("data:application/font-woff;base64,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");
+}</style><style type="text/css">.shape {
+  shape-rendering: geometricPrecision;
+  stroke-linejoin: round;
+}
+.connection {
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.blend {
+  mix-blend-mode: multiply;
+  opacity: 0.5;
+}
+
+		.d2-4d5b579e7c5d4c0c97576bcc5cc5ce29 .fill-N1{fill:#CDD6F4;}
+		.d2-4d5b579e7c5d4c0c97576bcc5cc5ce29 .fill-N2{fill:#BAC2DE;}
+		.d2-4d5b579e7c5d4c0c97576bcc5cc5ce29 .fill-N3{fill:#A6ADC8;}
+		.d2-4d5b579e7c5d4c0c97576bcc5cc5ce29 .fill-N4{fill:#585B70;}
+		.d2-4d5b579e7c5d4c0c97576bcc5cc5ce29 .fill-N5{fill:#45475A;}
+		.d2-4d5b579e7c5d4c0c97576bcc5cc5ce29 .fill-N6{fill:#313244;}
+		.d2-4d5b579e7c5d4c0c97576bcc5cc5ce29 .fill-N7{fill:#1E1E2E;}
+		.d2-4d5b579e7c5d4c0c97576bcc5cc5ce29 .fill-B1{fill:#CBA6f7;}
+		.d2-4d5b579e7c5d4c0c97576bcc5cc5ce29 .fill-B2{fill:#CBA6f7;}
+		.d2-4d5b579e7c5d4c0c97576bcc5cc5ce29 .fill-B3{fill:#6C7086;}
+		.d2-4d5b579e7c5d4c0c97576bcc5cc5ce29 .fill-B4{fill:#585B70;}
+		.d2-4d5b579e7c5d4c0c97576bcc5cc5ce29 .fill-B5{fill:#45475A;}
+		.d2-4d5b579e7c5d4c0c97576bcc5cc5ce29 .fill-B6{fill:#313244;}
+		.d2-4d5b579e7c5d4c0c97576bcc5cc5ce29 .fill-AA2{fill:#f38BA8;}
+		.d2-4d5b579e7c5d4c0c97576bcc5cc5ce29 .fill-AA4{fill:#45475A;}
+		.d2-4d5b579e7c5d4c0c97576bcc5cc5ce29 .fill-AA5{fill:#313244;}
+		.d2-4d5b579e7c5d4c0c97576bcc5cc5ce29 .fill-AB4{fill:#45475A;}
+		.d2-4d5b579e7c5d4c0c97576bcc5cc5ce29 .fill-AB5{fill:#313244;}
+		.d2-4d5b579e7c5d4c0c97576bcc5cc5ce29 .stroke-N1{stroke:#CDD6F4;}
+		.d2-4d5b579e7c5d4c0c97576bcc5cc5ce29 .stroke-N2{stroke:#BAC2DE;}
+		.d2-4d5b579e7c5d4c0c97576bcc5cc5ce29 .stroke-N3{stroke:#A6ADC8;}
+		.d2-4d5b579e7c5d4c0c97576bcc5cc5ce29 .stroke-N4{stroke:#585B70;}
+		.d2-4d5b579e7c5d4c0c97576bcc5cc5ce29 .stroke-N5{stroke:#45475A;}
+		.d2-4d5b579e7c5d4c0c97576bcc5cc5ce29 .stroke-N6{stroke:#313244;}
+		.d2-4d5b579e7c5d4c0c97576bcc5cc5ce29 .stroke-N7{stroke:#1E1E2E;}
+		.d2-4d5b579e7c5d4c0c97576bcc5cc5ce29 .stroke-B1{stroke:#CBA6f7;}
+		.d2-4d5b579e7c5d4c0c97576bcc5cc5ce29 .stroke-B2{stroke:#CBA6f7;}
+		.d2-4d5b579e7c5d4c0c97576bcc5cc5ce29 .stroke-B3{stroke:#6C7086;}
+		.d2-4d5b579e7c5d4c0c97576bcc5cc5ce29 .stroke-B4{stroke:#585B70;}
+		.d2-4d5b579e7c5d4c0c97576bcc5cc5ce29 .stroke-B5{stroke:#45475A;}
+		.d2-4d5b579e7c5d4c0c97576bcc5cc5ce29 .stroke-B6{stroke:#313244;}
+		.d2-4d5b579e7c5d4c0c97576bcc5cc5ce29 .stroke-AA2{stroke:#f38BA8;}
+		.d2-4d5b579e7c5d4c0c97576bcc5cc5ce29 .stroke-AA4{stroke:#45475A;}
+		.d2-4d5b579e7c5d4c0c97576bcc5cc5ce29 .stroke-AA5{stroke:#313244;}
+		.d2-4d5b579e7c5d4c0c97576bcc5cc5ce29 .stroke-AB4{stroke:#45475A;}
+		.d2-4d5b579e7c5d4c0c97576bcc5cc5ce29 .stroke-AB5{stroke:#313244;}
+		.d2-4d5b579e7c5d4c0c97576bcc5cc5ce29 .background-color-N1{background-color:#CDD6F4;}
+		.d2-4d5b579e7c5d4c0c97576bcc5cc5ce29 .background-color-N2{background-color:#BAC2DE;}
+		.d2-4d5b579e7c5d4c0c97576bcc5cc5ce29 .background-color-N3{background-color:#A6ADC8;}
+		.d2-4d5b579e7c5d4c0c97576bcc5cc5ce29 .background-color-N4{background-color:#585B70;}
+		.d2-4d5b579e7c5d4c0c97576bcc5cc5ce29 .background-color-N5{background-color:#45475A;}
+		.d2-4d5b579e7c5d4c0c97576bcc5cc5ce29 .background-color-N6{background-color:#313244;}
+		.d2-4d5b579e7c5d4c0c97576bcc5cc5ce29 .background-color-N7{background-color:#1E1E2E;}
+		.d2-4d5b579e7c5d4c0c97576bcc5cc5ce29 .background-color-B1{background-color:#CBA6f7;}
+		.d2-4d5b579e7c5d4c0c97576bcc5cc5ce29 .background-color-B2{background-color:#CBA6f7;}
+		.d2-4d5b579e7c5d4c0c97576bcc5cc5ce29 .background-color-B3{background-color:#6C7086;}
+		.d2-4d5b579e7c5d4c0c97576bcc5cc5ce29 .background-color-B4{background-color:#585B70;}
+		.d2-4d5b579e7c5d4c0c97576bcc5cc5ce29 .background-color-B5{background-color:#45475A;}
+		.d2-4d5b579e7c5d4c0c97576bcc5cc5ce29 .background-color-B6{background-color:#313244;}
+		.d2-4d5b579e7c5d4c0c97576bcc5cc5ce29 .background-color-AA2{background-color:#f38BA8;}
+		.d2-4d5b579e7c5d4c0c97576bcc5cc5ce29 .background-color-AA4{background-color:#45475A;}
+		.d2-4d5b579e7c5d4c0c97576bcc5cc5ce29 .background-color-AA5{background-color:#313244;}
+		.d2-4d5b579e7c5d4c0c97576bcc5cc5ce29 .background-color-AB4{background-color:#45475A;}
+		.d2-4d5b579e7c5d4c0c97576bcc5cc5ce29 .background-color-AB5{background-color:#313244;}
+		.d2-4d5b579e7c5d4c0c97576bcc5cc5ce29 .color-N1{color:#CDD6F4;}
+		.d2-4d5b579e7c5d4c0c97576bcc5cc5ce29 .color-N2{color:#BAC2DE;}
+		.d2-4d5b579e7c5d4c0c97576bcc5cc5ce29 .color-N3{color:#A6ADC8;}
+		.d2-4d5b579e7c5d4c0c97576bcc5cc5ce29 .color-N4{color:#585B70;}
+		.d2-4d5b579e7c5d4c0c97576bcc5cc5ce29 .color-N5{color:#45475A;}
+		.d2-4d5b579e7c5d4c0c97576bcc5cc5ce29 .color-N6{color:#313244;}
+		.d2-4d5b579e7c5d4c0c97576bcc5cc5ce29 .color-N7{color:#1E1E2E;}
+		.d2-4d5b579e7c5d4c0c97576bcc5cc5ce29 .color-B1{color:#CBA6f7;}
+		.d2-4d5b579e7c5d4c0c97576bcc5cc5ce29 .color-B2{color:#CBA6f7;}
+		.d2-4d5b579e7c5d4c0c97576bcc5cc5ce29 .color-B3{color:#6C7086;}
+		.d2-4d5b579e7c5d4c0c97576bcc5cc5ce29 .color-B4{color:#585B70;}
+		.d2-4d5b579e7c5d4c0c97576bcc5cc5ce29 .color-B5{color:#45475A;}
+		.d2-4d5b579e7c5d4c0c97576bcc5cc5ce29 .color-B6{color:#313244;}
+		.d2-4d5b579e7c5d4c0c97576bcc5cc5ce29 .color-AA2{color:#f38BA8;}
+		.d2-4d5b579e7c5d4c0c97576bcc5cc5ce29 .color-AA4{color:#45475A;}
+		.d2-4d5b579e7c5d4c0c97576bcc5cc5ce29 .color-AA5{color:#313244;}
+		.d2-4d5b579e7c5d4c0c97576bcc5cc5ce29 .color-AB4{color:#45475A;}
+		.d2-4d5b579e7c5d4c0c97576bcc5cc5ce29 .color-AB5{color:#313244;}.appendix text.text{fill:#CDD6F4}.md{--color-fg-default:#CDD6F4;--color-fg-muted:#BAC2DE;--color-fg-subtle:#A6ADC8;--color-canvas-default:#1E1E2E;--color-canvas-subtle:#313244;--color-border-default:#CBA6f7;--color-border-muted:#CBA6f7;--color-neutral-muted:#313244;--color-accent-fg:#CBA6f7;--color-accent-emphasis:#CBA6f7;--color-attention-subtle:#BAC2DE;--color-danger-fg:red;}.sketch-overlay-B1{fill:url(#streaks-normal-d2-4d5b579e7c5d4c0c97576bcc5cc5ce29);mix-blend-mode:color-burn}.sketch-overlay-B2{fill:url(#streaks-normal-d2-4d5b579e7c5d4c0c97576bcc5cc5ce29);mix-blend-mode:color-burn}.sketch-overlay-B3{fill:url(#streaks-dark-d2-4d5b579e7c5d4c0c97576bcc5cc5ce29);mix-blend-mode:overlay}.sketch-overlay-B4{fill:url(#streaks-dark-d2-4d5b579e7c5d4c0c97576bcc5cc5ce29);mix-blend-mode:overlay}.sketch-overlay-B5{fill:url(#streaks-darker-d2-4d5b579e7c5d4c0c97576bcc5cc5ce29);mix-blend-mode:lighten}.sketch-overlay-B6{fill:url(#streaks-darker-d2-4d5b579e7c5d4c0c97576bcc5cc5ce29);mix-blend-mode:lighten}.sketch-overlay-AA2{fill:url(#streaks-normal-d2-4d5b579e7c5d4c0c97576bcc5cc5ce29);mix-blend-mode:color-burn}.sketch-overlay-AA4{fill:url(#streaks-darker-d2-4d5b579e7c5d4c0c97576bcc5cc5ce29);mix-blend-mode:lighten}.sketch-overlay-AA5{fill:url(#streaks-darker-d2-4d5b579e7c5d4c0c97576bcc5cc5ce29);mix-blend-mode:lighten}.sketch-overlay-AB4{fill:url(#streaks-darker-d2-4d5b579e7c5d4c0c97576bcc5cc5ce29);mix-blend-mode:lighten}.sketch-overlay-AB5{fill:url(#streaks-darker-d2-4d5b579e7c5d4c0c97576bcc5cc5ce29);mix-blend-mode:lighten}.sketch-overlay-N1{fill:url(#streaks-normal-d2-4d5b579e7c5d4c0c97576bcc5cc5ce29);mix-blend-mode:color-burn}.sketch-overlay-N2{fill:url(#streaks-normal-d2-4d5b579e7c5d4c0c97576bcc5cc5ce29);mix-blend-mode:color-burn}.sketch-overlay-N3{fill:url(#streaks-normal-d2-4d5b579e7c5d4c0c97576bcc5cc5ce29);mix-blend-mode:color-burn}.sketch-overlay-N4{fill:url(#streaks-dark-d2-4d5b579e7c5d4c0c97576bcc5cc5ce29);mix-blend-mode:overlay}.sketch-overlay-N5{fill:url(#streaks-darker-d2-4d5b579e7c5d4c0c97576bcc5cc5ce29);mix-blend-mode:lighten}.sketch-overlay-N6{fill:url(#streaks-darker-d2-4d5b579e7c5d4c0c97576bcc5cc5ce29);mix-blend-mode:lighten}.sketch-overlay-N7{fill:url(#streaks-darker-d2-4d5b579e7c5d4c0c97576bcc5cc5ce29);mix-blend-mode:lighten}.light-code{display: none}.dark-code{display: block}</style><g class="dWk="><g class="shape"><rect x="149.000000" y="0.000000" width="94.000000" height="66.000000" stroke="#CBA6f7" fill="#313244" class=" stroke-B1 fill-B6" style="stroke-width:2;"></rect></g><text x="196.000000" y="38.500000" fill="#CDD6F4" class="text-bold fill-N1" style="text-anchor:middle;font-size:16px">Web UI</text></g><g class="YmlsbGluZw=="><g class="shape"><rect x="188.000000" y="166.000000" width="145.000000" height="66.000000" stroke="#CBA6f7" fill="#313244" class=" stroke-B1 fill-B6" style="stroke-width:2;"></rect></g><text x="260.500000" y="204.500000" fill="#CDD6F4" class="text-bold fill-N1" style="text-anchor:middle;font-size:16px">billing-service</text></g><g class="YWNjb3VudHM="><g class="shape"><rect x="0.000000" y="353.000000" width="165.000000" height="66.000000" stroke="#CBA6f7" fill="#313244" class=" stroke-B1 fill-B6" style="stroke-width:2;"></rect></g><text x="82.500000" y="391.500000" fill="#CDD6F4" class="text-bold fill-N1" style="text-anchor:middle;font-size:16px">accounts-service</text></g><g class="bXE="><g class="shape"><path d="M 249 353 H 368 C 392 353 392 383 392 386 C 392 389 392 419 368 419 H 249 C 225 419 225 389 225 386 C 225 383 225 353 249 353 Z" stroke="#CBA6f7" fill="#45475A" class=" stroke-B1 fill-N5" style="stroke-width:2;"></path><path d="M 368 353 C 344 353 344 383 344 386 C 344 389 344 419 368 419" stroke="#CBA6f7" fill="#45475A" class=" stroke-B1 fill-N5" style="stroke-width:2;"></path></g><text x="296.500000" y="391.500000" fill="#CDD6F4" class="text-bold fill-N1" style="text-anchor:middle;font-size:16px">RabbitMQ</text></g><g class="bWVzc2FnaW5n"><g class="shape"><rect x="221.000000" y="519.000000" width="175.000000" height="66.000000" stroke="#CBA6f7" fill="#313244" class=" stroke-B1 fill-B6" style="stroke-width:2;"></rect></g><text x="308.500000" y="557.500000" fill="#CDD6F4" class="text-bold fill-N1" style="text-anchor:middle;font-size:16px">messaging-service</text></g><g class="KHVpIC0mZ3Q7IGJpbGxpbmcpWzBd"><marker id="mk-d2-4d5b579e7c5d4c0c97576bcc5cc5ce29-3488378134" markerWidth="10.000000" markerHeight="12.000000" refX="7.000000" refY="6.000000" viewBox="0.000000 0.000000 10.000000 12.000000" orient="auto" markerUnits="userSpaceOnUse"> <polygon points="0.000000,0.000000 10.000000,6.000000 0.000000,12.000000" fill="#CBA6f7" class="connection fill-B1" stroke-width="2"></polygon> </marker><path d="M 222.980064 67.577005 C 252.949997 106.000000 260.750000 126.000000 260.750000 162.000000" stroke="#CBA6f7" fill="none" class="connection stroke-B1" style="stroke-width:2;" marker-end="url(#mk-d2-4d5b579e7c5d4c0c97576bcc5cc5ce29-3488378134)" mask="url(#d2-4d5b579e7c5d4c0c97576bcc5cc5ce29)"></path></g><g class="KHVpIC0mZ3Q7IGFjY291bnRzKVswXQ=="><path d="M 146.842142 65.833705 C 87.698997 105.742996 72.500000 132.600006 72.500000 157.500000 C 72.500000 182.399994 73.699997 304.700012 78.108447 349.519210" stroke="#CBA6f7" fill="none" class="connection stroke-B1" style="stroke-width:2;" marker-end="url(#mk-d2-4d5b579e7c5d4c0c97576bcc5cc5ce29-3488378134)" mask="url(#d2-4d5b579e7c5d4c0c97576bcc5cc5ce29)"></path></g><g class="KGJpbGxpbmcgLSZndDsgYWNjb3VudHMpWzBd"><path d="M 219.215282 232.782435 C 162.350006 280.299988 139.350006 304.700012 108.018408 350.205409" stroke="#CBA6f7" fill="none" class="connection stroke-B1" style="stroke-width:2;" marker-end="url(#mk-d2-4d5b579e7c5d4c0c97576bcc5cc5ce29-3488378134)" mask="url(#d2-4d5b579e7c5d4c0c97576bcc5cc5ce29)"></path></g><g class="KGJpbGxpbmcgLSZndDsgbXEpWzBd"><path d="M 278.406100 233.282970 C 302.299988 280.299988 308.600006 304.600006 308.966944 349.000137" stroke="#CBA6f7" fill="none" class="connection stroke-B1" style="stroke-width:2;" marker-end="url(#mk-d2-4d5b579e7c5d4c0c97576bcc5cc5ce29-3488378134)" mask="url(#d2-4d5b579e7c5d4c0c97576bcc5cc5ce29)"></path><text x="304.500000" y="295.000000" fill="#BAC2DE" class="text-italic fill-N2" style="text-anchor:middle;font-size:16px">subscription.upgraded</text></g><g class="KG1xIC0mZ3Q7IG1lc3NhZ2luZylbMF0="><path d="M 308.019999 420.999900 C 308.399994 459.000000 308.500000 479.000000 308.500000 515.000000" stroke="#CBA6f7" fill="none" class="connection stroke-B1" style="stroke-width:2;" marker-end="url(#mk-d2-4d5b579e7c5d4c0c97576bcc5cc5ce29-3488378134)" mask="url(#d2-4d5b579e7c5d4c0c97576bcc5cc5ce29)"></path></g><mask id="d2-4d5b579e7c5d4c0c97576bcc5cc5ce29" maskUnits="userSpaceOnUse" x="-101" y="-101" width="598" height="787">
+<rect x="-101" y="-101" width="598" height="787" fill="white"></rect>
+<rect x="227.000000" y="279.000000" width="155" height="21" fill="black"></rect>
+</mask></svg></svg></div></div>
+<h2 id="a-flow-end-to-end-a-plan-upgrade">A flow end to end: a plan upgrade<a class="headerlink" href="#a-flow-end-to-end-a-plan-upgrade" title="Permanent link">¶</a></h2>
+<p>Diagrams show structure; a worked example shows behavior. Here's the canonical
+"happy path" that ties all three domains together — an org upgrades its plan and its
+admin gets a confirmation message. This is the <a href="features/plan-upgrade/">Plan upgrade</a>
+feature, traced through the system.</p>
+<pre class="mermaid"><code>sequenceDiagram
+  participant UI as Web UI
+  participant B as billing-service
+  participant A as accounts-service
+  participant MQ as RabbitMQ
+  participant M as messaging-service
+  participant DB as MongoDB
+  UI-&gt;&gt;B: POST /subscriptions/{id}/upgrade
+  B-&gt;&gt;A: GET /orgs/{id} (seats + status)
+  B-&gt;&gt;B: prorate, apply plan, sync seat_limit
+  B--&gt;&gt;MQ: emit subscription.upgraded
+  MQ--&gt;&gt;M: deliver subscription.upgraded
+  M-&gt;&gt;M: render confirmation from template
+  M-&gt;&gt;DB: write delivery_event
+  M--&gt;&gt;MQ: emit message.delivered</code></pre>
+<p>What to notice, because each step is a decision documented elsewhere:</p>
+<ol>
+<li><strong>Billing reads Accounts, not its own copy.</strong> Before changing anything, Billing
+   asks Accounts for the org's current seats and status via <code>GET /orgs/{id}</code>. Accounts
+   is the sole writer; Billing reads live rather than trusting stale data.</li>
+<li><strong>The upgrade is synchronous; the message is not.</strong> The customer's HTTP request
+   returns as soon as the subscription is updated. Emitting <code>subscription.upgraded</code>
+   to RabbitMQ is fire-and-forget — the confirmation message rides an async path so a
+   messaging hiccup can't fail the billing call.</li>
+<li><strong>Proration happens here, once.</strong> Charging the prorated difference for a mid-cycle
+   change is Billing's job and lives in billing-service — no other service computes
+   money. See <a href="glossary/#proration">Proration</a>.</li>
+<li><strong>Delivery is recorded, not assumed.</strong> Messaging writes a
+   <a href="models/delivery-event/">delivery event</a> for the send attempt and emits
+   <code>message.delivered</code> (or <code>message.failed</code>). "We tried" and "it arrived" are
+   different facts, and Beacon keeps both.</li>
+</ol>
+<p>Two related behaviors are worth knowing even though they're not on this diagram:</p>
+<ul>
+<li><strong>Downgrades</strong> are not the mirror image of upgrades. <code>POST .../downgrade</code> exists in
+  the code but is <strong>suspected dead</strong> — see the callout below. Treat upgrade as the
+  live path.</li>
+<li><strong>Failed payments</strong> don't cancel a subscription outright. A failed charge moves the
+  subscription to <a href="glossary/#past-due"><code>past_due</code></a> and starts
+  <a href="glossary/#dunning"><abbr title="the automated retry-and-notify process after a failed payment, before cancellation">dunning</abbr></a> — automated retry-and-notify — before anything is
+  canceled.</li>
+</ul>
+<h2 id="the-services">The services<a class="headerlink" href="#the-services" title="Permanent link">¶</a></h2>
+<p>Three deployable services map onto the three domains. Each is documented as a black
+box: its responsibilities and its formal contract, not its internals. Note that the
+three services intentionally run <strong>different stacks</strong> — Beacon doesn't pretend to be a
+monorepo monolith, and the stack differences are real and load-bearing (Messaging is
+Elixir specifically because it fans out high-volume async work).</p>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>Domain</th>
+<th>Stack</th>
+<th>Interface</th>
+<th>Owns</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="services/accounts-service/">accounts-service</a></td>
+<td>Accounts</td>
+<td>Java/Spring · MySQL</td>
+<td>HTTP</td>
+<td>Organizations, users</td>
+</tr>
+<tr>
+<td><a href="services/billing-service/">billing-service</a></td>
+<td>Billing</td>
+<td>Ruby/Rails · MySQL</td>
+<td>HTTP / OpenAPI (TypeSpec)</td>
+<td>Plans, subscriptions, invoices, <abbr title="charging the prorated difference when a plan changes mid-cycle">proration</abbr></td>
+</tr>
+<tr>
+<td><a href="services/messaging-service/">messaging-service</a></td>
+<td>Messaging</td>
+<td>Elixir/Phoenix · PostgreSQL + MongoDB + RabbitMQ</td>
+<td>Event-driven (AsyncAPI)</td>
+<td>Templates, scheduling, delivery log</td>
+</tr>
+</tbody>
+</table>
+<p>How they actually talk to each other:</p>
+<ul>
+<li><strong>accounts-service</strong> exposes <code>GET /orgs/{id}</code> (seat count + status, consumed by
+  billing-service) and a suspend endpoint. It is the <strong>sole writer</strong> of org data.</li>
+<li><strong>billing-service</strong> provides <code>GET /subscriptions/{id}</code> and
+  <code>POST /subscriptions/{id}/upgrade</code>, emits <code>subscription.upgraded</code>, and consumes
+  accounts-service's <code>GET /orgs/{id}</code>. It owns the <a href="models/subscription/">Subscription</a>
+  and <a href="models/plan/">Plan</a> models.</li>
+<li><strong>messaging-service</strong> consumes <code>subscription.upgraded</code> (→ sends a confirmation) and
+  produces <code>message.delivered</code> and <code>message.failed</code>. It owns the
+  <a href="models/delivery-event/">Delivery event</a> model.</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">accounts-service is a stub page</p>
+<p>The accounts-service page is still a <strong>stub</strong> (low confidence) — its contract and
+internals aren't fully traced yet. Its language frontmatter reads <code>java</code> and its
+prose says <strong>Java/Spring</strong>, consistent with the architecture diagram and the
+<a href="domains/accounts/">Accounts domain</a> page.</p>
+</div>
+<div class="admonition danger">
+<p class="admonition-title">Suspected dead</p>
+<p><code>POST /subscriptions/{id}/downgrade</code> exists in billing-service but no live path
+appears to exercise it. Flagged while tracing the plan-change flow; needs
+confirmation before anyone relies on or removes it. (See
+<a href="models/subscription/">Subscription</a> for other suspected-dead remnants like
+<code>promo_ref</code>.)</p>
+</div>
+<h2 id="the-core-models">The core models<a class="headerlink" href="#the-core-models" title="Permanent link">¶</a></h2>
+<p>Four data models carry Beacon's state. Each lives in exactly one store, owned by
+exactly one service; the relationships <em>between</em> them frequently cross service and
+store boundaries, which is the single most important thing to understand before you
+write code that reads more than one of them.</p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Owner</th>
+<th>Store</th>
+<th>Why it's interesting</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="models/subscription/">Subscription</a></td>
+<td>billing-service</td>
+<td>MySQL (<code>billing.subscriptions</code>, partly view-backed)</td>
+<td>Status + transitions enforced in <strong>app code</strong>, not the DB</td>
+</tr>
+<tr>
+<td><a href="models/organization/">Organization</a></td>
+<td>accounts-service</td>
+<td>MySQL (<code>accounts.organizations</code>)</td>
+<td><code>status</code> is a real DB enum; <code>seat_limit</code> is synced <em>in</em> by billing</td>
+</tr>
+<tr>
+<td><a href="models/delivery-event/">Delivery event</a></td>
+<td>messaging-service</td>
+<td>MongoDB (<code>messaging.delivery_events</code>)</td>
+<td>Schemaless, write-once, high-volume; fields appear over time</td>
+</tr>
+<tr>
+<td><a href="models/plan/">Plan</a></td>
+<td>billing-service</td>
+<td>MySQL</td>
+<td>The package an org pays for; a subscription references exactly one</td>
+</tr>
+</tbody>
+</table>
+<p>The relationships are mostly <strong>logical, not foreign keys</strong> — and the docs are
+emphatic about marking <em>where</em> each rule is enforced (<code>DB</code> · <code>app</code> · <code>none</code>) because
+that's the highest-value thing a reader can learn:</p>
+<pre class="mermaid"><code>erDiagram
+  ORGANIZATION ||--o{ USER : "has (DB FK)"
+  ORGANIZATION ||--|| SUBSCRIPTION : "has (cross-store)"
+  SUBSCRIPTION }o--|| PLAN : "on (app-only)"
+  SUBSCRIPTION ||--o{ DELIVERY_EVENT : "logged for (cross-store)"</code></pre>
+<p>The dangerous edges here are the cross-store ones. A Subscription's <code>org_id</code> points
+at an Organization in a <em>different service's database</em> with no foreign key behind it,
+so a deleted org can briefly leave a dangling subscription — readers must tolerate a
+missing org. Likewise, a delivery event's <code>org_id</code> is purely logical. When in doubt,
+read the model page: it spells out exactly which relationships are <code>DB FK</code>,
+<code>app-only</code>, or <code>cross-store</code>.</p>
+<h2 id="where-data-lives">Where data lives<a class="headerlink" href="#where-data-lives" title="Permanent link">¶</a></h2>
+<p>Beacon spreads its state across four stores, each chosen for the shape of the data it
+holds. The <a href="datastores/mysql/">datastore pages</a> document what each store <em>holds</em>;
+services declare what they <code>depend_on</code> and the "used by" lists are generated from
+that.</p>
+<table>
+<thead>
+<tr>
+<th>Store</th>
+<th>Holds</th>
+<th>Used by</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="datastores/mysql/">MySQL</a></td>
+<td>Relational truth — orgs, users, plans, subscriptions, invoices</td>
+<td>accounts-service, billing-service</td>
+</tr>
+<tr>
+<td><a href="datastores/postgresql/">PostgreSQL</a></td>
+<td>Message templates and send schedules</td>
+<td>messaging-service</td>
+</tr>
+<tr>
+<td><a href="datastores/mongodb/">MongoDB</a></td>
+<td>The delivery-event log — high-volume, schemaless, write-once</td>
+<td>messaging-service</td>
+</tr>
+<tr>
+<td><a href="datastores/rabbitmq/">RabbitMQ</a></td>
+<td>The event bus between services (<code>subscription.upgraded</code>, <code>message.*</code>)</td>
+<td>billing-service, messaging-service</td>
+</tr>
+</tbody>
+</table>
+<p>The split inside Messaging is itself a decision: relational template/schedule data in
+PostgreSQL, but the firehose of delivery outcomes in MongoDB, where a schemaless,
+append-only collection suits write-once events that arrive at high volume and whose
+shape has changed over the years. That choice — and how consumers cope with fields
+that only exist on newer events — is written up in
+<a href="decisions/0001-delivery-events-in-mongodb/">ADR-0001</a> and
+<a href="decisions/0002-delivery-event-schema-validator/">ADR-0002</a>.</p>
+<h2 id="the-documentation-layers">The documentation layers<a class="headerlink" href="#the-documentation-layers" title="Permanent link">¶</a></h2>
+<p>These docs are organized in layers, from product-facing down to engineering detail —
+the same <strong>business → technical depth ladder</strong> each individual page follows. Navigate
+down for more depth, up for more context.</p>
+<table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>Where</th>
+<th>What you'll find</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Domains</strong></td>
+<td><a href="domains/accounts/">domains/</a></td>
+<td>The three business areas and their capabilities</td>
+</tr>
+<tr>
+<td><strong>Features</strong></td>
+<td><a href="features/">features/</a></td>
+<td>Product capabilities as end-to-end journeys, e.g. <a href="features/plan-upgrade/">Plan upgrade</a></td>
+</tr>
+<tr>
+<td><strong>Flows</strong></td>
+<td><a href="flows/send-message/">flows/</a></td>
+<td>Behaviour that varies — e.g. <a href="flows/send-message/">Send message</a></td>
+</tr>
+<tr>
+<td><strong>Surfaces</strong></td>
+<td><a href="surfaces/dashboard/">surfaces/</a></td>
+<td>The frontends: <a href="surfaces/dashboard/">dashboard</a>, <a href="surfaces/admin-console/">admin console</a></td>
+</tr>
+<tr>
+<td><strong>Interfaces</strong></td>
+<td><a href="interfaces/api/">interfaces/</a></td>
+<td>The programmatic surface: <a href="interfaces/api/">API</a>, <a href="interfaces/webhooks/"><abbr title="HTTP callbacks Beacon sends to your endpoint when events occur">webhooks</abbr></a>, <a href="interfaces/auth/">auth</a></td>
+</tr>
+<tr>
+<td><strong>Integrations</strong></td>
+<td><a href="integrations/email-provider/">integrations/</a></td>
+<td>Third parties Beacon calls: <a href="integrations/email-provider/">email</a>, <a href="integrations/sms-provider/">SMS</a></td>
+</tr>
+<tr>
+<td><strong>Services</strong></td>
+<td><a href="services/">services/</a></td>
+<td>Each service as a black box + its contract</td>
+</tr>
+<tr>
+<td><strong>Models</strong></td>
+<td><a href="models/">models/</a></td>
+<td>Data models and how they map to storage</td>
+</tr>
+<tr>
+<td><strong>Datastores</strong></td>
+<td><a href="datastores/mysql/">datastores/</a></td>
+<td>The databases and queues themselves</td>
+</tr>
+<tr>
+<td><strong>Decisions</strong></td>
+<td><a href="decisions/">decisions/</a></td>
+<td>ADRs — <em>why</em> things are the way they are</td>
+</tr>
+<tr>
+<td><strong>Glossary</strong></td>
+<td><a href="glossary/">glossary.md</a></td>
+<td>Shared vocabulary — start here when a term is unfamiliar</td>
+</tr>
+</tbody>
+</table>
+<h2 id="a-few-terms-worth-knowing-up-front">A few terms worth knowing up front<a class="headerlink" href="#a-few-terms-worth-knowing-up-front" title="Permanent link">¶</a></h2>
+<p>You'll meet these everywhere; the <a href="glossary/">Glossary</a> is the full list, but these
+four unlock most of the system:</p>
+<ul>
+<li><strong><a href="glossary/#seat">Seat</a></strong> — one paid user slot. "Seats in use" counts the ones
+  actually assigned to users, which can be lower than the number paid for.</li>
+<li><strong><a href="glossary/#past-due">Past due</a></strong> — a subscription whose latest payment failed.
+  It enters <abbr title="the automated retry-and-notify process after a failed payment, before cancellation">dunning</abbr> rather than cancelling immediately.</li>
+<li><strong><a href="glossary/#dunning">Dunning</a></strong> — the automated retry-and-notify process that
+  runs after a failed payment, before a subscription is canceled.</li>
+<li><strong><a href="glossary/#proration">Proration</a></strong> — the prorated charge applied when a plan
+  changes mid-cycle, computed in billing-service.</li>
+</ul>
+<h2 id="where-to-go-next">Where to go next<a class="headerlink" href="#where-to-go-next" title="Permanent link">¶</a></h2>
+<ul>
+<li>Curious <em>what users can do</em>? → <a href="features/">Features</a></li>
+<li>Building against Beacon? → <a href="interfaces/api/">Public API</a> and
+  <a href="interfaces/webhooks/">Webhooks</a></li>
+<li>Working in the code? → <a href="services/">Services</a> and <a href="models/">Models</a></li>
+<li>Want the <em>why</em>? → <a href="decisions/">Decisions</a></li>
+<li>Lost on a word? → <a href="glossary/">Glossary</a></li>
+</ul>
+<!-- Glossary tooltips for Beacon — auto-appended to every page. Define a term once
+     here and every prose occurrence gets a hover definition. Keep in sync with
+     docs/glossary.md. Case-sensitive. -->
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden="">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"></path></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer">
+        
+        
+          
+          <a href="domains/accounts/" class="md-footer__link md-footer__link--next" aria-label="Next: Accounts">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Accounts
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"></path></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.indexes", "navigation.prune", "navigation.top", "navigation.path", "navigation.footer", "toc.follow", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.tabs.link", "content.tooltips"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="javascripts/diagram-zoom.js"></script>
+      
+    
+  
+<script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(()=>{ lightbox.reload(); });
+</script></body></html>

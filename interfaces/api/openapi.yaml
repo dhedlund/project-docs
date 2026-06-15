@@ -1,0 +1,110 @@
+openapi: 3.0.0
+info:
+  title: Beacon Messaging API
+  version: 0.0.0
+tags: []
+paths:
+  /messages:
+    post:
+      operationId: Messages_send
+      parameters: []
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SendMessage'
+  /messages/{id}:
+    get:
+      operationId: Messages_get
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    Error:
+      type: object
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+    Message:
+      type: object
+      required:
+        - id
+        - to
+        - channel
+        - status
+        - created
+      properties:
+        id:
+          type: string
+        to:
+          type: string
+        channel:
+          type: string
+        status:
+          $ref: '#/components/schemas/MessageStatus'
+        created:
+          type: string
+          format: date-time
+          readOnly: true
+    MessageStatus:
+      type: string
+      enum:
+        - queued
+        - sent
+        - delivered
+        - failed
+        - bounced
+    SendMessage:
+      type: object
+      required:
+        - to
+        - channel
+        - template
+      properties:
+        to:
+          type: string
+        channel:
+          type: string
+          description: email | sms | push
+        template:
+          type: string
+        sendAt:
+          type: string
+          format: date-time
+          description: Omit to send now; set to schedule for later.

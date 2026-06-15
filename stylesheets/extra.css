@@ -1,0 +1,120 @@
+/* Project-docs presentation tweaks. Loaded via `extra_css` in mkdocs.yml. */
+
+/* ── 1. Nav page-status icons ──────────────────────────────────────────────
+   Material shows a status icon in the nav for every page that has a `status:`
+   in its frontmatter. Almost every page is "active"/"unknown", so those icons
+   are pure noise — hide them. Keep the icon only for states worth spotting
+   while browsing the tree (incomplete or no-longer-authoritative pages). */
+.md-status--active,
+.md-status--unknown,
+.md-status--accepted,
+.md-status--proposed {
+  display: none;
+}
+
+/* ── 2. Per-page provenance footer ─────────────────────────────────────────
+   Confidence / last reviewed / status / sources, emitted by the build hook at
+   the very bottom of each page. Deliberately quiet: small, muted, just a thin
+   top rule — present for audits/drift, not competing with the content. */
+.doc-provenance {
+  margin-top: 2.5rem;
+  padding-top: 0.5rem;
+  border-top: 0.05rem solid var(--md-default-fg-color--lightest);
+  font-size: 0.68rem;
+  line-height: 1.6;
+  color: var(--md-default-fg-color--light);
+}
+.doc-provenance p { margin: 0.15rem 0; }
+.doc-provenance strong { font-weight: 600; color: var(--md-default-fg-color--light); }
+
+/* ── 3. Diagram zoom (Mermaid / D2) ────────────────────────────────────────
+   An expand button overlaid on each diagram opens a fullscreen pan/zoom modal.
+   Behaviour lives in javascripts/diagram-zoom.js (no external libraries). */
+.dz-wrap { position: relative; }
+.dz-btn {
+  position: absolute; top: 0.4rem; right: 0.4rem;
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 1.7rem; height: 1.7rem;
+  padding: 0; border: none; border-radius: 0.15rem;
+  background: var(--md-default-bg-color);
+  color: var(--md-default-fg-color--light);
+  box-shadow: 0 0 0.25rem rgba(0, 0, 0, 0.25);
+  cursor: pointer; opacity: 0.35; transition: opacity 0.2s; z-index: 2;
+}
+.dz-wrap:hover .dz-btn, .dz-btn:focus { opacity: 1; }
+.dz-btn svg { width: 1rem; height: 1rem; fill: currentColor; }
+
+.dz-modal {
+  position: fixed; inset: 0; z-index: 1000;
+  background: rgba(0, 0, 0, 0.85);
+  touch-action: none;
+}
+.dz-modal[hidden] { display: none; }
+.dz-stage {
+  position: relative;
+  width: 100%; height: 100%; overflow: hidden; cursor: grab;
+}
+.dz-stage.dz-dragging { cursor: grabbing; }
+
+/* Wrapper we control: the diagram is moved in here while zoomed. The script sets
+   a definite width + transform inline; transform-origin keeps panning math simple.
+   A background matching the page keeps light-mode diagrams (dark strokes) readable
+   against the dark modal backdrop. */
+.dz-content {
+  position: absolute; top: 0; left: 0;
+  transform-origin: 0 0;
+  text-align: center;
+  user-select: none;
+  background: var(--md-default-bg-color);
+}
+/* Force the moved diagram (Mermaid/D2 host) to fill the wrapper, overriding any
+   in-column layout it brought with it, so its SVG renders at full size. */
+.dz-content > * {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+}
+
+.dz-close {
+  position: fixed; top: 1rem; right: 1rem; z-index: 1002;
+  width: 2.2rem; height: 2.2rem;
+  border: none; border-radius: 0.2rem;
+  background: rgba(255, 255, 255, 0.15); color: #fff;
+  font-size: 1.3rem; line-height: 1; cursor: pointer;
+}
+
+/* Bottom toolbar: Key toggle + "how to read" link + controls hint. */
+.dz-bar {
+  position: fixed; bottom: 1rem; left: 50%; transform: translateX(-50%); z-index: 1001;
+  display: flex; align-items: center; gap: 0.9rem;
+  padding: 0.35rem 0.8rem; border-radius: 1rem;
+  background: rgba(0, 0, 0, 0.5);
+}
+.dz-bar .dz-hint { color: rgba(255, 255, 255, 0.7); font-size: 0.7rem; }
+.dz-key {
+  border: none; border-radius: 0.2rem; cursor: pointer;
+  background: rgba(255, 255, 255, 0.18); color: #fff;
+  font-size: 0.72rem; padding: 0.22rem 0.6rem;
+}
+.dz-key:hover { background: rgba(255, 255, 255, 0.3); }
+.dz-help { color: #fff; font-size: 0.72rem; text-decoration: none; opacity: 0.9; }
+.dz-help:hover { text-decoration: underline; }
+
+/* Key panel: the matching legend section, pulled from the reading guide. Anchored
+   on the LEFT so it never overlaps the close button (top-right). */
+.dz-panel {
+  position: fixed; top: 0; left: 0; z-index: 1001;
+  width: min(22rem, 82vw); height: 100%; overflow: auto;
+  padding: 1.4rem 1.4rem 2rem;
+  background: var(--md-default-bg-color); color: var(--md-default-fg-color);
+  box-shadow: 0.2rem 0 0.7rem rgba(0, 0, 0, 0.35);
+}
+.dz-panel[hidden] { display: none; }
+.dz-panel h1, .dz-panel h2, .dz-panel h3 { margin-top: 0; font-size: 1rem; }
+.dz-panel p, .dz-panel li { font-size: 0.82rem; line-height: 1.55; }
+.dz-panel ul { padding-left: 1.1rem; }
+.dz-panel li { margin: 0.3rem 0; }
+.dz-panel a { color: var(--md-primary-fg-color); }
+.dz-panel-note { color: var(--md-default-fg-color--light); }
+.dz-panel-more { margin-top: 1.1rem; }

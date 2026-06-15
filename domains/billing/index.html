@@ -1,0 +1,1796 @@
+<!DOCTYPE html><html lang="en" class="no-js"><head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Fictional reference product — demonstrates the docs patterns.">
+      
+      
+      
+        <link rel="canonical" href="https://dhedlund.github.io/project-docs/domains/billing/">
+      
+      
+        <link rel="prev" href="../accounts/">
+      
+      
+        <link rel="next" href="../messaging/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Billing - Beacon Docs (example)</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/mkdocs_d2_plugin.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="../../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color); }
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
+        </style></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#billing" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Beacon Docs (example)" class="md-header__button md-logo" aria-label="Beacon Docs (example)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Beacon Docs (example)
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Billing
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo" aria-label="Switch to dark mode" type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden="">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"></path></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo" aria-label="Switch to light mode" type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden="">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"></path></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required="">
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard="" data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"></path></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix="">
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Beacon Docs (example)" class="md-nav__button md-logo" aria-label="Beacon Docs (example)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
+
+    </a>
+    Beacon Docs (example)
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix="">
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked="">
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Domains
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Domains
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../accounts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Accounts
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Billing
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Billing
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#capabilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Capabilities
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-fits-together" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How it fits together
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="How it fits together">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-three-domains-side-by-side" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The three domains, side by side
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-lives-in-this-domain" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What lives in this domain
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-subscriptions-life" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A subscription's life
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entitlement-how-the-rest-of-beacon-reads-billing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Entitlement: how the rest of Beacon reads Billing
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#notes-nuances" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Notes &amp; nuances
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-pages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related pages
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../messaging/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Messaging
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../features/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Features
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../flows/send-message/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Flows
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../options/message-settings/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Options
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../interfaces/api/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interfaces
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../integrations/email-provider/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Integrations
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../surfaces/dashboard/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Surfaces
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../access/roles/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Access
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../services/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Services
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../models/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Models
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../datastores/mysql/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Datastores
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glossary
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../decisions/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Decisions
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#capabilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Capabilities
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-fits-together" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How it fits together
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="How it fits together">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-three-domains-side-by-side" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The three domains, side by side
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-lives-in-this-domain" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What lives in this domain
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-subscriptions-life" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A subscription's life
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entitlement-how-the-rest-of-beacon-reads-billing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Entitlement: how the rest of Beacon reads Billing
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#notes-nuances" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Notes &amp; nuances
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-pages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related pages
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigation">
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../.." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Home
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../accounts/" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Domains
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  <nav class="md-tags">
+    
+      
+      
+      
+      
+        <span class="md-tag">billing</span>
+      
+    
+  </nav>
+
+
+
+<h1 id="billing">Billing<a class="headerlink" href="#billing" title="Permanent link">¶</a></h1>
+<blockquote>
+<p>Plans, subscriptions, and invoicing — what an organization pays for and how it's
+charged.</p>
+</blockquote>
+<p>Billing is the part of Beacon that answers one question for the rest of the
+product: <em>what is this organization entitled to, and is it paid up?</em> An org picks a
+<a href="../../models/plan/">Plan</a>, that becomes a <a href="../../models/subscription/">Subscription</a>
+with a price, a billing cycle, and a number of seats, and from then on Billing is
+the single source of truth on the money side — what they bought, how many people
+they can have, whether their last payment went through, and what their next invoice
+will look like.</p>
+<p>Everything money-adjacent lives here and nowhere else. Other domains <em>read</em> Billing
+to decide what a customer can do; they never write to it. If you want to know
+whether an org can still send messages because their card was declined, the answer
+comes from a Subscription <code>status</code> of <code>past_due</code> or <code>canceled</code> — and that value is
+owned, computed, and transitioned right here.</p>
+<h2 id="capabilities">Capabilities<a class="headerlink" href="#capabilities" title="Permanent link">¶</a></h2>
+<p>What this domain lets users (and the rest of the system) do, in plain terms. Each
+links to where it's documented in depth.</p>
+<ul>
+<li><strong>Subscribe &amp; change plan</strong> — an org admin picks a plan, and can move up or down
+  later. The new plan takes effect immediately and the next invoice is prorated.
+  See <a href="../../features/plan-upgrade/">Plan upgrade</a>.</li>
+<li><strong>Track entitlement</strong> — Billing is the authority the rest of Beacon reads for what
+  a customer has: which plan, how many seats, and whether the account is in good
+  standing. <a href="../../services/accounts-service/">accounts-service</a> keeps a
+  <code>seat_limit</code> mirror in sync, but the <em>reason</em> it has that limit lives here.</li>
+<li><strong>Bill and invoice</strong> — turn a subscription and its usage into a charge each
+  cycle, including a <a href="../../glossary/#proration">prorated</a> adjustment when the plan
+  changes mid-cycle (computed in
+  <a href="../../services/billing-service/">billing-service</a>, not by the payment provider).</li>
+<li><strong>Handle failed payments gracefully</strong> — when a charge fails, the subscription goes
+  <a href="../../glossary/#past-due">past due</a> and enters
+  <a href="../../glossary/#dunning"><abbr title="the automated retry-and-notify process after a failed payment, before cancellation">dunning</abbr></a>: retry, notify, and only cancel if it never
+  recovers.</li>
+</ul>
+<h2 id="how-it-fits-together">How it fits together<a class="headerlink" href="#how-it-fits-together" title="Permanent link">¶</a></h2>
+<p>billing-service owns subscriptions and plans; it reads org/seat data from Accounts
+and emits events the rest of the system reacts to.</p>
+<p>One service implements this entire domain —
+<a href="../../services/billing-service/">billing-service</a> (Ruby/Rails on MySQL). It is the
+sole writer of subscription, plan, and invoice data, and it exposes that state two
+ways: a synchronous HTTP/OpenAPI surface (authored in TypeSpec) for the web UI and
+for other services, and an asynchronous event stream over RabbitMQ for anything
+that needs to <em>react</em> to a change rather than ask for it.</p>
+<pre class="mermaid"><code>flowchart LR
+  ui[Web UI] --&gt; billing[billing-service]
+  ui --&gt; accounts[accounts-service]
+  billing -- "GET /orgs/{id}&lt;br/&gt;(seats + status)" --&gt; accounts
+  billing --&gt; mysql[(MySQL&lt;br/&gt;subscriptions · invoices)]
+  billing -- "syncs seat_limit" --&gt; accounts
+  billing -- "subscription.upgraded" --&gt; mq[(RabbitMQ)]
+  mq --&gt; messaging[messaging-service]
+  messaging -- "renders + sends confirmation" --&gt; cust[Customer]</code></pre>
+<p>Read that diagram as a story:</p>
+<ol>
+<li>An org admin changes their plan in the <strong>Web UI</strong>, which calls billing-service.</li>
+<li>billing-service <strong>reads accounts-service</strong> (<code>GET /orgs/{id}</code>) to check the org's
+   status and current seat usage before it commits the change — it never trusts its
+   own copy of seat counts as long-term truth.</li>
+<li>It validates the transition, computes <abbr title="charging the prorated difference when a plan changes mid-cycle">proration</abbr>, and <strong>persists</strong> the new
+   subscription state to MySQL.</li>
+<li>It <strong>pushes the new seat limit back</strong> to accounts-service, so the tenant layer's
+   <code>seat_limit</code> stays consistent with the plan.</li>
+<li>It <strong>emits <code>subscription.upgraded</code></strong> to RabbitMQ and returns to the UI.</li>
+<li><a href="../../services/messaging-service/">messaging-service</a> consumes that event and
+   sends the customer a confirmation message — Billing itself never sends anything.</li>
+</ol>
+<h3 id="the-three-domains-side-by-side">The three domains, side by side<a class="headerlink" href="#the-three-domains-side-by-side" title="Permanent link">¶</a></h3>
+<p>Beacon is three domains that lean on each other. Knowing where the lines are is the
+fastest way to find the right page:</p>
+<table>
+<thead>
+<tr>
+<th>Domain</th>
+<th>Owns</th>
+<th>Billing's relationship to it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../accounts/">Accounts</a></td>
+<td>Organizations and the users inside them; the tenant/identity layer</td>
+<td>Billing <strong>reads</strong> org status and seat usage from it, and <strong>pushes</strong> <code>seat_limit</code> back on plan change. Accounts is the only writer of org data.</td>
+</tr>
+<tr>
+<td><strong>Billing</strong> <em>(this page)</em></td>
+<td>Plans, subscriptions, invoices, <abbr title="charging the prorated difference when a plan changes mid-cycle">proration</abbr></td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../messaging/">Messaging</a></td>
+<td>Sending messages and recording delivery</td>
+<td>Billing <strong>emits</strong> events Messaging reacts to (e.g. <code>subscription.upgraded</code> → confirmation). Billing never sends messages itself.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="what-lives-in-this-domain">What lives in this domain<a class="headerlink" href="#what-lives-in-this-domain" title="Permanent link">¶</a></h2>
+<p>The deeper pages, grouped by layer (see CONVENTIONS.md
+for the layer model — features → services → models → decisions).</p>
+<p><strong>Features (what users do)</strong></p>
+<ul>
+<li><a href="../../features/plan-upgrade/">Plan upgrade</a> — the read-validate-prorate-emit path
+  an admin walks when moving to a higher plan.</li>
+</ul>
+<p><strong>Service (the black box)</strong></p>
+<ul>
+<li><a href="../../services/billing-service/">billing-service</a> — responsibilities, the
+  HTTP + event contract, and the key flows.</li>
+</ul>
+<p><strong>Models (the data)</strong></p>
+<ul>
+<li><a href="../../models/subscription/">Subscription</a> — the core entity: plan, cycle, seats,
+  and a lifecycle <code>status</code> enforced in app code, not the database.</li>
+<li><a href="../../models/plan/">Plan</a> — <em>stub.</em> The package an org pays for: price, interval,
+  seat limit, feature set.</li>
+<li><a href="../../models/organization/">Organization</a> — owned by Accounts, but central here:
+  a subscription hangs off an <code>org_id</code>, and its <code>seat_limit</code> is kept in sync by
+  Billing.</li>
+</ul>
+<!-- Pages that declare `domain: billing` are listed automatically below. -->
+
+<h2 id="a-subscriptions-life">A subscription's life<a class="headerlink" href="#a-subscriptions-life" title="Permanent link">¶</a></h2>
+<p>The shape of this domain is really the shape of one object moving through its
+states. A subscription starts in a trial, becomes <code>active</code> on first payment, and
+from there either keeps renewing, stumbles into <code>past_due</code> when a charge fails, or
+ends in <code>canceled</code>. The transitions — not the table — are what make Billing
+interesting, and they are enforced in <code>Billing::Subscription::StateMachine</code>, <strong>not</strong>
+by a database constraint.</p>
+<pre class="mermaid"><code>stateDiagram-v2
+  [*] --&gt; trialing
+  trialing --&gt; active: first payment
+  active --&gt; past_due: payment fails
+  past_due --&gt; active: payment recovers (dunning)
+  active --&gt; canceled: admin cancels
+  past_due --&gt; canceled: dunning gives up
+  canceled --&gt; [*]</code></pre>
+<p>A few things worth internalizing about this lifecycle:</p>
+<ul>
+<li><strong><code>past_due</code> is a holding state, not a death sentence.</strong> A failed payment kicks off
+  <a href="../../glossary/#dunning"><abbr title="the automated retry-and-notify process after a failed payment, before cancellation">dunning</abbr></a> — automated retry-and-notify. If a retry
+  succeeds the subscription snaps back to <code>active</code>; only if <abbr title="the automated retry-and-notify process after a failed payment, before cancellation">dunning</abbr> exhausts its
+  attempts does it move to <code>canceled</code>.</li>
+<li><strong>The status string is unguarded at the storage layer.</strong> The MySQL column is a
+  plain <code>varchar</code>; an invalid value would be stored without complaint. Always trust
+  the app's state machine over the raw column, and see the
+  <a href="../../models/subscription/#constraints-validation">Subscription model</a> for the
+  full enforcement table.</li>
+<li><strong>Plan <em>direction</em> matters more than the endpoint shape.</strong> Upgrades and downgrades
+  both change <code>plan_id</code>, but they differ in <em>when</em> the change applies and how the
+  <abbr title="charging the prorated difference when a plan changes mid-cycle">proration</abbr> math runs. Today the live path is
+  <code>POST /subscriptions/{id}/upgrade</code>; a <code>downgrade</code> endpoint exists but is
+  <a href="#suspected-dead">suspected dead</a> — see below.</li>
+</ul>
+<h2 id="entitlement-how-the-rest-of-beacon-reads-billing">Entitlement: how the rest of Beacon reads Billing<a class="headerlink" href="#entitlement-how-the-rest-of-beacon-reads-billing" title="Permanent link">¶</a></h2>
+<p>The most common way other code touches this domain isn't to change a subscription —
+it's to ask <em>"is this org allowed to do X?"</em> That makes the read path worth calling
+out on its own.</p>
+<ul>
+<li><strong>Seats.</strong> A <a href="../../models/plan/">Plan</a> defines a seat limit; the subscription
+  records <code>seats</code> (paid) and a view-derived <code>seats_in_use</code> (actually assigned). The
+  authoritative seat <em>assignments</em> live in Accounts, which is why <code>seats_in_use</code> is
+  computed through the <code>active_subscriptions_v</code> view rather than stored. When the
+  plan changes, Billing writes the new <code>seat_limit</code> over to
+  <a href="../../models/organization/">Organization</a> so the tenant layer can enforce it
+  directly.</li>
+<li><strong>Standing.</strong> "Can this org still send?" is answered by the subscription <code>status</code>.
+  An org whose subscription is <code>canceled</code> (or whose Accounts <code>status</code> is
+  <code>suspended</code>) loses access; <code>past_due</code> is a grace window while <abbr title="the automated retry-and-notify process after a failed payment, before cancellation">dunning</abbr> runs.</li>
+<li><strong>Don't cache it as truth.</strong> Other services may hold org/subscription data briefly
+  for a request, but Billing (for entitlement) and Accounts (for org identity)
+  remain the authorities. A stale cache is how an org keeps sending after they've
+  been cut off.</li>
+</ul>
+<h2 id="notes-nuances">Notes &amp; nuances<a class="headerlink" href="#notes-nuances" title="Permanent link">¶</a></h2>
+<details class="info">
+<summary>Boundaries — what's in Billing, and what isn't</summary>
+<p><strong>In Billing:</strong> plans, subscriptions, invoices, <abbr title="charging the prorated difference when a plan changes mid-cycle">proration</abbr>, and the rules that
+govern a subscription's lifecycle (<code>trialing → active → past_due ↔ active →
+canceled</code>).</p>
+<p><strong>Not in Billing, even though it's close by:</strong></p>
+<ul>
+<li><em>Who the users are, and how many seats are assigned</em> — that's
+  <a href="../accounts/">Accounts</a>. Billing knows how many seats an org <em>paid for</em>; it
+  reads Accounts (and the <code>active_subscriptions_v</code> view) for how many are
+  actually <em>in use</em>.</li>
+<li><em>Sending the confirmation message</em> after an upgrade — that's
+  <a href="../messaging/">Messaging</a>. Billing emits <code>subscription.upgraded</code> and stops
+  there.</li>
+<li><em>Taking the actual payment</em> — <abbr title="charging the prorated difference when a plan changes mid-cycle">proration</abbr> and invoicing are computed here, but
+  the charge itself is the payment provider's job; Billing records the outcome
+  as a <code>status</code> change.</li>
+</ul>
+</details>
+<details class="note">
+<summary>Seat limit lives in two places, on purpose</summary>
+<p><code>seat_limit</code> is both a property of the <a href="../../models/plan/">Plan</a> (the source of
+the number) and a column on <a href="../../models/organization/">Organization</a> (a synced
+mirror Accounts enforces directly). Billing owns the <em>why</em> and writes the mirror
+on every plan change; Accounts owns the <em>enforcement</em>. If the two ever disagree,
+Billing is right and the Organization copy is stale — treat a mismatch as a sync
+bug, not a business rule.</p>
+</details>
+<p><a id="suspected-dead"></a></p>
+<div class="admonition danger">
+<p class="admonition-title">Suspected dead — the downgrade path</p>
+<p><code>POST /subscriptions/{id}/downgrade</code> exists in billing-service's routes, but every
+caller we can find moves to a lower plan through the <code>upgrade</code> endpoint instead.
+It may be dead. Confirm against <code>beacon-billing</code> before relying on it — and see
+<a href="../../services/billing-service/#notes-nuances">billing-service</a> where the same
+finding is recorded.</p>
+</div>
+<details class="note">
+<summary>Deprecated / historical</summary>
+<p>Two legacy bits hang off the <a href="../../models/subscription/">Subscription</a> model:
+<code>tier</code> (<code>bronze</code>/<code>silver</code>/<code>gold</code>), which predates <code>plan_id</code> and survives only for
+pre-2023 rows, and <code>promo_ref</code>, which is
+<a href="../../models/subscription/#notes-nuances">suspected dead</a> — a remnant of an old
+promotions feature with no current writer. Neither should inform new work.</p>
+</details>
+<h2 id="related-pages">Related pages<a class="headerlink" href="#related-pages" title="Permanent link">¶</a></h2>
+<p><strong>In this domain:</strong> <a href="../../services/billing-service/">billing-service</a>, <a href="../../models/plan/">Plan</a>, <a href="../../features/plan-upgrade/">Plan upgrade</a>, <a href="../../models/subscription/">Subscription</a></p>
+<div class="doc-provenance">
+<p><strong>Confidence:</strong> 78/100 · <strong>Last reviewed:</strong> 2026-06-14 · <strong>Status:</strong> active</p>
+<p><strong>Verified against:</strong> beacon-billing@a1b2c3d (2026-05-30)</p>
+</div>
+<!-- Glossary tooltips for Beacon — auto-appended to every page. Define a term once
+     here and every prose occurrence gets a hover definition. Keep in sync with
+     docs/glossary.md. Case-sensitive. -->
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden="">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"></path></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer">
+        
+          
+          <a href="../accounts/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Accounts">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Accounts
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../messaging/" class="md-footer__link md-footer__link--next" aria-label="Next: Messaging">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Messaging
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"></path></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.indexes", "navigation.prune", "navigation.top", "navigation.path", "navigation.footer", "toc.follow", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.tabs.link", "content.tooltips"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../javascripts/diagram-zoom.js"></script>
+      
+    
+  
+<script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(()=>{ lightbox.reload(); });
+</script></body></html>

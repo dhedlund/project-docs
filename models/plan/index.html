@@ -1,0 +1,1939 @@
+<!DOCTYPE html><html lang="en" class="no-js"><head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Fictional reference product — demonstrates the docs patterns.">
+      
+      
+      
+        <link rel="canonical" href="https://dhedlund.github.io/project-docs/models/plan/">
+      
+      
+        <link rel="prev" href="../organization/">
+      
+      
+        <link rel="next" href="../../datastores/mysql/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Plan - Beacon Docs (example)</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/mkdocs_d2_plugin.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="../../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color); }
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
+        </style></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#plan" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Beacon Docs (example)" class="md-header__button md-logo" aria-label="Beacon Docs (example)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Beacon Docs (example)
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Plan
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo" aria-label="Switch to dark mode" type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden="">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"></path></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo" aria-label="Switch to light mode" type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden="">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"></path></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required="">
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard="" data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"></path></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix="">
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Beacon Docs (example)" class="md-nav__button md-logo" aria-label="Beacon Docs (example)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
+
+    </a>
+    Beacon Docs (example)
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix="">
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../domains/accounts/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Domains
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../features/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Features
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../flows/send-message/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Flows
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../options/message-settings/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Options
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../interfaces/api/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interfaces
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../integrations/email-provider/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Integrations
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../surfaces/dashboard/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Surfaces
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../access/roles/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Access
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../services/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Services
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" checked="">
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Models
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_11" id="__nav_11_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Models
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../subscription/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Subscription
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../delivery-event/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Delivery event
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../organization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Organization
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plan
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stub" title="Stub — incomplete, needs work">
+    </span>
+  
+
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plan
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stub" title="Stub — incomplete, needs work">
+    </span>
+  
+
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#business-view" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Business view
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-maps-to-storage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How it maps to storage
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#schema" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Schema
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#defaults-derivations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Defaults &amp; derivations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#constraints-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Constraints &amp; validation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#relationships" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Relationships
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#notes-nuances" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Notes &amp; nuances
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sources-confidence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sources &amp; confidence
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-pages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related pages
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../datastores/mysql/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Datastores
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glossary
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../decisions/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Decisions
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#business-view" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Business view
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-maps-to-storage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How it maps to storage
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#schema" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Schema
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#defaults-derivations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Defaults &amp; derivations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#constraints-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Constraints &amp; validation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#relationships" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Relationships
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#notes-nuances" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Notes &amp; nuances
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sources-confidence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sources &amp; confidence
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-pages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related pages
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigation">
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../.." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Home
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Models
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  <nav class="md-tags">
+    
+      
+      
+      
+      
+        <span class="md-tag">billing</span>
+      
+    
+  </nav>
+
+
+
+<h1 id="plan">Plan<a class="headerlink" href="#plan" title="Permanent link">¶</a></h1>
+<blockquote>
+<p>The package an organization pays for — its <strong>price</strong>, <strong>billing interval</strong>, <strong>seat
+limit</strong>, and <strong>feature set</strong>. A <a href="../subscription/">Subscription</a> references exactly
+one plan via <code>plan_id</code>, and that plan's seat limit is what flows over to the org's
+<code>seat_limit</code> when the plan changes. Owned by
+<a href="../../services/billing-service/">billing-service</a> (Ruby/Rails on MySQL).</p>
+</blockquote>
+<div class="admonition note">
+<p class="admonition-title">Still a stub</p>
+<p>This page documents the <strong>known shape</strong> of a plan — what it is, the fields we're
+confident exist, and how it connects to the rest of billing — but it has <strong>not</strong>
+been verified field-by-field against the <code>billing.plans</code> schema. The
+<a href="#schema">Schema</a> section is marked <em>unverified</em> and confidence is held low (20)
+until someone reads <code>db/schema.rb</code> and the <code>Plan</code> model directly. To deepen, see
+Sources &amp; confidence. The <code>DOC-DEEPEN</code> backlog entry
+tracks this.</p>
+</div>
+<p>A plan is the <em>menu item</em> a customer chooses. Everything an org is entitled to —
+how many people can use Beacon, which features are on, what they're charged and how
+often — is decided by the plan its <a href="../subscription/">Subscription</a> points at. The
+plan itself is <strong>static catalog data</strong>: it describes the offer. The Subscription is
+where the <em>running state</em> lives (which plan this org is on right now, whether they're
+paying, when they renew). Keeping those two apart is the whole reason there are two
+models: a Plan is shared by many orgs and rarely changes; a Subscription is per-org
+and changes constantly.</p>
+<h2 id="business-view">Business view<a class="headerlink" href="#business-view" title="Permanent link">¶</a></h2>
+<p><em>Plain language — safe for non-engineers. No table or column names here.</em></p>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>What it means</th>
+<th>Rules / behavior</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Name</td>
+<td>What the plan is called</td>
+<td>Shown on pricing and in the app (e.g. "Starter", "Growth")</td>
+</tr>
+<tr>
+<td>Price</td>
+<td>What the org pays per period</td>
+<td>Charged each billing interval; mid-cycle changes are billed <a href="../../glossary/#proration">prorated</a></td>
+</tr>
+<tr>
+<td>Billing interval</td>
+<td>How often they're charged</td>
+<td>Monthly or annual; sets the length of a billing period</td>
+</tr>
+<tr>
+<td>Seat limit</td>
+<td>Most users the plan allows</td>
+<td>Becomes the org's seat limit when the plan is chosen or changed</td>
+</tr>
+<tr>
+<td>Feature set</td>
+<td>What's turned on</td>
+<td>Gates which capabilities the org can use</td>
+</tr>
+</tbody>
+</table>
+<p>The everyday way to think about it: <strong>an org picks a plan, and the plan's numbers
+become the org's limits.</strong> Move to a bigger plan and the seat limit goes up (and the
+org is charged the prorated difference straight away); the plan's feature set decides
+what's switched on. None of this state lives on the plan per org — the plan is the
+template, the <a href="../subscription/">Subscription</a> is the instance.</p>
+<details class="info">
+<summary>Where each number ends up living</summary>
+<p>The plan is the <em>source</em> of these values, but at runtime they're read through the
+subscription, and the seat limit is <strong>copied</strong> onto the organization:</p>
+<ul>
+<li><strong>Price / interval</strong> → drive invoicing on the <a href="../subscription/">Subscription</a>
+  (<code>current_period_end</code> is set to <code>now + plan.interval</code> at activation).</li>
+<li><strong>Seat limit</strong> → copied to <a href="../organization/">Organization</a>.<code>seat_limit</code> by
+  billing-service whenever the plan changes (see below).</li>
+<li><strong>Feature set</strong> → read to decide what the org may do.</li>
+</ul>
+</details>
+<h2 id="how-it-maps-to-storage">How it maps to storage<a class="headerlink" href="#how-it-maps-to-storage" title="Permanent link">¶</a></h2>
+<p>A plan lives in MySQL alongside the rest of billing (<code>billing.plans</code>, same database
+as <code>billing.subscriptions</code>). Unlike <a href="../subscription/">Subscription</a> — whose most
+interesting fields are view-derived or app-governed — a plan is expected to be
+<strong>plain catalog rows</strong>: each column is a real stored value, set when the plan is
+defined and seldom touched after. There's no view backing and no per-org state to
+compute, because a plan is shared across every org that's on it.</p>
+<p>Two connections are worth understanding before the field tables, because they're the
+reason a plan matters to the rest of the system:</p>
+<ul>
+<li><strong><code>plan_id</code> is an app-only reference, not a foreign key.</strong> A
+  <a href="../subscription/">Subscription</a> points at a plan via <code>plan_id</code>. Both tables live in
+  the same MySQL database, but <strong>no foreign key is declared</strong> — the relationship is
+  enforced (or not) in application code. The DB will happily store a subscription
+  whose <code>plan_id</code> matches no plan.</li>
+<li><strong>Seat limit flows out to the org on plan change.</strong> A plan's seat limit isn't read
+  live by accounts-service. Instead, when an org changes plan, billing-service
+  <strong>writes</strong> the new limit onto <a href="../organization/">Organization</a>.<code>seat_limit</code> (a
+  DB-enforced column over in accounts). So the plan is the source of truth for the
+  <em>offer</em>, but the org carries its own <em>copy</em> of the current limit. If a plan's seat
+  limit is edited later, existing orgs don't automatically pick up the change — only
+  a plan change re-syncs it.</li>
+</ul>
+<pre class="mermaid"><code>flowchart LR
+  plan["Plan (billing.plans)"]
+  sub["Subscription (billing.subscriptions)"]
+  org["Organization (accounts.organizations)"]
+  plan --&gt;|"plan_id (app-only ref)"| sub
+  plan --&gt;|"seat_limit copied on plan change"| org</code></pre>
+<hr>
+<p><em>Everything below is engineer-facing reference.</em></p>
+<h2 id="schema">Schema<a class="headerlink" href="#schema" title="Permanent link">¶</a></h2>
+<p><em>Primary store: <code>billing.plans</code> (MySQL).</em></p>
+<div class="admonition warning">
+<p class="admonition-title">Unverified — stub</p>
+<p>The fields below are inferred from how a plan is <strong>used</strong> (the canon shape: price,
+billing interval, seat limit, feature set) and from the <code>plan_id</code> reference on
+<a href="../subscription/">Subscription</a>. They have <strong>not</strong> been confirmed against
+<code>db/schema.rb</code> or the <code>Plan</code> model. Types, nullability, and exact column names are
+placeholders — verify before relying on them.</p>
+</div>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Null</th>
+<th>Backed by</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td><code>bigint</code></td>
+<td>No</td>
+<td>column (PK) — referenced as <code>plan_id</code> on subscriptions</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>varchar</code> <em>(unverified)</em></td>
+<td>No <em>(unverified)</em></td>
+<td>column</td>
+</tr>
+<tr>
+<td><code>price_cents</code></td>
+<td><code>int</code> <em>(unverified)</em></td>
+<td>?</td>
+<td>column — <em>exact money representation unverified</em></td>
+</tr>
+<tr>
+<td><code>interval</code></td>
+<td><code>varchar</code> / <code>enum</code> <em>(unverified)</em></td>
+<td>?</td>
+<td>column — e.g. <code>month</code> / <code>year</code></td>
+</tr>
+<tr>
+<td><code>seat_limit</code></td>
+<td><code>int</code> <em>(unverified)</em></td>
+<td>?</td>
+<td>column — copied to org on plan change</td>
+</tr>
+<tr>
+<td>feature set</td>
+<td>? <em>(unverified)</em></td>
+<td>?</td>
+<td>shape unknown — could be columns, a flags blob, or a join table</td>
+</tr>
+</tbody>
+</table>
+<details class="question">
+<summary>Open: how is the feature set actually stored?</summary>
+<p>Canon says a plan has a <em>feature set</em>, but <strong>how</strong> it's stored isn't established.
+Plausible shapes to check for when deepening: a set of boolean columns, a JSON
+flags blob, a <code>plan_features</code> join table, or a named feature <em>tier</em> string. Until
+confirmed, treat "feature set" as a concept, not a column.</p>
+</details>
+<h2 id="defaults-derivations">Defaults &amp; derivations<a class="headerlink" href="#defaults-derivations" title="Permanent link">¶</a></h2>
+<p><em>Unverified — no defaults have been confirmed against the schema or model. Catalog
+rows are typically authored explicitly (each field set when the plan is defined)
+rather than relying on DB defaults, but confirm this when deepening.</em></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>DB default</th>
+<th>App-level default / derivation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>interval</code></td>
+<td><em>unverified</em></td>
+<td><em>unverified — likely set explicitly per plan</em></td>
+</tr>
+<tr>
+<td><code>seat_limit</code></td>
+<td><em>unverified</em></td>
+<td><em>unverified</em></td>
+</tr>
+</tbody>
+</table>
+<h2 id="constraints-validation">Constraints &amp; validation<a class="headerlink" href="#constraints-validation" title="Permanent link">¶</a></h2>
+<p><em>Unverified — listed as expectations to confirm, not established facts. Given the
+billing pattern elsewhere (see <a href="../subscription/">Subscription</a>, where status is
+app-governed with no DB check), assume validation lives in the Rails model unless the
+schema proves otherwise.</em></p>
+<table>
+<thead>
+<tr>
+<th>Rule</th>
+<th>Enforced in</th>
+<th>Detail</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>plan_id</code> on a subscription references a real plan</td>
+<td><strong>app-only</strong> <em>(expected)</em></td>
+<td>same DB, but no FK declared — confirm</td>
+</tr>
+<tr>
+<td><code>price</code> / <code>seat_limit</code> non-negative</td>
+<td><em>unverified</em></td>
+<td>check the <code>Plan</code> model validations</td>
+</tr>
+<tr>
+<td><code>interval</code> ∈ a known set</td>
+<td><em>unverified</em></td>
+<td>check whether it's an enum or free string</td>
+</tr>
+</tbody>
+</table>
+<h2 id="relationships">Relationships<a class="headerlink" href="#relationships" title="Permanent link">¶</a></h2>
+<table>
+<thead>
+<tr>
+<th>Related model</th>
+<th>Via</th>
+<th>Cardinality</th>
+<th>Enforcement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../subscription/">Subscription</a></td>
+<td><code>plan_id</code> (on subscription)</td>
+<td>one plan → many subscriptions</td>
+<td><strong>app-only</strong> (same DB, no FK declared)</td>
+</tr>
+<tr>
+<td><a href="../organization/">Organization</a></td>
+<td><code>seat_limit</code> copied on plan change</td>
+<td>one plan → many orgs (indirect)</td>
+<td><strong>none</strong> — value copied, not referenced</td>
+</tr>
+</tbody>
+</table>
+<pre class="mermaid"><code>erDiagram
+  PLAN ||--o{ SUBSCRIPTION : "chosen by"
+  PLAN ||..o{ ORGANIZATION : "seat_limit copied to"</code></pre>
+<h2 id="notes-nuances">Notes &amp; nuances<a class="headerlink" href="#notes-nuances" title="Permanent link">¶</a></h2>
+<p>The point to carry away: a plan is <strong>shared, static catalog data</strong>, while everything
+per-org and changing lives on the <a href="../subscription/">Subscription</a>. When you find a
+number that an org is "on" — its seat limit, its price — trace it back here for the
+<em>offer</em>, but read the runtime value from the subscription (or, for the seat limit,
+the org's own copied column).</p>
+<details class="note">
+<summary>Plan vs. legacy <code>tier</code></summary>
+<p><a href="../subscription/">Subscription</a> carries a legacy <code>tier</code> column (<code>bronze</code> /
+<code>silver</code> / <code>gold</code>) that predates <code>plan_id</code>. <code>tier</code> is <strong>not</strong> a Plan — it's an
+old, coarser grouping kept only for subscriptions created before 2023-04. New code
+keys off <code>plan_id</code>; the eventual cleanup is to backfill <code>plan_id</code> from <code>tier</code> and
+drop <code>tier</code>. Don't confuse the two.</p>
+</details>
+<details class="info">
+<summary>Future / cleanup</summary>
+<p>The deepen pass should: (1) read <code>billing.plans</code> from <code>db/schema.rb</code> and the
+<code>Plan</code> model to confirm every field, type, and validation; (2) establish how the
+feature set is stored; (3) confirm the <code>plan_id</code> relationship really has no FK;
+and (4) trace the seat-limit sync to <a href="../organization/">Organization</a> in code to
+verify it's a copy-on-change, not a live read.</p>
+</details>
+<div class="admonition danger">
+<p class="admonition-title">Suspected dead</p>
+<p><a href="../subscription/">Subscription</a> carries a <code>promo_ref</code> column that no current code
+path appears to write — likely a remnant of an old promotions feature that may
+once have tied into plans/pricing. Flagged on the Subscription page; noted here in
+case the promotions concept resurfaces while deepening plan pricing. Confirm
+before assuming any plan-side promo logic exists.</p>
+</div>
+<h2 id="sources-confidence">Sources &amp; confidence<a class="headerlink" href="#sources-confidence" title="Permanent link">¶</a></h2>
+<p>This page is derived from <strong>canon and usage</strong>, not yet from the plan's own schema:
+the role of a plan (price, interval, seat limit, feature set) and the <code>plan_id</code>
+reference on <a href="../subscription/">Subscription</a>, plus the seat-limit sync to
+<a href="../organization/">Organization</a> described in billing-service's behavior. Confidence
+is intentionally low (<strong>20</strong>) because no field-level detail has been verified against
+<code>billing.plans</code> in <code>beacon-billing</code> — the <a href="#schema">Schema</a>, defaults, and
+constraints sections are explicitly marked unverified. To promote this page out of
+stub: read <code>db/schema.rb</code> and the <code>Plan</code> model on <code>main</code>, confirm the field tables,
+resolve the feature-set question, stamp <code>sources:</code> with the verified sha, and raise
+the confidence and <code>status</code> accordingly.</p>
+<h2 id="related-pages">Related pages<a class="headerlink" href="#related-pages" title="Permanent link">¶</a></h2>
+<p><strong>Related:</strong> <a href="../">Models</a>, <a href="../../">Overview</a>, <a href="../subscription/">Subscription</a></p>
+<div class="doc-provenance">
+<p><strong>Confidence:</strong> 20/100 · <strong>Last reviewed:</strong> 2026-06-14 · <strong>Status:</strong> stub</p>
+</div>
+<!-- Glossary tooltips for Beacon — auto-appended to every page. Define a term once
+     here and every prose occurrence gets a hover definition. Keep in sync with
+     docs/glossary.md. Case-sensitive. -->
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden="">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"></path></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer">
+        
+          
+          <a href="../organization/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Organization">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Organization
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../datastores/mysql/" class="md-footer__link md-footer__link--next" aria-label="Next: MySQL">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                MySQL
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"></path></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.indexes", "navigation.prune", "navigation.top", "navigation.path", "navigation.footer", "toc.follow", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.tabs.link", "content.tooltips"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../javascripts/diagram-zoom.js"></script>
+      
+    
+  
+<script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(()=>{ lightbox.reload(); });
+</script></body></html>

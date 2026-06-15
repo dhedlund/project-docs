@@ -1,0 +1,1944 @@
+<!DOCTYPE html><html lang="en" class="no-js"><head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Fictional reference product — demonstrates the docs patterns.">
+      
+      
+      
+        <link rel="canonical" href="https://dhedlund.github.io/project-docs/services/billing-service/">
+      
+      
+        <link rel="prev" href="../">
+      
+      
+        <link rel="next" href="../messaging-service/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>billing-service - Beacon Docs (example)</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/mkdocs_d2_plugin.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="../../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color); }
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
+        </style></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#billing-service" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Beacon Docs (example)" class="md-header__button md-logo" aria-label="Beacon Docs (example)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Beacon Docs (example)
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              billing-service
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo" aria-label="Switch to dark mode" type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden="">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"></path></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo" aria-label="Switch to light mode" type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden="">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"></path></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required="">
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard="" data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"></path></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix="">
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Beacon Docs (example)" class="md-nav__button md-logo" aria-label="Beacon Docs (example)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
+
+    </a>
+    Beacon Docs (example)
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix="">
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../domains/accounts/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Domains
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../features/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Features
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../flows/send-message/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Flows
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../options/message-settings/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Options
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../interfaces/api/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interfaces
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../integrations/email-provider/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Integrations
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../surfaces/dashboard/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Surfaces
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../access/roles/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Access
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" checked="">
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Services
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_10" id="__nav_10_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Services
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    billing-service
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    billing-service
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#responsibilities-boundaries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Responsibilities &amp; boundaries
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interface-contracts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interface (contracts)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Interface (contracts)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-subscriptionsid-read-the-current-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /subscriptions/{id} — read the current state
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-subscriptionsidupgrade-change-the-plan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /subscriptions/{id}/upgrade — change the plan
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#subscriptionupgraded-the-one-event-it-emits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        subscription.upgraded — the one event it emits
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-orgsid-the-one-thing-it-consumes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /orgs/{id} — the one thing it consumes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-it-owns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data it owns
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-flows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key flows
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Key flows">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#subscription-lifecycle-in-billing-services-terms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Subscription lifecycle, in billing-service's terms
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#notes-nuances" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Notes &amp; nuances
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-pages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related pages
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../messaging-service/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    messaging-service
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../accounts-service/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    accounts-service
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stub" title="Stub — incomplete, needs work">
+    </span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../models/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Models
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../datastores/mysql/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Datastores
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glossary
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../decisions/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Decisions
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#responsibilities-boundaries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Responsibilities &amp; boundaries
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interface-contracts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interface (contracts)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Interface (contracts)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-subscriptionsid-read-the-current-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /subscriptions/{id} — read the current state
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-subscriptionsidupgrade-change-the-plan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /subscriptions/{id}/upgrade — change the plan
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#subscriptionupgraded-the-one-event-it-emits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        subscription.upgraded — the one event it emits
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-orgsid-the-one-thing-it-consumes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /orgs/{id} — the one thing it consumes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-it-owns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data it owns
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-flows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key flows
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Key flows">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#subscription-lifecycle-in-billing-services-terms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Subscription lifecycle, in billing-service's terms
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#notes-nuances" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Notes &amp; nuances
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-pages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related pages
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigation">
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../.." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Home
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Services
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  <nav class="md-tags">
+    
+      
+      
+      
+      
+        <span class="md-tag">billing</span>
+      
+    
+      
+      
+      
+      
+        <span class="md-tag">subscriptions</span>
+      
+    
+  </nav>
+
+
+
+<h1 id="billing-service">billing-service<a class="headerlink" href="#billing-service" title="Permanent link">¶</a></h1>
+<blockquote>
+<p>Owns money-adjacent state: plans, <strong>subscriptions</strong>, and invoices. Other services
+treat it as the authority on what an org is paying for. Ruby/Rails on MySQL.</p>
+</blockquote>
+<p>billing-service is the part of Beacon that knows what every organization pays for and
+what it's entitled to. When an admin upgrades a plan, when a payment fails, when an
+invoice is cut — that's all here. It's a small, focused Rails app: an HTTP API in
+front, a MySQL schema (<code>billing.*</code>) behind, and one event it publishes to the rest
+of the system when a subscription changes. If you're trying to answer "is this org
+allowed to do X, and what will it be charged?", this is the service that decides.</p>
+<p>This page is the service-level black box: what billing-service is responsible for,
+the contract it exposes, the data it owns, and the handful of behaviours that will
+bite you if you assume it works like a typical CRUD service. It runs from the
+product picture down to the wire. For the <em>user-facing</em> story of the most common
+write — an admin moving to a bigger plan — see <a href="../../features/plan-upgrade/">Plan upgrade</a>;
+for the field-level data model, see <a href="../../models/subscription/">Subscription</a>.</p>
+<h2 id="responsibilities-boundaries">Responsibilities &amp; boundaries<a class="headerlink" href="#responsibilities-boundaries" title="Permanent link">¶</a></h2>
+<p>billing-service is deliberately narrow. It is the authority on the commercial
+relationship — plan, price, cycle, entitlements — and nothing else.</p>
+<ul>
+<li><strong>Owns:</strong> plans, <a href="../../models/subscription/">subscriptions</a>, invoices, and the
+  <a href="../../glossary/#proration"><abbr title="charging the prorated difference when a plan changes mid-cycle">proration</abbr></a> logic that prices a mid-cycle plan change.
+  It is the single writer of everything under the <code>billing.*</code> schema and the only
+  place subscription state legally transitions.</li>
+<li><strong>Does not own:</strong> who the users are or how many <a href="../../glossary/#seat">seats</a> are
+  actually assigned. That's accounts-service's data. billing-service <em>reads</em> an org
+  over the API and <em>writes back</em> only the one field it's allowed to drive
+  (<code>seat_limit</code>, on a plan change) — it never owns or caches org data as long-term
+  truth. See the <a href="../../models/organization/">authority boundary</a> on the Organization
+  model.</li>
+<li><strong>Does not send messages.</strong> It records that a billing-relevant thing happened by
+  emitting an event; <a href="../messaging-service/">messaging-service</a> decides whether that
+  turns into an email and actually sends it. billing-service has no templates, no
+  provider integration, and no delivery log.</li>
+</ul>
+<p>The reason for drawing the line here is trust and blast radius. Money and
+entitlements need to be correct, consistent, and durable, so they live in one
+service on one relational store. Sending — high-volume, best-effort, provider-flaky
+— is kept on the far side of a queue so a bad email provider can never fail a
+payment or a plan change.</p>
+<pre class="mermaid"><code>flowchart LR
+  UI[Web UI] --&gt;|upgrade / read sub| billing[billing-service]
+  billing --&gt;|GET /orgs/:id&lt;br/&gt;sync seat_limit| accounts[accounts-service]
+  billing --&gt;|subscription.upgraded| mq[(RabbitMQ)]
+  mq --&gt; messaging[messaging-service]
+  billing --&gt;|billing.* schema| mysql[(MySQL)]</code></pre>
+<h2 id="interface-contracts">Interface (contracts)<a class="headerlink" href="#interface-contracts" title="Permanent link">¶</a></h2>
+<p>Authored in TypeSpec (<code>contracts/billing/main.tsp</code>), compiled to OpenAPI
+(<code>contracts/billing/openapi.yaml</code>). See <code>example/contracts/README.md</code> for how the
+contract is validated (oasdiff / Schemathesis / Prism).</p>
+<ul>
+<li><strong>Provides (HTTP):</strong> <code>GET /subscriptions/{id}</code>,
+  <code>POST /subscriptions/{id}/upgrade</code>.</li>
+<li><strong>Provides (events):</strong> <code>subscription.upgraded</code> (see
+  <a href="../messaging-service/">messaging-service</a> for the AsyncAPI side).</li>
+<li><strong>Consumes:</strong> accounts-service <code>GET /orgs/{id}</code>.</li>
+</ul>
+<p>The HTTP surface is intentionally tiny — read a subscription, and apply the one
+write that matters commercially. Here's the shape of each call so you don't have to
+open the spec for the common cases.</p>
+<h3 id="get-subscriptionsid-read-the-current-state"><code>GET /subscriptions/{id}</code> — read the current state<a class="headerlink" href="#get-subscriptionsid-read-the-current-state" title="Permanent link">¶</a></h3>
+<p>The read every other surface uses to answer "what is this org entitled to?" It
+returns the subscription including the view-derived <code>seats_in_use</code>, so callers get
+the live seat picture without joining anything themselves.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">GET</span> <span class="nn">/subscriptions/sub_8842</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="p">{</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sub_8842"</span><span class="p">,</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span><span class="nt">"org_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"org_217"</span><span class="p">,</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">  </span><span class="nt">"plan_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"plan_pro"</span><span class="p">,</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">  </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"active"</span><span class="p">,</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">  </span><span class="nt">"seats"</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="p">,</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">  </span><span class="nt">"seats_in_use"</span><span class="p">:</span><span class="w"> </span><span class="mi">19</span><span class="p">,</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">  </span><span class="nt">"current_period_end"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2026-07-01T00:00:00Z"</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="p">}</span>
+</code></pre></div>
+<p><code>seats_in_use</code> is read through the <code>active_subscriptions_v</code> view, not the base
+table — it reflects seat assignments owned by accounts-service. Treat <code>status</code> as
+the source of truth for entitlement: an <code>active</code> sub is fully usable, <code>past_due</code> is
+in <a href="../../glossary/#dunning"><abbr title="the automated retry-and-notify process after a failed payment, before cancellation">dunning</abbr></a> but not yet cut off, and <code>canceled</code> is done.
+See the <a href="../../models/subscription/">Subscription model</a> for every field.</p>
+<h3 id="post-subscriptionsidupgrade-change-the-plan"><code>POST /subscriptions/{id}/upgrade</code> — change the plan<a class="headerlink" href="#post-subscriptionsidupgrade-change-the-plan" title="Permanent link">¶</a></h3>
+<p>The one meaningful write. The request carries the target plan; the response is the
+updated subscription. The change is <strong>immediate and prorated</strong>, and it has the side
+effect of emitting <code>subscription.upgraded</code>.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nf">POST</span> <span class="nn">/subscriptions/sub_8842/upgrade</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="p">{</span><span class="w"> </span><span class="nt">"plan_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"plan_enterprise"</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<p>A <code>200</code> means the org is <em>already</em> on the new plan — new seat limit, new feature
+set, new price — and the prorated charge for the rest of the cycle has been applied.
+Despite the name, this endpoint also carries what the product calls a <em>downgrade</em>:
+current callers move to a cheaper plan by posting a lower <code>plan_id</code> here rather than
+using the dedicated downgrade route (see Suspected dead). The
+full request/response flow is walked below in <a href="#key-flows">Key flows</a>.</p>
+<h3 id="subscriptionupgraded-the-one-event-it-emits"><code>subscription.upgraded</code> — the one event it emits<a class="headerlink" href="#subscriptionupgraded-the-one-event-it-emits" title="Permanent link">¶</a></h3>
+<p>After a successful upgrade, billing-service publishes <code>subscription.upgraded</code> to
+RabbitMQ and returns. It does not wait for anything downstream. messaging-service
+consumes it to send the confirmation; the formal event shape lives on the
+<a href="../messaging-service/">messaging-service</a> AsyncAPI contract, because the consumer
+owns the schema it depends on.</p>
+<h3 id="get-orgsid-the-one-thing-it-consumes"><code>GET /orgs/{id}</code> — the one thing it consumes<a class="headerlink" href="#get-orgsid-the-one-thing-it-consumes" title="Permanent link">¶</a></h3>
+<p>Before applying any change, billing-service reads the org from
+<a href="../accounts-service/">accounts-service</a> to get its <code>status</code> and seat count. This is
+a synchronous, read-only HTTP call across a service boundary. accounts-service is
+the authority on org data; billing-service must not treat a copy as durable truth.</p>
+<h2 id="data-it-owns">Data it owns<a class="headerlink" href="#data-it-owns" title="Permanent link">¶</a></h2>
+<ul>
+<li><a href="../../models/subscription/">Subscription</a> — the core entity, including its
+  view-backed and app-enforced fields. This is where the genuinely surprising
+  details live (status is app-governed, <code>seats_in_use</code> is view-derived,
+  cross-store <code>org_id</code> can dangle), so read that page before writing code against
+  billing data.</li>
+</ul>
+<p>billing-service also owns <strong>plans</strong> (see the <a href="../../models/plan/">Plan</a> stub — the
+package a subscription references via <code>plan_id</code>) and <strong>invoices</strong> (one subscription
+→ many invoices, a real DB foreign key inside the <code>billing</code> schema). All three —
+subscriptions, plans, invoices — live in the <code>billing.*</code> schema on
+<a href="../../datastores/mysql/">MySQL</a>. billing-service is the <strong>only</strong> writer of that
+schema; nothing reaches across the line into <code>accounts.*</code>, and nothing reads
+<code>billing.*</code> by joining from another service. Cross-service reads go over the API.</p>
+<pre class="mermaid"><code>erDiagram
+  PLAN ||--o{ SUBSCRIPTION : "referenced by (app-only)"
+  SUBSCRIPTION ||--o{ INVOICE : "generates (DB FK)"
+  ORGANIZATION ||--|| SUBSCRIPTION : "billed via (cross-store, no FK)"</code></pre>
+<p>The three relationships sit at three different levels of guarantee, and it's worth
+internalizing which is which before you rely on a join:</p>
+<ul>
+<li><strong>Invoice → Subscription</strong> is a real <strong>DB foreign key</strong> within the <code>billing</code>
+  schema — referential integrity is enforced.</li>
+<li><strong>Subscription → Plan</strong> is <strong>app-only</strong>: same schema, but no FK is declared, so a
+  bad <code>plan_id</code> can physically be written. billing-service is what keeps it honest.</li>
+<li><strong>Subscription → Organization</strong> is <strong>cross-store</strong>: <code>org_id</code> points at a row in
+  <code>accounts.organizations</code> that MySQL knows nothing about. No FK, no write-time
+  check, and a deleted org can briefly leave an orphaned subscription. Reads must
+  tolerate a missing org. (See the <a href="../../datastores/mysql/">MySQL</a> page for why
+  "same engine" still means "different worlds.")</li>
+</ul>
+<h2 id="key-flows">Key flows<a class="headerlink" href="#key-flows" title="Permanent link">¶</a></h2>
+<p>Plan upgrade (the read-validate-update-emit path):</p>
+<pre class="mermaid"><code>sequenceDiagram
+  participant Client
+  participant Billing as billing-service
+  participant Accounts as accounts-service
+  participant MQ as RabbitMQ
+  Client-&gt;&gt;Billing: POST /subscriptions/{id}/upgrade
+  Billing-&gt;&gt;Accounts: GET /orgs/{id}
+  Accounts--&gt;&gt;Billing: org
+  Billing-&gt;&gt;Billing: validate status, prorate, persist
+  Billing--&gt;&gt;Client: 200 subscription
+  Billing-)MQ: subscription.upgraded</code></pre>
+<p>Reading that flow the way the data actually moves:</p>
+<ol>
+<li><strong>Resolve the org.</strong> The request is keyed on the <em>subscription</em> id; billing-service
+   reads the subscription, then calls <code>GET /orgs/{id}</code> on accounts-service for the
+   org's current <code>status</code> and seat count. This is the step that lets a <em>suspended</em>
+   org's upgrade be rejected — billing-service won't take a stale local view's word
+   for it.</li>
+<li><strong>Validate the transition.</strong> The change has to be legal: the org must be usable,
+   and the subscription must be in a state that can be upgraded. Legal status
+   transitions live in <code>Billing::Subscription::StateMachine</code> (application code, not a
+   DB constraint).</li>
+<li><strong>Prorate and persist.</strong> It computes the <a href="../../glossary/#proration"><abbr title="charging the prorated difference when a plan changes mid-cycle">proration</abbr></a>
+   for the remainder of the cycle in <code>Billing::Proration</code>, then updates the
+   subscription row — <code>plan_id</code>, <code>seats</code>/limit, price. It also propagates the new
+   seat limit back to accounts-service so <code>accounts.organizations.seat_limit</code> stays
+   in sync with what the plan now allows. This write-back is the <em>only</em> time
+   billing-service touches accounts data, and it goes over the API, never the DB.</li>
+<li><strong>Respond, then notify.</strong> It returns <code>200</code> with the updated subscription — at
+   which point the change is durable and the customer is on the new plan — and
+   <em>afterwards</em> emits <code>subscription.upgraded</code> to RabbitMQ. The ordering is
+   deliberate: the commit is synchronous so the admin sees an immediate, trustworthy
+   result; the notify is async so a slow or failing message provider can never block
+   an upgrade. A dropped event means a missing confirmation email, not a missing
+   upgrade.</li>
+</ol>
+<p>For the end-to-end feature, including the UI dialog, the prorated-amount preview,
+and what messaging-service does with the event, see
+<a href="../../features/plan-upgrade/">Plan upgrade</a>.</p>
+<h3 id="subscription-lifecycle-in-billing-services-terms">Subscription lifecycle, in billing-service's terms<a class="headerlink" href="#subscription-lifecycle-in-billing-services-terms" title="Permanent link">¶</a></h3>
+<p>The status field that <code>GET /subscriptions/{id}</code> returns is governed here, and the
+legal moves matter for every caller deciding whether an org can do something:</p>
+<pre class="mermaid"><code>stateDiagram-v2
+  [*] --&gt; trialing
+  trialing --&gt; active: first payment
+  active --&gt; past_due: payment fails
+  past_due --&gt; active: payment recovers (dunning)
+  active --&gt; canceled: admin cancels
+  past_due --&gt; canceled: dunning gives up
+  canceled --&gt; [*]</code></pre>
+<p>The values are <code>{trialing, active, past_due, canceled}</code>. <code>past_due</code> is the <abbr title="the automated retry-and-notify process after a failed payment, before cancellation">dunning</abbr>
+window — the latest payment failed, automated retry-and-notify is running, and the
+sub is <em>not yet</em> cut off. It either recovers back to <code>active</code> or, if <abbr title="the automated retry-and-notify process after a failed payment, before cancellation">dunning</abbr> gives
+up, lands in <code>canceled</code>. None of this is enforced by the database; it's all
+<code>Billing::Subscription::StateMachine</code> (see the next section).</p>
+<h2 id="notes-nuances">Notes &amp; nuances<a class="headerlink" href="#notes-nuances" title="Permanent link">¶</a></h2>
+<details class="info">
+<summary>Subscription status is enforced here, not in the DB</summary>
+<p><code>subscriptions.status</code> has no DB constraint; valid transitions live in
+<code>Billing::Subscription::StateMachine</code>. The column is a free-form <code>varchar</code>, so
+MySQL will happily store <code>status = 'banana'</code> — every legal value and transition
+is application code. This is a deliberate trade-off (the rules change more often
+than we'd want to manage in migrations), but it means: never write subscription
+status by reaching into the DB, and never assume the column is constrained. See
+the <a href="../../models/subscription/">Subscription model</a> and the
+<a href="../../datastores/mysql/">MySQL</a> gotchas page, which contrasts this with
+<code>accounts.organizations.status</code> — an identical-looking column that <em>is</em> a real
+DB-enforced enum.</p>
+</details>
+<details class="info">
+<summary>Proration is computed here, not by the DB or the payment provider</summary>
+<p>The prorated charge for a mid-cycle plan change is calculated in
+<code>Billing::Proration</code> and exposed through the API (the UI reads it to show "you'll
+be charged $X today"). The contract returns the <em>result</em>, not the formula. If
+<abbr title="charging the prorated difference when a plan changes mid-cycle">proration</abbr> looks wrong, this service is where to look — not the provider, not a DB
+trigger.</p>
+</details>
+<details class="info">
+<summary>seats vs. seats in use — two different sources</summary>
+<p><code>seats</code> is what the org <em>paid for</em> (a plain column billing-service owns).
+<code>seats_in_use</code> is what's <em>actually assigned</em> and is <strong>view-derived</strong> from
+accounts-service's seat assignments via <code>active_subscriptions_v</code>. An upgrade that
+raises the seat limit is always safe; the constraint (<code>seats ≥ seats_in_use</code>)
+only bites in the downgrade direction, and even that is checked in app code, not
+the DB. Detail on the <a href="../../models/subscription/">Subscription model</a>.</p>
+</details>
+<details class="info">
+<summary>Operational notes / debt</summary>
+<ul>
+<li><strong>Stack:</strong> Ruby on Rails; store is <code>billing.*</code> on
+  <a href="../../datastores/mysql/">MySQL</a> (shared engine with accounts-service, separate
+  schema, no cross-schema joins).</li>
+<li><strong>Sync dependency on accounts-service.</strong> Every upgrade makes a blocking
+  <code>GET /orgs/{id}</code> call. If accounts-service is slow or down, upgrades degrade
+  with it — worth knowing when reading latency graphs.</li>
+<li><strong>Legacy <code>tier</code>.</strong> <code>subscriptions.tier</code> (<code>bronze</code>/<code>silver</code>/<code>gold</code>) predates
+  <code>plan_id</code> and survives only for pre-2023-04 rows; reporting still reads it. The
+  planned cleanup (backfill from <code>tier</code>, then drop) is tracked on the
+  <a href="../../models/subscription/">Subscription model</a>.</li>
+<li><strong>Contract verification.</strong> The OpenAPI is compiled from TypeSpec and checked
+  with oasdiff / Schemathesis / Prism — see <code>example/contracts/README.md</code>.</li>
+</ul>
+</details>
+<div class="admonition warning">
+<p class="admonition-title">Discrepancy</p>
+<p>The customer <a href="https://help.beacon.example/upgrading">help center</a> says an upgrade
+is free until the next billing cycle; the code charges the prorated difference
+<strong>immediately</strong> (<code>Billing::Proration</code>). Code wins — the help article is stale
+(BILL-1423). Full context is on <a href="../../features/plan-upgrade/">Plan upgrade</a>.</p>
+</div>
+<div class="admonition danger">
+<p class="admonition-title">Suspected dead</p>
+<p><code>POST /subscriptions/{id}/downgrade</code> exists in the routes but every caller we can
+find goes through <code>upgrade</code> with a lower plan. Possibly dead; confirm before
+relying on it.</p>
+</div>
+<div class="admonition danger">
+<p class="admonition-title">Suspected dead</p>
+<p><code>subscriptions.promo_ref</code> is never written by any current code path we can
+find — likely a remnant of an old promotions feature. Flagged here because it's a
+column on a model this service owns; full context and the "confirm before
+removing" note are on the <a href="../../models/subscription/">Subscription model</a>.</p>
+</div>
+<h2 id="related-pages">Related pages<a class="headerlink" href="#related-pages" title="Permanent link">¶</a></h2>
+<p><strong>Used by:</strong> <a href="../../features/">Features</a>, <a href="../../features/plan-upgrade/">Plan upgrade</a>, <a href="../../flows/send-message/">Send a message</a></p>
+<p><strong>Owns:</strong> <a href="../../models/plan/">Plan</a>, <a href="../../models/subscription/">Subscription</a></p>
+<p><strong>Related:</strong> <a href="../../models/">Models</a>, <a href="../../">Overview</a>, <a href="../">Services</a></p>
+<div class="doc-provenance">
+<p><strong>Confidence:</strong> 82/100 · <strong>Last reviewed:</strong> 2026-06-14 · <strong>Status:</strong> active</p>
+<p><strong>Verified against:</strong> beacon-billing@a1b2c3d (2026-05-30)</p>
+</div>
+<!-- Glossary tooltips for Beacon — auto-appended to every page. Define a term once
+     here and every prose occurrence gets a hover definition. Keep in sync with
+     docs/glossary.md. Case-sensitive. -->
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden="">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"></path></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer">
+        
+          
+          <a href="../" class="md-footer__link md-footer__link--prev" aria-label="Previous: Services">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Services
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../messaging-service/" class="md-footer__link md-footer__link--next" aria-label="Next: messaging-service">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                messaging-service
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"></path></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.indexes", "navigation.prune", "navigation.top", "navigation.path", "navigation.footer", "toc.follow", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.tabs.link", "content.tooltips"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../javascripts/diagram-zoom.js"></script>
+      
+    
+  
+<script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(()=>{ lightbox.reload(); });
+</script></body></html>

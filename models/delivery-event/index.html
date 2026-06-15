@@ -1,0 +1,2097 @@
+<!DOCTYPE html><html lang="en" class="no-js"><head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Fictional reference product — demonstrates the docs patterns.">
+      
+      
+      
+        <link rel="canonical" href="https://dhedlund.github.io/project-docs/models/delivery-event/">
+      
+      
+        <link rel="prev" href="../subscription/">
+      
+      
+        <link rel="next" href="../organization/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Delivery event - Beacon Docs (example)</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/mkdocs_d2_plugin.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="../../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color); }
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
+        </style></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#delivery-event" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Beacon Docs (example)" class="md-header__button md-logo" aria-label="Beacon Docs (example)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Beacon Docs (example)
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Delivery event
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo" aria-label="Switch to dark mode" type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden="">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"></path></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo" aria-label="Switch to light mode" type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden="">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"></path></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required="">
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard="" data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"></path></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix="">
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Beacon Docs (example)" class="md-nav__button md-logo" aria-label="Beacon Docs (example)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
+
+    </a>
+    Beacon Docs (example)
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix="">
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../domains/accounts/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Domains
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../features/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Features
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../flows/send-message/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Flows
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../options/message-settings/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Options
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../interfaces/api/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interfaces
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../integrations/email-provider/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Integrations
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../surfaces/dashboard/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Surfaces
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../access/roles/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Access
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../services/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Services
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" checked="">
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Models
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_11" id="__nav_11_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Models
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../subscription/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Subscription
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Delivery event
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Delivery event
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#business-view" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Business view
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-maps-to-storage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How it maps to storage
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#document-shape" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Document shape
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Document shape">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#reading-defensively" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reading defensively
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#query-patterns-its-shaped-for" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Query patterns it's shaped for
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#defaults-derivations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Defaults &amp; derivations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#constraints-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Constraints &amp; validation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#relationships" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Relationships
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#notes-nuances" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Notes &amp; nuances
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sources-confidence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sources &amp; confidence
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-pages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related pages
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../organization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Organization
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../plan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plan
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stub" title="Stub — incomplete, needs work">
+    </span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../datastores/mysql/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Datastores
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glossary
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../decisions/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Decisions
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#business-view" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Business view
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-maps-to-storage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How it maps to storage
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#document-shape" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Document shape
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Document shape">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#reading-defensively" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reading defensively
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#query-patterns-its-shaped-for" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Query patterns it's shaped for
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#defaults-derivations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Defaults &amp; derivations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#constraints-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Constraints &amp; validation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#relationships" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Relationships
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#notes-nuances" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Notes &amp; nuances
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sources-confidence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sources &amp; confidence
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-pages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related pages
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigation">
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../.." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Home
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Models
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  <nav class="md-tags">
+    
+      
+      
+      
+      
+        <span class="md-tag">events</span>
+      
+    
+      
+      
+      
+      
+        <span class="md-tag">messaging</span>
+      
+    
+  </nav>
+
+
+
+<h1 id="delivery-event">Delivery event<a class="headerlink" href="#delivery-event" title="Permanent link">¶</a></h1>
+<blockquote>
+<p>A write-once record of one message send attempt and its outcome. High volume,
+append-only, stored in MongoDB by
+<a href="../../services/messaging-service/">messaging-service</a>. See
+<a href="../../decisions/0001-delivery-events-in-mongodb/">ADR 0001</a> for why it's in Mongo,
+and <a href="../../decisions/0002-delivery-event-schema-validator/">ADR 0002</a> for the
+validator that now guards new writes.</p>
+</blockquote>
+<p>This is the busiest data model in Beacon. Every transactional and campaign message
+the product sends ends its life as exactly one delivery event: the small, permanent
+note that says <em>"we tried to send message X to org Y, and here's what happened."</em> At
+Beacon's volume that's millions of new records a day, and none of them is ever
+changed once written. If you're building a delivery report, a bounce dashboard, or
+anything that asks "did our customer's messages arrive?", this is the model you read.</p>
+<p>The most important thing to internalize before you write a line of code against it:
+<strong>this collection has no single fixed shape.</strong> It's schemaless, it has accumulated
+fields over years, and older records genuinely lack fields that newer ones carry.
+That's by design, not corruption — and it's the one fact that trips up everyone who
+assumes a field is always there. We'll come back to it repeatedly, because coding
+<em>defensively</em> is the whole job here.</p>
+<h2 id="business-view">Business view<a class="headerlink" href="#business-view" title="Permanent link">¶</a></h2>
+<p><em>Plain language — safe for non-engineers.</em></p>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>What it means</th>
+<th>Rules / behavior</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Outcome</td>
+<td>Whether the message arrived</td>
+<td>Delivered, failed, or bounced</td>
+</tr>
+<tr>
+<td>Channel</td>
+<td>How it was sent</td>
+<td>Email today; SMS only on old records (retired)</td>
+</tr>
+<tr>
+<td>When</td>
+<td>Time of the attempt</td>
+<td>One record per attempt; never updated</td>
+</tr>
+<tr>
+<td>Org</td>
+<td>Which customer it belongs to</td>
+<td>Used for per-customer delivery reporting</td>
+</tr>
+</tbody>
+</table>
+<p>Each row is a <em>fact about the past</em>. Unlike a <a href="../subscription/">Subscription</a>, which
+moves through a lifecycle (<code>trialing → active → past_due → …</code>) and is edited in
+place, a delivery event has no lifecycle of its own — it's born already final. There
+is no "the message became delivered later." If the same message is retried and a
+second attempt succeeds, that's a <em>second</em> event, not an edit to the first. Read the
+log as a stream of immutable observations, not as the current state of a message.</p>
+<p>A delivery event's life is short and one-directional: the message gets sent, the
+provider hands back a verdict, and we write the event down.</p>
+<pre class="mermaid"><code>flowchart LR
+  A["message sent via provider"] --&gt; B{"provider verdict"}
+  B --&gt;|accepted, reached inbox| C["status: delivered"]
+  B --&gt;|transient/permanent send error| D["status: failed"]
+  B --&gt;|recipient rejected it| E["status: bounced"]
+  C --&gt; F[("one row written to\nmessaging.delivery_events")]
+  D --&gt; F
+  E --&gt; F</code></pre>
+<p>What each outcome means in practice:</p>
+<ul>
+<li><strong><code>delivered</code></strong> — the provider accepted the message and reports it reached the
+  recipient. This is the happy path and the bulk of the volume.</li>
+<li><strong><code>failed</code></strong> — the send attempt itself didn't succeed (provider error, send-time
+  rejection, timeout). Distinct from a bounce: failure is <em>our side / the send</em>,
+  a bounce is <em>the recipient's mailbox</em>.</li>
+<li><strong><code>bounced</code></strong> — the recipient's mail system rejected the message after we handed it
+  off (bad address, full mailbox, blocked). Useful for list-hygiene reporting.</li>
+</ul>
+<p>These three outcomes also drive the events messaging-service emits downstream:
+a <code>delivered</code> event corresponds to <code>message.delivered</code>, and <code>failed</code>/<code>bounced</code> map to
+<code>message.failed</code> on RabbitMQ. So the delivery-event row and the published event are
+two records of the same moment — the row is the durable log, the event is the
+notification. (See <a href="../../services/messaging-service/">messaging-service</a>.)</p>
+<h2 id="how-it-maps-to-storage">How it maps to storage<a class="headerlink" href="#how-it-maps-to-storage" title="Permanent link">¶</a></h2>
+<p>This is a <strong>schemaless</strong> MongoDB collection, so "the model" is really the <em>union of
+shapes that have existed over time</em>. Newer fields simply don't exist on older
+documents — that's expected, not corruption. The reference below describes the
+<strong>current</strong> shape and flags where older documents differ. Because there's no schema
+enforcement <em>on existing data</em>, every consumer must code defensively rather than
+assume a field exists.</p>
+<p>Two storage facts shape everything you do with this model:</p>
+<ul>
+<li><strong>Field presence depends on a record's age.</strong> A document written in 2023 is a
+  smaller object than one written today. Fields were added by simply having the
+  writer start including them — no migration, no backfill — which is exactly the
+  cheap-to-evolve property <a href="../../decisions/0001-delivery-events-in-mongodb/">ADR 0001</a>
+  wanted, and exactly the drift you have to handle on read.</li>
+<li><strong>New writes are now validated; old data is not.</strong> As of
+  <a href="../../decisions/0002-delivery-event-schema-validator/">ADR 0002</a>, a MongoDB
+  JSON-schema validator (<code>validationLevel: "moderate"</code>, <code>validationAction: "error"</code>)
+  guards the collection. It requires the core four fields with correct types and a
+  valid <code>status</code>/<code>channel</code> on <strong>new</strong> writes, and rejects malformed ones at insert
+  time. It is deliberately <strong>not retroactive</strong> — historical documents are
+  grandfathered and never re-checked — so the drift caveat still holds for old data.
+  Don't read "validator added" as "every field is guaranteed everywhere."</li>
+</ul>
+<p>So there are effectively two populations in one collection: pre-validator documents
+(trust nothing; check presence) and post-validator documents (you can lean on the
+core four, but the age-dependent fields are still optional). When you read across a
+date range that straddles the validator, you'll see both — design for the looser one.</p>
+<hr>
+<p><em>Everything below is engineer-facing reference.</em></p>
+<h2 id="document-shape">Document shape<a class="headerlink" href="#document-shape" title="Permanent link">¶</a></h2>
+<p><em>For a schemaless store, "Present on" replaces nullability — it's the field that
+matters most here.</em></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Present on</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>_id</code></td>
+<td>ObjectId</td>
+<td>all</td>
+<td>Mongo's PK; its timestamp is a rough write-time proxy</td>
+</tr>
+<tr>
+<td><code>message_id</code></td>
+<td>string</td>
+<td>all</td>
+<td>soft ref to the message; <strong>in <code>required</code></strong></td>
+</tr>
+<tr>
+<td><code>org_id</code></td>
+<td>string</td>
+<td>all</td>
+<td>soft ref to <a href="../organization/">Organization</a>; <strong>in <code>required</code></strong></td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td>string</td>
+<td>all</td>
+<td><code>delivered</code> / <code>failed</code> / <code>bounced</code>; <strong>enum-validated on new writes</strong></td>
+</tr>
+<tr>
+<td><code>channel</code></td>
+<td>string</td>
+<td>all</td>
+<td><code>email</code>; <code>sms</code> only on legacy rows; <strong>enum-validated on new writes</strong></td>
+</tr>
+<tr>
+<td><code>provider_id</code></td>
+<td>string</td>
+<td><strong>≥ 2024-03</strong></td>
+<td>missing on older documents; optional even now</td>
+</tr>
+<tr>
+<td><code>region</code></td>
+<td>string</td>
+<td><strong>≥ 2024-07</strong></td>
+<td>added later; older docs have none; optional even now</td>
+</tr>
+<tr>
+<td><code>attempts</code></td>
+<td>int</td>
+<td>most</td>
+<td>absent on oldest rows — treat absent as <code>1</code></td>
+</tr>
+<tr>
+<td><code>debug_payload</code></td>
+<td>object</td>
+<td>a few 2023 rows</td>
+<td>see suspected dead</td>
+</tr>
+</tbody>
+</table>
+<p>The <strong>core four</strong> — <code>message_id</code>, <code>org_id</code>, <code>status</code>, <code>channel</code> — are the only fields
+the validator marks <code>required</code>. They appear on every document, old and new, which is
+what makes requiring them safe under <code>moderate</code> validation. Everything else is
+age-dependent and optional by design, so a brand-new, perfectly valid document can
+still omit <code>provider_id</code>, <code>region</code>, or <code>attempts</code>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Field presence drifts by record age</p>
+<p>The single most important fact about this collection: <strong>older documents lack
+fields added later.</strong> Known cutoffs — <code>provider_id</code> (before 2024-03), <code>region</code>
+(before 2024-07), <code>attempts</code> (oldest rows). Filter on existence or default in
+code; never assume universal presence. The
+<a href="../../decisions/0002-delivery-event-schema-validator/">ADR 0002</a> validator stops
+<em>new</em> drift but does <strong>not</strong> fix this for historical data.</p>
+</div>
+<h3 id="reading-defensively">Reading defensively<a class="headerlink" href="#reading-defensively" title="Permanent link">¶</a></h3>
+<p>Because the shape varies by age, every read either checks for a field or supplies a
+default. A few patterns you'll reach for constantly:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1">// Treat a missing attempts as 1 (the documented default).</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kd">const</span><span class="w"> </span><span class="nx">attempts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">doc</span><span class="p">.</span><span class="nx">attempts</span><span class="w"> </span><span class="o">??</span><span class="w"> </span><span class="mf">1</span><span class="p">;</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1">// "region is unknown" is a real, valid state for older rows — not an error.</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="kd">const</span><span class="w"> </span><span class="nx">region</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">doc</span><span class="p">.</span><span class="nx">region</span><span class="w"> </span><span class="o">??</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">;</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="c1">// Aggregating only rows that actually carry a field: filter on existence first.</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="nx">db</span><span class="p">.</span><span class="nx">delivery_events</span><span class="p">.</span><span class="nx">aggregate</span><span class="p">([</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nx">$match</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">region</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">$exists</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">},</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nx">$group</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">_id</span><span class="o">:</span><span class="w"> </span><span class="s2">"$region"</span><span class="p">,</span><span class="w"> </span><span class="nx">n</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">$sum</span><span class="o">:</span><span class="w"> </span><span class="mf">1</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="p">]);</span>
+</code></pre></div>
+<p>The trap is the aggregate report that spans a date range crossing a cutoff: half the
+window has <code>region</code>, half doesn't, and a naïve <code>$group</code> silently buckets the older
+half under <code>null</code>. Decide explicitly whether absent means "unknown" or "exclude."</p>
+<h3 id="query-patterns-its-shaped-for">Query patterns it's shaped for<a class="headerlink" href="#query-patterns-its-shaped-for" title="Permanent link">¶</a></h3>
+<p><a href="../../decisions/0001-delivery-events-in-mongodb/">ADR 0001</a> chose this store for two
+read patterns, and they're the ones to design around:</p>
+<ul>
+<li><strong>Recent-window, per-org lookups</strong> — "what happened to this org's sends in the last
+  few days?" Filter by <code>org_id</code> and a recent time bound (via <code>_id</code> or a write-time
+  field).</li>
+<li><strong>Aggregate reporting</strong> — delivery / bounce / failure rates over a period, often
+  grouped by <code>status</code>, <code>channel</code>, or <code>region</code>.</li>
+</ul>
+<p>Neither pattern joins across the log, and neither touches old rows often — which is
+why a schemaless append-only store fits and why cross-store joins (below) stay in
+application code.</p>
+<h2 id="defaults-derivations">Defaults &amp; derivations<a class="headerlink" href="#defaults-derivations" title="Permanent link">¶</a></h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>DB default</th>
+<th>App-level default / derivation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>any field</td>
+<td><strong>none</strong> (MongoDB applies no defaults)</td>
+<td>the writer sets every field explicitly at insert</td>
+</tr>
+<tr>
+<td><code>attempts</code> (when reading old rows)</td>
+<td>—</td>
+<td>assume <code>1</code> if the field is absent</td>
+</tr>
+<tr>
+<td><code>region</code> / <code>provider_id</code> (when absent)</td>
+<td>—</td>
+<td>treat as "unknown"; never assume a value</td>
+</tr>
+</tbody>
+</table>
+<p>MongoDB never fills a field in for you, and the validator doesn't add defaults either
+— it only accepts or rejects. So every value you see was written explicitly by the
+producer, and every value you <em>don't</em> see is genuinely absent. "Default <code>attempts</code> to
+1" is a <strong>read-side</strong> convention, not something stored; the row really has no
+<code>attempts</code> field.</p>
+<h2 id="constraints-validation">Constraints &amp; validation<a class="headerlink" href="#constraints-validation" title="Permanent link">¶</a></h2>
+<table>
+<thead>
+<tr>
+<th>Rule</th>
+<th>Enforced in</th>
+<th>Detail</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Core four present + correct types</td>
+<td><strong>DB (new writes)</strong></td>
+<td><code>required: [message_id, org_id, status, channel]</code> in the validator; not retroactive</td>
+</tr>
+<tr>
+<td bounced="bounced" delivered_="delivered," failed_="failed,"><code>status</code> ∈</td>
+<td><strong>DB (new writes) + app</strong></td>
+<td><code>enum</code> in the validator; also set by the writer. Old rows never re-checked</td>
+</tr>
+<tr>
+<td email_="email," sms="sms"><code>channel</code> ∈</td>
+<td><strong>DB (new writes)</strong></td>
+<td><code>enum</code> permits <code>sms</code> for legacy safety; no new SMS is written</td>
+</tr>
+<tr>
+<td>Age-dependent fields present</td>
+<td><strong>none</strong></td>
+<td><code>provider_id</code> / <code>region</code> / <code>attempts</code> stay optional even post-validator</td>
+</tr>
+<tr>
+<td>Write-once (no updates)</td>
+<td><strong>app</strong></td>
+<td>convention only — nothing prevents an update</td>
+</tr>
+</tbody>
+</table>
+<p>This section changed with <a href="../../decisions/0002-delivery-event-schema-validator/">ADR 0002</a>:
+the collection went from <em>zero</em> DB enforcement to a forward-only validator. The
+nuance worth holding onto:</p>
+<ul>
+<li><strong>A bad new write fails loudly and locally.</strong> A typo'd status like <code>"deliverd"</code> is
+  refused with a <code>DocumentValidationFailure</code> at insert time, next to the code that
+  caused it — not days later in a skewed report. Reassuringly, a rejected write
+  corrupts nothing; it's simply not stored.</li>
+<li><strong>Old data is untouched.</strong> <code>moderate</code> validation never re-checks documents that
+  already exist, so a 2023 row missing <code>provider_id</code> (or even an old <code>sms</code> row) reads
+  exactly as before.</li>
+<li><strong>Write-once is still only a convention.</strong> Nothing in the store prevents an
+  <code>update</code>; we rely on the writer never issuing one. Treat the log as immutable
+  because the <em>code</em> does, not because Mongo enforces it.</li>
+</ul>
+<h2 id="relationships">Relationships<a class="headerlink" href="#relationships" title="Permanent link">¶</a></h2>
+<p><em>All logical — MongoDB, so there are no foreign keys.</em></p>
+<table>
+<thead>
+<tr>
+<th>Related model</th>
+<th>Via</th>
+<th>Cardinality</th>
+<th>Enforcement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Message</td>
+<td><code>message_id</code></td>
+<td>many events → one message</td>
+<td><strong>cross-store (none)</strong></td>
+</tr>
+<tr>
+<td><a href="../organization/">Organization</a></td>
+<td><code>org_id</code></td>
+<td>many events → one org</td>
+<td><strong>cross-store (none)</strong></td>
+</tr>
+</tbody>
+</table>
+<pre class="mermaid"><code>erDiagram
+  ORGANIZATION ||--o{ DELIVERY_EVENT : "receives sends for"
+  MESSAGE ||--o{ DELIVERY_EVENT : "attempt recorded by"
+  DELIVERY_EVENT {
+    string message_id "soft ref"
+    string org_id "soft ref → Organization"
+    string status "delivered/failed/bounced"
+    string channel "email (sms legacy)"
+    string provider_id "≥ 2024-03"
+    string region "≥ 2024-07"
+    int attempts "absent ⇒ 1"
+  }</code></pre>
+<p>Both references are <strong>soft</strong>: <code>org_id</code> points at an <a href="../organization/">Organization</a>
+that lives in MySQL behind accounts-service, and <code>message_id</code> points at a message
+owned by messaging-service itself (its templates and schedules live in PostgreSQL; the
+event log lives here in MongoDB). Nothing keeps them honest. An org can be deleted
+while its delivery events live on, so a join from an event to its org (or to that
+org's <a href="../subscription/">Subscription</a>) happens in application code and must tolerate a
+missing target. There is no cascade, no FK, no referential check — by design, per
+<a href="../../decisions/0001-delivery-events-in-mongodb/">ADR 0001</a>.</p>
+<h2 id="notes-nuances">Notes &amp; nuances<a class="headerlink" href="#notes-nuances" title="Permanent link">¶</a></h2>
+<details class="note">
+<summary>Deprecated / historical</summary>
+<p><code>channel: "sms"</code> rows exist from the retired SMS feature. No new SMS rows are
+written. They're kept for historical reporting, and the validator still <em>permits</em>
+<code>sms</code> so the legacy value never trips a check — see the
+<a href="../../decisions/0002-delivery-event-schema-validator/">validator rationale</a>. The
+matching dead consumer is flagged on
+<a href="../../services/messaging-service/#notes-nuances">messaging-service</a>.</p>
+</details>
+<details class="info">
+<summary>Future / cleanup</summary>
+<p>A one-time best-effort backfill of <code>region</code> (derived from <code>provider_id</code>) has been
+discussed but not scheduled; it would <em>narrow</em> historical drift, not eliminate the
+pattern. Tightening the validator from <code>moderate</code> to <code>strict</code> only makes sense
+after such a backfill — and since events are write-once, it'd change little in
+practice. Both are noted in
+<a href="../../decisions/0002-delivery-event-schema-validator/">ADR 0002 → Future / cleanup</a>.</p>
+</details>
+<div class="admonition danger">
+<p class="admonition-title">Suspected dead</p>
+<p><code>debug_payload</code> appears on a handful of 2023 rows only — looks like a temporary
+debugging field left in by accident. Not written by current code, and not part of
+the validator schema, so any new write carrying it would still be accepted (it's
+not in <code>required</code>, and extra fields aren't forbidden) — but nothing produces it.</p>
+</div>
+<h2 id="sources-confidence">Sources &amp; confidence<a class="headerlink" href="#sources-confidence" title="Permanent link">¶</a></h2>
+<p>Derived from messaging-service's writer code plus sampling the collection across date
+ranges, cross-checked against
+<a href="../../decisions/0001-delivery-events-in-mongodb/">ADR 0001</a> and
+<a href="../../decisions/0002-delivery-event-schema-validator/">ADR 0002</a> for the storage and
+validation rationale. Confidence is moderate (62) precisely because historical shapes
+are hard to fully enumerate from code alone — the exact cutoff for the oldest fields
+(<code>attempts</code>) and the full set of one-off legacy fields like <code>debug_payload</code> come from
+sampling, not an authoritative schema. The validator's existence is well-attested
+(ADR 0002, <code>accepted</code>); its exact deployed definition should be re-verified against
+messaging-service's storage setup on the next pass.</p>
+<h2 id="related-pages">Related pages<a class="headerlink" href="#related-pages" title="Permanent link">¶</a></h2>
+<p><strong>Used by:</strong> <a href="../../options/message-settings/">Message settings</a>, <a href="../../flows/send-message/">Send a message</a></p>
+<p><strong>Owned by:</strong> <a href="../../services/messaging-service/">messaging-service</a></p>
+<p><strong>Related:</strong> <a href="../../decisions/0002-delivery-event-schema-validator/">Add a schema validator to delivery_events</a>, <a href="../../decisions/">Decisions</a>, <a href="../../decisions/0001-delivery-events-in-mongodb/">Delivery events in MongoDB</a>, <a href="../">Models</a>, <a href="../../">Overview</a>, <a href="../../services/">Services</a></p>
+<div class="doc-provenance">
+<p><strong>Confidence:</strong> 62/100 · <strong>Last reviewed:</strong> 2026-06-14 · <strong>Status:</strong> active</p>
+<p><strong>Verified against:</strong> beacon-messaging@7a8b9c0 (2026-05-22)</p>
+</div>
+<!-- Glossary tooltips for Beacon — auto-appended to every page. Define a term once
+     here and every prose occurrence gets a hover definition. Keep in sync with
+     docs/glossary.md. Case-sensitive. -->
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden="">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"></path></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer">
+        
+          
+          <a href="../subscription/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Subscription">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Subscription
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../organization/" class="md-footer__link md-footer__link--next" aria-label="Next: Organization">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Organization
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"></path></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.indexes", "navigation.prune", "navigation.top", "navigation.path", "navigation.footer", "toc.follow", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.tabs.link", "content.tooltips"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../javascripts/diagram-zoom.js"></script>
+      
+    
+  
+<script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(()=>{ lightbox.reload(); });
+</script></body></html>

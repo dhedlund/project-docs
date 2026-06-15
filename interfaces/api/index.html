@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="Fictional reference product — demonstrates the docs patterns." name="description"/>
+<link href="https://dhedlund.github.io/project-docs/interfaces/api/" rel="canonical"/>
+<link href="../../options/message-settings/" rel="prev"/>
+<link href="../webhooks/" rel="next"/>
+<link href="../../assets/images/favicon.png" rel="icon"/>
+<meta content="mkdocs-1.6.1, mkdocs-material-9.7.6" name="generator"/>
+<title>Messaging API - Beacon Docs (example)</title>
+<link href="../../assets/stylesheets/main.484c7ddc.min.css" rel="stylesheet"/>
+<link href="../../assets/stylesheets/palette.ab4e12ef.min.css" rel="stylesheet"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
+<style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+<link href="../../stylesheets/extra.css" rel="stylesheet"/>
+<link href="../../assets/stylesheets/mkdocs_d2_plugin.css" rel="stylesheet"/>
+<script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+<link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><script src="../../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color); }
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
+        </style></head>
+<body data-md-color-accent="indigo" data-md-color-primary="indigo" data-md-color-scheme="default" dir="ltr">
+<input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
+<input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
+<label class="md-overlay" for="__drawer"></label>
+<div data-md-component="skip">
+<a class="md-skip" href="#messaging-api">
+          Skip to content
+        </a>
+</div>
+<div data-md-component="announce">
+</div>
+<header class="md-header md-header--shadow" data-md-component="header">
+<nav aria-label="Header" class="md-header__inner md-grid">
+<a aria-label="Beacon Docs (example)" class="md-header__button md-logo" data-md-component="logo" href="../.." title="Beacon Docs (example)">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
+</a>
+<label class="md-header__button md-icon" for="__drawer">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+</label>
+<div class="md-header__title" data-md-component="header-title">
+<div class="md-header__ellipsis">
+<div class="md-header__topic">
+<span class="md-ellipsis">
+            Beacon Docs (example)
+          </span>
+</div>
+<div class="md-header__topic" data-md-component="header-topic">
+<span class="md-ellipsis">
+            
+              Messaging API
+            
+          </span>
+</div>
+</div>
+</div>
+<form class="md-header__option" data-md-component="palette">
+<input aria-label="Switch to dark mode" class="md-option" data-md-color-accent="indigo" data-md-color-media="(prefers-color-scheme: light)" data-md-color-primary="indigo" data-md-color-scheme="default" id="__palette_0" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_1" hidden="" title="Switch to dark mode">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"></path></svg>
+</label>
+<input aria-label="Switch to light mode" class="md-option" data-md-color-accent="indigo" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-primary="indigo" data-md-color-scheme="slate" id="__palette_1" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_0" hidden="" title="Switch to light mode">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"></path></svg>
+</label>
+</form>
+<script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+<label class="md-header__button md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+</label>
+<div class="md-search" data-md-component="search" role="dialog">
+<label class="md-search__overlay" for="__search"></label>
+<div class="md-search__inner" role="search">
+<form class="md-search__form" name="search">
+<input aria-label="Search" autocapitalize="off" autocomplete="off" autocorrect="off" class="md-search__input" data-md-component="search-query" name="query" placeholder="Search" required="" spellcheck="false" type="text"/>
+<label class="md-search__icon md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+</label>
+<nav aria-label="Search" class="md-search__options">
+<a aria-label="Share" class="md-search__icon md-icon" data-clipboard="" data-clipboard-text="" data-md-component="search-share" href="javascript:void(0)" tabindex="-1" title="Share">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"></path></svg>
+</a>
+<button aria-label="Clear" class="md-search__icon md-icon" tabindex="-1" title="Clear" type="reset">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+</button>
+</nav>
+<div class="md-search__suggest" data-md-component="search-suggest"></div>
+</form>
+<div class="md-search__output">
+<div class="md-search__scrollwrap" data-md-scrollfix="" tabindex="0">
+<div class="md-search-result" data-md-component="search-result">
+<div class="md-search-result__meta">
+            Initializing search
+          </div>
+<ol class="md-search-result__list" role="presentation"></ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+</nav>
+</header>
+<div class="md-container" data-md-component="container">
+<main class="md-main" data-md-component="main">
+<div class="md-main__inner md-grid">
+<div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Navigation" class="md-nav md-nav--primary" data-md-level="0">
+<label class="md-nav__title" for="__drawer">
+<a aria-label="Beacon Docs (example)" class="md-nav__button md-logo" data-md-component="logo" href="../.." title="Beacon Docs (example)">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
+</a>
+    Beacon Docs (example)
+  </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../..">
+<span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+<span class="md-status md-status--active"></span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+<a class="md-nav__link" href="../../domains/accounts/">
+<span class="md-ellipsis">
+    
+  
+    Domains
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+<a class="md-nav__link" href="../../features/">
+<span class="md-ellipsis">
+    
+  
+    Features
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+<a class="md-nav__link" href="../../flows/send-message/">
+<span class="md-ellipsis">
+    
+  
+    Flows
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+<a class="md-nav__link" href="../../options/message-settings/">
+<span class="md-ellipsis">
+    
+  
+    Options
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_6" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link md-nav__link--active" href="./">
+<span class="md-ellipsis">
+    
+  
+    Interfaces
+  
+
+    
+  </span>
+<span class="md-status md-status--active"></span>
+</a>
+<label class="md-nav__link md-nav__link--active" for="__nav_6" id="__nav_6_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="true" aria-labelledby="__nav_6_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_6">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Interfaces
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../webhooks/">
+<span class="md-ellipsis">
+    
+  
+    Webhooks
+  
+
+    
+  </span>
+<span class="md-status md-status--active"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../sdks/python/">
+<span class="md-ellipsis">
+    
+  
+    Python SDK
+  
+
+    
+  </span>
+<span class="md-status md-status--active"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../auth/">
+<span class="md-ellipsis">
+    
+  
+    Auth
+  
+
+    
+  </span>
+<span class="md-status md-status--active"></span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+<a class="md-nav__link" href="../../integrations/email-provider/">
+<span class="md-ellipsis">
+    
+  
+    Integrations
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+<a class="md-nav__link" href="../../surfaces/dashboard/">
+<span class="md-ellipsis">
+    
+  
+    Surfaces
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+<a class="md-nav__link" href="../../access/roles/">
+<span class="md-ellipsis">
+    
+  
+    Access
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+<a class="md-nav__link" href="../../services/">
+<span class="md-ellipsis">
+    
+  
+    Services
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+<a class="md-nav__link" href="../../models/">
+<span class="md-ellipsis">
+    
+  
+    Models
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+<a class="md-nav__link" href="../../datastores/mysql/">
+<span class="md-ellipsis">
+    
+  
+    Datastores
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../glossary/">
+<span class="md-ellipsis">
+    
+  
+    Glossary
+  
+
+    
+  </span>
+<span class="md-status md-status--active"></span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+<a class="md-nav__link" href="../../decisions/">
+<span class="md-ellipsis">
+    
+  
+    Decisions
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</a>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#quickstart">
+<span class="md-ellipsis">
+      
+        Quickstart
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#basics">
+<span class="md-ellipsis">
+      
+        Basics
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#reference">
+<span class="md-ellipsis">
+      
+        Reference
+      
+    </span>
+</a>
+<nav aria-label="Reference" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#endpoints-at-a-glance">
+<span class="md-ellipsis">
+      
+        Endpoints at a glance
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#sending-a-message">
+<span class="md-ellipsis">
+      
+        Sending a message
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#message-status">
+<span class="md-ellipsis">
+      
+        Message status
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#errors">
+<span class="md-ellipsis">
+      
+        Errors
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#guides">
+<span class="md-ellipsis">
+      
+        Guides
+      
+    </span>
+</a>
+<nav aria-label="Guides" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#how-the-pieces-fit-together">
+<span class="md-ellipsis">
+      
+        How the pieces fit together
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#notes-nuances">
+<span class="md-ellipsis">
+      
+        Notes &amp; nuances
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-content" data-md-component="content">
+<nav aria-label="Navigation" class="md-path">
+<ol class="md-path__list">
+<li class="md-path__item">
+<a class="md-path__link" href="../..">
+<span class="md-ellipsis">
+    Home
+  </span>
+</a>
+</li>
+<li class="md-path__item">
+<a class="md-path__link" href="./">
+<span class="md-ellipsis">
+    Interfaces
+  </span>
+</a>
+</li>
+</ol>
+</nav>
+<article class="md-content__inner md-typeset">
+<nav class="md-tags">
+<span class="md-tag">api</span>
+</nav>
+<h1 id="messaging-api">Messaging API<a class="headerlink" href="#messaging-api" title="Permanent link">¶</a></h1>
+<blockquote>
+<p>The public REST API for sending messages and checking their status. Your backend
+calls it to send transactional and campaign messages to your customers — a welcome
+email, a password reset, a billing receipt, a campaign blast — and to ask, later,
+what happened to each one. It's the same surface our own <a href="../sdks/python/">SDKs</a>
+are built on, so anything the Python client can do, you can do with a raw HTTP
+request.</p>
+</blockquote>
+<p>This is the <strong>send-and-track</strong> half of Beacon. You hand us a recipient, a channel,
+and a template; we render it, send it through the right provider, and record the
+outcome as a <a href="../../models/delivery-event/">delivery event</a>. You learn the result one
+of two ways: poll <code>GET /messages/{id}</code>, or — better for anything at scale —
+subscribe to <a href="../webhooks/"><abbr title="HTTP callbacks Beacon sends to your endpoint when events occur">webhooks</abbr></a> and let us push delivery outcomes to
+you. Most integrations do both: <abbr title="HTTP callbacks Beacon sends to your endpoint when events occur">webhooks</abbr> for the live signal, polling as a fallback
+and for reconciliation.</p>
+<p>A quick map of where this fits before you dive in:</p>
+<pre class="mermaid"><code>flowchart LR
+  you[Your backend] --&gt;|POST /messages| api[Messaging API]
+  api --&gt; ms[messaging-service]
+  ms --&gt;|render + send| prov[Email / SMS / Push provider]
+  prov --&gt;|outcome| ms
+  ms --&gt;|delivery event| mongo[(MongoDB)]
+  ms -.-&gt;|webhook| you
+  you -.-&gt;|GET /messages/id| api</code></pre>
+<p>The provider, the queueing, the retries, and the delivery log all live behind the
+API in <a href="../../services/messaging-service/">messaging-service</a> — you never touch them
+directly. You only ever see the two endpoints below and the <abbr title="HTTP callbacks Beacon sends to your endpoint when events occur">webhooks</abbr>.</p>
+<h2 id="quickstart">Quickstart<a class="headerlink" href="#quickstart" title="Permanent link">¶</a></h2>
+<p>Send a message, then read it back. These two calls cover the great majority of real
+usage.</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="c1"># Send</span>
+<a href="#__codelineno-0-2" id="__codelineno-0-2" name="__codelineno-0-2"></a>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>https://api.beacon.example/messages<span class="w"> </span><span class="se">\</span>
+<a href="#__codelineno-0-3" id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="w">  </span>-H<span class="w"> </span><span class="s2">"Authorization: Bearer sk_live_..."</span><span class="w"> </span><span class="se">\</span>
+<a href="#__codelineno-0-4" id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="w">  </span>-H<span class="w"> </span><span class="s2">"Beacon-Version: 2026-05-01"</span><span class="w"> </span><span class="se">\</span>
+<a href="#__codelineno-0-5" id="__codelineno-0-5" name="__codelineno-0-5"></a><span class="w">  </span>-H<span class="w"> </span><span class="s2">"Idempotency-Key: welcome-7a3f9c"</span><span class="w"> </span><span class="se">\</span>
+<a href="#__codelineno-0-6" id="__codelineno-0-6" name="__codelineno-0-6"></a><span class="w">  </span>-H<span class="w"> </span><span class="s2">"Content-Type: application/json"</span><span class="w"> </span><span class="se">\</span>
+<a href="#__codelineno-0-7" id="__codelineno-0-7" name="__codelineno-0-7"></a><span class="w">  </span>-d<span class="w"> </span><span class="s1">'{</span>
+<a href="#__codelineno-0-8" id="__codelineno-0-8" name="__codelineno-0-8"></a><span class="s1">    "to": "user@example.com",</span>
+<a href="#__codelineno-0-9" id="__codelineno-0-9" name="__codelineno-0-9"></a><span class="s1">    "channel": "email",</span>
+<a href="#__codelineno-0-10" id="__codelineno-0-10" name="__codelineno-0-10"></a><span class="s1">    "template": "welcome"</span>
+<a href="#__codelineno-0-11" id="__codelineno-0-11" name="__codelineno-0-11"></a><span class="s1">  }'</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-1-1" id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="p">{</span>
+<a href="#__codelineno-1-2" id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="w">  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"msg_4Qk2..."</span><span class="p">,</span>
+<a href="#__codelineno-1-3" id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="w">  </span><span class="nt">"to"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user@example.com"</span><span class="p">,</span>
+<a href="#__codelineno-1-4" id="__codelineno-1-4" name="__codelineno-1-4"></a><span class="w">  </span><span class="nt">"channel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email"</span><span class="p">,</span>
+<a href="#__codelineno-1-5" id="__codelineno-1-5" name="__codelineno-1-5"></a><span class="w">  </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"queued"</span><span class="p">,</span>
+<a href="#__codelineno-1-6" id="__codelineno-1-6" name="__codelineno-1-6"></a><span class="w">  </span><span class="nt">"created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2026-06-14T18:03:11Z"</span>
+<a href="#__codelineno-1-7" id="__codelineno-1-7" name="__codelineno-1-7"></a><span class="p">}</span>
+</code></pre></div>
+<p>The <code>status</code> you get back is almost always <code>queued</code> — the send is accepted and
+handed off, not yet delivered. To find out how it actually went, read it back by
+<code>id</code>:</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-2-1" id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="c1"># Check status</span>
+<a href="#__codelineno-2-2" id="__codelineno-2-2" name="__codelineno-2-2"></a>curl<span class="w"> </span>https://api.beacon.example/messages/msg_4Qk2...<span class="w"> </span><span class="se">\</span>
+<a href="#__codelineno-2-3" id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="w">  </span>-H<span class="w"> </span><span class="s2">"Authorization: Bearer sk_live_..."</span><span class="w"> </span><span class="se">\</span>
+<a href="#__codelineno-2-4" id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="w">  </span>-H<span class="w"> </span><span class="s2">"Beacon-Version: 2026-05-01"</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-3-1" id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="p">{</span>
+<a href="#__codelineno-3-2" id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="w">  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"msg_4Qk2..."</span><span class="p">,</span>
+<a href="#__codelineno-3-3" id="__codelineno-3-3" name="__codelineno-3-3"></a><span class="w">  </span><span class="nt">"to"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user@example.com"</span><span class="p">,</span>
+<a href="#__codelineno-3-4" id="__codelineno-3-4" name="__codelineno-3-4"></a><span class="w">  </span><span class="nt">"channel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email"</span><span class="p">,</span>
+<a href="#__codelineno-3-5" id="__codelineno-3-5" name="__codelineno-3-5"></a><span class="w">  </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"delivered"</span><span class="p">,</span>
+<a href="#__codelineno-3-6" id="__codelineno-3-6" name="__codelineno-3-6"></a><span class="w">  </span><span class="nt">"created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2026-06-14T18:03:11Z"</span>
+<a href="#__codelineno-3-7" id="__codelineno-3-7" name="__codelineno-3-7"></a><span class="p">}</span>
+</code></pre></div>
+<p>Delivery is asynchronous and can take a while — a provider may confirm seconds or
+minutes later, and some channels are slower than others. Don't busy-poll waiting for
+<code>delivered</code>; subscribe to <a href="../webhooks/"><abbr title="HTTP callbacks Beacon sends to your endpoint when events occur">webhooks</abbr></a> instead and treat polling
+as a backstop.</p>
+<h2 id="basics">Basics<a class="headerlink" href="#basics" title="Permanent link">¶</a></h2>
+<ul>
+<li><strong>Base URL / environments</strong> — <code>https://api.beacon.example</code> (prod),
+  <code>https://api.sandbox.beacon.example</code> (sandbox). Sandbox accepts the same calls but
+  doesn't send real messages — use it to wire up your integration and exercise
+  <abbr title="HTTP callbacks Beacon sends to your endpoint when events occur">webhooks</abbr> without emailing real people. Keys are environment-scoped (<code>sk_live_…</code>
+  vs <code>sk_test_…</code>), so a sandbox key against the prod URL simply fails auth.</li>
+<li><strong>Auth</strong> — bearer API key in <code>Authorization: Bearer &lt;key&gt;</code>, scoped per
+  environment. Sending needs the <code>messages:send</code> scope; reading status needs
+  <code>messages:read</code>. Full details, scopes, and key handling on the
+  <a href="../auth/">Auth</a> page.</li>
+<li><strong>Versioning</strong> — date-pinned via the <code>Beacon-Version</code> header (e.g.
+  <code>2026-05-01</code>). Breaking changes ship under a <strong>new date</strong>; old versions keep
+  working for <strong>12 months</strong> after a newer one lands. Pin a version explicitly in
+  production so a future breaking change can't surprise you — omitting the header
+  falls back to your account's default, which can move.</li>
+<li><strong>Content type</strong> — request and response bodies are JSON (<code>application/json</code>).
+  Timestamps are ISO-8601 UTC (<code>created</code> is <code>date-time</code>, read-only).</li>
+<li><strong>Errors</strong> — JSON <code>{code, message}</code>; <code>429</code> carries a <code>Retry-After</code>. See
+  <a href="#errors">Errors</a> below.</li>
+</ul>
+<h2 id="reference">Reference<a class="headerlink" href="#reference" title="Permanent link">¶</a></h2>
+<p>The authoritative endpoint reference is rendered from the OpenAPI spec, compiled
+from the TypeSpec contracts in <code>contracts/public-api/</code>. The spec — not this page —
+is ground truth for exact field names, types, and required/optional status; the
+prose here exists to give you the <em>why</em> and the gotchas around it.</p>
+<p><iframe class="swagger-ui-iframe" frameborder="0" id="cd8088f4" onload="this.style.display = 'block'; this.style.overflow = 'hidden'; this.style.width = '100%';" src="swagger-cd8088f4.html" style="display:none;" width="100%"></iframe></p>
+<h3 id="endpoints-at-a-glance">Endpoints at a glance<a class="headerlink" href="#endpoints-at-a-glance" title="Permanent link">¶</a></h3>
+<table>
+<thead>
+<tr>
+<th>Method &amp; path</th>
+<th>Scope</th>
+<th>Does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>POST /messages</code></td>
+<td><code>messages:send</code></td>
+<td>Accept a message for delivery; returns it with a <code>queued</code> status</td>
+</tr>
+<tr>
+<td><code>GET /messages/{id}</code></td>
+<td><code>messages:read</code></td>
+<td>Read one message's current status</td>
+</tr>
+</tbody>
+</table>
+<p>That's the whole public surface today — two endpoints. Everything else (templates,
+scheduling internals, the delivery-event log) is owned and managed inside
+<a href="../../services/messaging-service/">messaging-service</a> and isn't exposed here.</p>
+<h3 id="sending-a-message">Sending a message<a class="headerlink" href="#sending-a-message" title="Permanent link">¶</a></h3>
+<p><code>POST /messages</code> takes three required fields and one optional one:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Required</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>to</code></td>
+<td>yes</td>
+<td>The recipient. For <code>email</code> this is an address; the shape depends on the channel.</td>
+</tr>
+<tr>
+<td><code>channel</code></td>
+<td>yes</td>
+<td><code>email</code> | <code>sms</code> | <code>push</code>. See the channel note below.</td>
+</tr>
+<tr>
+<td><code>template</code></td>
+<td>yes</td>
+<td>The template name to render. Templates live in messaging-service.</td>
+</tr>
+<tr>
+<td><code>sendAt</code></td>
+<td>no</td>
+<td>ISO-8601 time to schedule the send. <strong>Omit to send now</strong>; set it to send later.</td>
+</tr>
+</tbody>
+</table>
+<p>You always send a <strong>template name</strong>, never raw message bodies — Beacon renders the
+template on its side. That's deliberate: it keeps content, localization, and
+compliance (unsubscribe footers, etc.) in one place rather than scattered across
+every caller.</p>
+<div class="admonition warning">
+<p class="admonition-title">Channel: <code>email</code> is the live path</p>
+<p>The spec advertises <code>email</code>, <code>sms</code>, and <code>push</code>, but in practice <strong><code>email</code> is
+the channel that's actually exercised end-to-end.</strong> <code>sms</code> is a retired
+feature — it appears only on legacy <a href="../../models/delivery-event/">delivery-event</a>
+records, and the internal SMS consumer is
+<a href="../../services/messaging-service/">suspected dead</a>. Treat <code>sms</code> (and anything
+beyond <code>email</code>) as not currently supported in practice, regardless of what the
+enum permits. If you need a non-email channel, confirm support before building
+on it.</p>
+</div>
+<h3 id="message-status">Message status<a class="headerlink" href="#message-status" title="Permanent link">¶</a></h3>
+<p>A message moves through these states. The set is fixed by the spec
+(<code>MessageStatus</code>):</p>
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Terminal?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>queued</code></td>
+<td>Accepted, not yet handed to a provider</td>
+<td>no</td>
+</tr>
+<tr>
+<td><code>sent</code></td>
+<td>Handed to the provider, not yet confirmed delivered</td>
+<td>no</td>
+</tr>
+<tr>
+<td><code>delivered</code></td>
+<td>Provider confirmed delivery</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><code>failed</code></td>
+<td>Retries exhausted</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><code>bounced</code></td>
+<td>Hard bounce (email)</td>
+<td>yes</td>
+</tr>
+</tbody>
+</table>
+<pre class="mermaid"><code>stateDiagram-v2
+  [*] --&gt; queued
+  queued --&gt; sent
+  sent --&gt; delivered
+  sent --&gt; failed
+  sent --&gt; bounced
+  delivered --&gt; [*]
+  failed --&gt; [*]
+  bounced --&gt; [*]</code></pre>
+<p>The three terminal states map exactly to the outcomes recorded on a
+<a href="../../models/delivery-event/">delivery event</a> (<code>delivered</code> / <code>failed</code> / <code>bounced</code>)
+and to the <a href="../webhooks/"><abbr title="an HTTP callback Beacon sends to your endpoint when an event occurs">webhook</abbr></a> events of the same names. <code>queued</code> and
+<code>sent</code> are in-flight stages you'll see while polling but never as a final answer.</p>
+<h3 id="errors">Errors<a class="headerlink" href="#errors" title="Permanent link">¶</a></h3>
+<p>Errors come back as JSON with a stable machine-readable <code>code</code> and a human
+<code>message</code>:</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-4-1" id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="p">{</span><span class="w"> </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"invalid_request"</span><span class="p">,</span><span class="w"> </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Field 'template' is required."</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<p>Branch on <code>code</code>, not on <code>message</code> (the wording can change). The usual HTTP
+conventions apply:</p>
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>What to do</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>400</code></td>
+<td>Malformed or invalid request</td>
+<td>Fix the payload; don't retry as-is</td>
+</tr>
+<tr>
+<td><code>401</code></td>
+<td>Missing or bad API key</td>
+<td>Check the key and environment</td>
+</tr>
+<tr>
+<td><code>403</code></td>
+<td>Key lacks the required scope</td>
+<td>Grant <code>messages:send</code> / <code>messages:read</code></td>
+</tr>
+<tr>
+<td><code>404</code></td>
+<td>No message with that <code>id</code></td>
+<td>Confirm the id (and the environment)</td>
+</tr>
+<tr>
+<td><code>429</code></td>
+<td>Rate limited</td>
+<td>Back off; honor the <code>Retry-After</code> header</td>
+</tr>
+<tr>
+<td><code>5xx</code></td>
+<td>Something failed on our side</td>
+<td>Retry with backoff; <abbr title="making a request safe to retry without causing duplicate effects">idempotency</abbr>-safe</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition tip">
+<p class="admonition-title">Rate limits and <code>Retry-After</code></p>
+<p>On a <code>429</code>, the response carries a <code>Retry-After</code> header telling you how long to
+wait before retrying. Respect it rather than retrying immediately — tight retry
+loops just deepen the backlog. The <a href="../sdks/python/">Python SDK</a> handles this
+backoff for you.</p>
+</div>
+<h2 id="guides">Guides<a class="headerlink" href="#guides" title="Permanent link">¶</a></h2>
+<ul>
+<li><a href="../auth/">Authentication</a> — API keys, scopes, environments, key handling.</li>
+<li><a href="../webhooks/">Webhooks</a> — get delivery outcomes <strong>pushed</strong> to you
+  instead of polling. The recommended way to learn results at scale.</li>
+<li><a href="../sdks/python/">Python SDK</a> — the official client, with retries and
+  pagination built in.</li>
+</ul>
+<h3 id="how-the-pieces-fit-together">How the pieces fit together<a class="headerlink" href="#how-the-pieces-fit-together" title="Permanent link">¶</a></h3>
+<p>This API is one of three customer-facing surfaces on the messaging domain, and they
+solve different problems — reach for the right one:</p>
+<table>
+<thead>
+<tr>
+<th>You want to…</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Send a message / look up one message's status</td>
+<td>This API</td>
+</tr>
+<tr>
+<td>Be notified of delivery outcomes without polling</td>
+<td><a href="../webhooks/">Webhooks</a></td>
+</tr>
+<tr>
+<td>Authenticate and manage keys</td>
+<td><a href="../auth/">Auth</a></td>
+</tr>
+<tr>
+<td>Skip raw HTTP and use idiomatic Python</td>
+<td><a href="../sdks/python/">Python SDK</a></td>
+</tr>
+</tbody>
+</table>
+<p>A typical lifecycle threads through all of them: authenticate with a key
+(<a href="../auth/">Auth</a>) → <code>POST /messages</code> here → receive a
+<a href="../webhooks/"><abbr title="an HTTP callback Beacon sends to your endpoint when an event occurs">webhook</abbr></a> when the outcome lands → optionally <code>GET
+/messages/{id}</code> to reconcile.</p>
+<h2 id="notes-nuances">Notes &amp; nuances<a class="headerlink" href="#notes-nuances" title="Permanent link">¶</a></h2>
+<details class="info">
+<summary>Idempotency — make retries safe</summary>
+<p><code>POST /messages</code> accepts an <code>Idempotency-Key</code> header so retries don't
+double-send. If your request times out or you're unsure it landed, <strong>retry with
+the same key</strong> and you'll get the original result back instead of a second
+message. Choose a key that's stable for the logical send (e.g. derived from your
+own record id, like <code>welcome-&lt;user_id&gt;</code>), not a fresh random value per attempt —
+a new key on each try defeats the whole purpose.</p>
+</details>
+<details class="info">
+<summary>Polling vs <abbr title="HTTP callbacks Beacon sends to your endpoint when events occur">webhooks</abbr> — pick the right tool</summary>
+<p>Polling <code>GET /messages/{id}</code> is fine for a one-off or a quick check, but it
+doesn't scale: delivery can lag well behind the send, so you'd poll many times
+per message. For production, subscribe to <a href="../webhooks/"><abbr title="HTTP callbacks Beacon sends to your endpoint when events occur">webhooks</abbr></a> and
+treat polling as a reconciliation backstop. Note the two surfaces use different
+reliability models — the API is a synchronous request/response, while <abbr title="HTTP callbacks Beacon sends to your endpoint when events occur">webhooks</abbr>
+are <strong>at-least-once and unordered</strong>, so a <code>delivered</code> <abbr title="an HTTP callback Beacon sends to your endpoint when an event occurs">webhook</abbr> can arrive before
+you've finished processing <code>sent</code>. Reconcile against current message state, not
+event order.</p>
+</details>
+<details class="note">
+<summary>Two endpoints, on purpose</summary>
+<p>There's no list-or-search-messages endpoint and no template-management endpoint
+in the public API today. Bulk reporting comes from the
+<a href="../../models/delivery-event/">delivery-event</a> log and the dashboard, not from
+this surface. If you find yourself wanting to enumerate messages over HTTP,
+you're probably reaching for <abbr title="HTTP callbacks Beacon sends to your endpoint when events occur">webhooks</abbr> (for the live stream) or dashboard exports
+(for history) instead.</p>
+</details>
+<details class="info">
+<summary>Changelog</summary>
+<p>Breaking changes are introduced under new <code>Beacon-Version</code> dates and the prior
+version is supported for 12 months. The current stable version is <code>2026-05-01</code>
+(the floor for SDK 2.x — see <a href="../sdks/python/">version compatibility</a>). Pin a
+date in production.</p>
+</details>
+<div class="doc-provenance">
+<p><strong>Confidence:</strong> 75/100 · <strong>Last reviewed:</strong> 2026-06-14 · <strong>Status:</strong> active</p>
+<p><strong>Verified against:</strong> beacon-messaging@7a8b9c0 (2026-05-22)</p>
+</div>
+<!-- Glossary tooltips for Beacon — auto-appended to every page. Define a term once
+     here and every prose occurrence gets a hover definition. Keep in sync with
+     docs/glossary.md. Case-sensitive. -->
+</article>
+</div>
+<script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+</div>
+<button class="md-top md-icon" data-md-component="top" hidden="" type="button">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"></path></svg>
+  Back to top
+</button>
+</main>
+<footer class="md-footer">
+<nav aria-label="Footer" class="md-footer__inner md-grid">
+<a aria-label="Previous: Message settings" class="md-footer__link md-footer__link--prev" href="../../options/message-settings/">
+<div class="md-footer__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+</div>
+<div class="md-footer__title">
+<span class="md-footer__direction">
+                Previous
+              </span>
+<div class="md-ellipsis">
+                Message settings
+              </div>
+</div>
+</a>
+<a aria-label="Next: Webhooks" class="md-footer__link md-footer__link--next" href="../webhooks/">
+<div class="md-footer__title">
+<span class="md-footer__direction">
+                Next
+              </span>
+<div class="md-ellipsis">
+                Webhooks
+              </div>
+</div>
+<div class="md-footer__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"></path></svg>
+</div>
+</a>
+</nav>
+<div class="md-footer-meta md-typeset">
+<div class="md-footer-meta__inner md-grid">
+<div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" rel="noopener" target="_blank">
+      Material for MkDocs
+    </a>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<div class="md-dialog" data-md-component="dialog">
+<div class="md-dialog__inner md-typeset"></div>
+</div>
+<div class="md-progress" data-md-component="progress" role="progressbar"></div>
+<script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.indexes", "navigation.prune", "navigation.top", "navigation.path", "navigation.footer", "toc.follow", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.tabs.link", "content.tooltips"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+<script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+<script src="../../javascripts/diagram-zoom.js"></script>
+<script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(()=>{ lightbox.reload(); });
+</script><script>document$.subscribe(() => {
+            window.update_swagger_ui_iframe_height = function (id) {
+                var iFrameID = document.getElementById(id);
+                if (iFrameID) {
+                    full_height = (iFrameID.contentWindow.document.body.scrollHeight + 80) + "px";
+                    iFrameID.height = full_height;
+                    iFrameID.style.height = full_height;
+                }
+            }
+        
+            let iframe_id_list = []
+            var iframes = document.getElementsByClassName("swagger-ui-iframe");
+            for (var i = 0; i < iframes.length; i++) { 
+                iframe_id_list.push(iframes[i].getAttribute("id"))
+            }
+            let ticking = false;
+            document.addEventListener('scroll', function(e) {
+                if (!ticking) {
+                    window.requestAnimationFrame(()=> {
+                        let half_vh = window.innerHeight/2;
+                        for(var i = 0; i < iframe_id_list.length; i++) {
+                            let element = document.getElementById(iframe_id_list[i])
+                            if(element==null){
+                                return
+                            }
+                            let diff = element.getBoundingClientRect().top
+                            if(element.contentWindow.update_top_val){
+                                element.contentWindow.update_top_val(half_vh - diff)
+                            }
+                        }
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+            });
+        
+            const dark_scheme_name = "slate"
+            
+            const schemeAttr = document.body.getAttribute("data-md-color-scheme");
+            const isMediaPrefersScheme = document.body.getAttribute("data-md-color-media") === "(prefers-color-scheme: dark)";
+
+            if (!isMediaPrefersScheme) {
+                window.__init_is_dark_mode = (schemeAttr === dark_scheme_name);
+            } else {
+                const computedScheme = window.getComputedStyle(document.body).getPropertyValue('color-scheme');
+                window.__init_is_dark_mode = computedScheme === "dark";
+            }
+            const options = {
+                attributeFilter: ['data-md-color-scheme'],
+            };
+            function color_scheme_callback(mutations) {
+                for (let mutation of mutations) {
+                    if (mutation.attributeName === "data-md-color-scheme") {
+                        scheme = document.body.getAttribute("data-md-color-scheme")
+                        var iframe_list = document.getElementsByClassName("swagger-ui-iframe")
+                        for(var i = 0; i < iframe_list.length; i++) {
+                            var ele = iframe_list.item(i);
+                            if (ele) {
+                                if (scheme === dark_scheme_name) {
+                                    ele.contentWindow.enable_dark_mode();
+                                } else {
+                                    ele.contentWindow.disable_dark_mode();
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            observer = new MutationObserver(color_scheme_callback);
+            observer.observe(document.body, options);
+            })</script></body></html>
