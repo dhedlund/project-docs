@@ -34,7 +34,7 @@ TTY := $(shell [ -t 0 ] && echo -it)
 help: ## Show this help
 	@echo "Beacon example docs — make targets (engine: $(ENGINE)):"
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | \
-	  awk 'BEGIN {FS = ":.*?## "}; {printf "  \033[36m%-9s\033[0m %s\n", $$1, $$2}'
+	  awk 'BEGIN {FS = ":.*?## "}; {printf "  \033[36m%-18s\033[0m %s\n", $$1, $$2}'
 
 image: ## Build the shared toolkit image from the repo root
 	$(ENGINE) build -t $(IMAGE) -f ../Containerfile ..
