@@ -15,7 +15,7 @@ Match the user's intent to a routine and follow that document:
 
 | The user says (or means)… | Do this |
 |---------------------------|---------|
-| "set up new project", "set this up", "bootstrap", "onboard a new product" | Follow **[agent_docs/process/new-project-bootstrap.md](agent_docs/process/new-project-bootstrap.md)**. **It will stop and ask you questions first — do not skip that.** |
+| "set up new project", "set this up", "bootstrap", "onboard a new product" | Follow **[agent_docs/process/new-project-bootstrap.md](agent_docs/process/new-project-bootstrap.md)**. **It stops and asks for a couple of essentials (above all, code access) first — don't skip that — then discovers the rest from the code.** |
 | "work on what's next", "continue", "work the backlog", "keep going" | Follow **[agent_docs/process/loop.md](agent_docs/process/loop.md)**: take the *Now* item from `agent_docs/process/plan.md`, do it, reflect, route findings, commit, repeat. |
 | "audit", "check the docs are accurate", "re-verify" | Run an audit pass per `agent_docs/process/loop.md` against the audit checklist. |
 | author or edit a page directly | Read **[CONVENTIONS.md](CONVENTIONS.md)** and copy the right file from `templates/`. |
@@ -66,6 +66,6 @@ make serve      # preview at http://localhost:8000
 Work autonomously within scope: when something is ambiguous, research the source,
 form a judgment, lower confidence if unsure, and proceed — don't stop to ask
 permission for in-scope decisions. **The one exception is the new-project
-bootstrap**, which must stop and ask the user the questions in its routine before
-doing any work (the answers — especially how agents access the code — shape
-everything after).
+bootstrap**, which must stop and ask the user a few essentials — above all, how to
+access the code — before doing any work. It then *discovers* the rest by reading the
+source (don't interrogate the user for what the code can tell you).

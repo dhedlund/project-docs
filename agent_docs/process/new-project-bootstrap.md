@@ -5,63 +5,78 @@ state. A product can span many repositories; this one docs repo will cover all o
 them. After this completes, the user can say "work on what's next" and the
 [loop](loop.md) takes over.
 
+**Principle: discover, don't interrogate.** The whole point is that the agent builds
+the docs — so don't hand the user a questionnaire of things you can read from the
+code. Ask only for what you genuinely *cannot* determine from the source — above
+all, **how to access the code** — then go explore and figure out the rest, and
+*propose* the judgment calls (where to start, what's out of scope) rather than
+asking them cold.
+
 ---
 
-## Step 0 — STOP and ask. Do not skip this.
+## Step 0 — STOP and ask (the essentials only). Do not skip this.
 
-**Before changing any files, ask the user the questions below and wait for
-answers.** Do not assume defaults — the answers (especially *code access*) shape
-everything that follows. Ask them grouped, in your own words; let the user answer
-in bulk. If the user defers a non-critical question, record the gap and proceed
-with a low-confidence assumption. **Code access (group 3) must be answered.**
+**Before changing any files, ask the user just these, and wait — then proceed.**
+Keep it short; this is not a survey.
 
-### 1. Product identity
-- What is the product called, and in one paragraph, what does it do?
-- What are its major domains / capabilities (rough is fine)?
+1. **Code access — REQUIRED.** How should an agent read the source? e.g. a read-only
+   clone/mirror on this host (which path?), mounted read-only into the toolkit
+   container (which path?), the agent runs where the code already lives, or a
+   snapshot the user provides. Note any constraints (private repos, secrets, VPN).
+   Confirm the code is **read-only** to agents — we document it, never modify it.
+2. **Product, in one line** — name + what it does. *Skip if it's obvious from the
+   repos;* confirm what you infer.
+3. **Anything off-limits or known out of scope?** *(Optional — you'll also propose
+   scope yourself in Step 2.)*
 
-### 2. Repositories (a product = many repos)
-- Which repositories make up this product? For each: where it lives and its
-  primary language / role.
-- Which are in scope to document now vs. later?
+Everything else — domains, languages, datastores, queues, public API, webhooks,
+SDKs, auth, frontends, integrations, roles — **you will discover in Step 1. Don't
+ask for it.** If the user can't answer something critical, record the gap and
+proceed with a low-confidence assumption. **Code access must be answered** before
+you touch files.
 
-### 3. Code access — REQUIRED
-- **How should an agent read the source code?** e.g.:
-  - a read-only local clone/mirror on this host (which path?),
-  - mounted read-only into the toolkit container (which path?),
-  - the agent runs on the host where the code already lives,
-  - a per-session snapshot/export the user provides.
-- Any access constraints — private repos, secrets, VPN, network rules?
-- **Provenance:** should agents record the commit/snapshot they verified a page
-  against? (Recommended yes — pick a ref format, e.g. `repo@<sha>` or
-  `repo@<date>`.)
-- Confirm the code is **read-only** to agents (we document, never modify it).
+---
 
-### 4. Stack (so we anticipate page types)
-- Backend languages, datastores, message queues, frontends.
+## Step 1 — Explore the source (discover, cheaply)
 
-### 5. Boundaries & priorities
-- Which layer or domain should we seed first?
-- Anything explicitly out of scope?
-- Existing product docs or ticket systems to fold in later? (Capture that they
-  exist; don't ingest them now — they're lower-confidence enrichment.)
+Using the agreed code-access method, do a **breadth-first sweep** across the repos —
+fast and shallow, not a deep read. You're drawing a map, not writing the docs yet.
+From manifests, config, directory layout, and entry points, identify:
 
-### 6. Build & hosting (mostly defaulted)
-- Confirm a single docs repo (default: yes).
-- Any CI or hosting target to keep in mind?
+- **Stack** — languages, frameworks, build/deps (`package.json`, `pom.xml`,
+  `mix.exs`, `go.mod`, `Gemfile`, `requirements.txt`, …).
+- **Datastores & queues** — databases, caches, brokers (from config / connection
+  setup / migrations / schemas).
+- **Domains / bounded contexts** — the major capability areas (from top-level
+  module/service structure and naming).
+- **Services** — the deployable/black-box units and roughly what each owns.
+- **Data models** — the core entities and where they're persisted.
+- **Integration surface** — public/partner **API** (REST / GraphQL?), **webhooks**
+  it emits, client **SDKs** (which languages), and the **auth** model (API keys /
+  OAuth / …). Look for route definitions, API specs, SDK packages.
+- **Frontends / surfaces** — the apps that exist (B2C app, partner/admin portal,
+  marketing/status site).
+- **Third-party integrations** — payments, email/SMS, CRM, storage, etc. (from deps
+  and client config).
+- **Roles / access control** — if there's meaningful authz, the main roles.
+- **Existing docs / tickets** — note if a product-docs site or ticket system exists;
+  **don't ingest now** — they're lower-confidence enrichment for later.
 
-### 7. The integration & product surface
-- **Public / partner API?** (REST / GraphQL) — and **webhooks** it sends? **Client
-  SDKs** (which languages)? What's the **API auth** model?
-- **Frontends / surfaces** — which apps exist (B2C app, B2B / partner portal, admin
-  console, marketing / status site)?
-- **Third-party integrations** the product depends on (payments, email/SMS, CRM,
-  storage, …)?
-- **Roles** — the main user/admin roles, if there's meaningful access control.
+Record what you find (it feeds Steps 2 and 6). Where the code can't tell you, say
+so — that's a gap to confirm, not a guess to assert.
 
-These decide which homes to create (see
-`agent_docs/stewardship/information-architecture.md`); make only the ones that apply.
+## Step 2 — Propose scope & starting point (confirm once)
 
-Write the answers down as you go (step 2 turns them into stewardship docs).
+Summarize what you discovered — domains, stack, surfaces, the integration surface —
+and in **one short message** propose:
+
+- which **homes** you'll create (per the IA map —
+  `agent_docs/stewardship/information-architecture.md`),
+- **where to start** (typically the highest-value service/domain plus its models),
+- what looks **out of scope** for now.
+
+Ask the user to confirm or adjust — a single round, not another questionnaire. Then
+proceed.
 
 ---
 
@@ -70,7 +85,7 @@ Write the answers down as you go (step 2 turns them into stewardship docs).
 > **in place**. `example/agent_docs/` shows the whole thing filled in for the
 > fictional Beacon product (stewardship + plan + backlog).
 
-## Step 1 — Confirm the scaffold
+## Step 3 — Confirm the scaffold
 
 Ensure the repo has `templates/`, `docs/{features,services,models,decisions}/`,
 `docs/datastores/`, `docs/glossary.md`, `contracts/` (interface specs), `CONVENTIONS.md`,
@@ -79,33 +94,35 @@ the toolkit (`Containerfile`, `Makefile`, `TOOLKIT.md`), and
 anything is missing, create it from this repo's existing shape. Don't reinvent —
 the scaffold already exists.
 
-## Step 2 — Write stewardship (from the answers)
+## Step 4 — Write stewardship (from discovery + the answers)
 
-- `agent_docs/stewardship/product.md` — identity, domains, scope and non-goals.
+- `agent_docs/stewardship/product.md` — identity, domains, scope and non-goals
+  (from Step 1 plus the Step 2 confirmation).
 - `agent_docs/stewardship/source-of-truth.md` — **the authoritative code-access
-  model and provenance convention** captured from group 3. Every later pass reads
-  this to know how to reach the code and how to cite it.
+  model** captured from Step 0, plus the **provenance convention** (default:
+  cite sources as `repo@<short-sha>` — adopt it unless the user wants another).
+  Every later pass reads this to know how to reach the code and how to cite it.
 
-## Step 3 — Fill in product specifics
+## Step 5 — Fill in product specifics
 
 Update `AGENTS.md` with the product name, the repo list, and a one-line pointer to
 `agent_docs/stewardship/source-of-truth.md` for code access.
 
-## Step 4 — Inventory and stub
+## Step 6 — Inventory and stub
 
-Using the agreed code-access method, cheaply enumerate the services, models, and
-features you can identify (don't deep-dive). For each, create a **stub page** from
-the matching `templates/` file under `docs/`, with `status: stub` and a low
-`reviewed_confidence`. The goal is breadth and a real cross-link graph, not depth.
+From your Step 1 exploration, cheaply enumerate the services, models, and features
+you identified (don't deep-dive). For each, create a **stub page** from the matching
+`templates/` file under `docs/`, with `status: stub` and a low `reviewed_confidence`.
+The goal is breadth and a real cross-link graph, not depth.
 
-Then, for each zone group 7 says exists, **create its home and a stub** per the IA
+Then, for each zone the exploration found, **create its home and a stub** per the IA
 map (`agent_docs/stewardship/information-architecture.md`): e.g. `docs/interfaces/`
 (`api/`, `webhooks/`, `sdks/`, `auth.md`), `docs/integrations/`, `docs/surfaces/`,
-`docs/access/`, plus `docs/domains/` for the domains from group 1. Add each new
-section to `mkdocs.yml` nav as you create it (`--strict` requires it). Don't create
-homes for zones the product doesn't have.
+`docs/access/`, plus `docs/domains/` for the domains you found. Add each new section
+to `mkdocs.yml` nav as you create it (`--strict` requires it). Don't create homes
+for zones the product doesn't have.
 
-## Step 5 — Seed the queue
+## Step 7 — Seed the queue
 
 Fill in `agent_docs/process/plan.md` and `backlog.md` — they ship in the scaffold
 with the management rules and classification already in place; replace the
@@ -120,7 +137,7 @@ placeholders and seed the queue:
   dead-path trace, glossary/consistency). These are what make the loop
   self-sustaining — see [loop.md](loop.md).
 
-## Step 6 — Verify it builds
+## Step 8 — Verify it builds
 
 ```bash
 make ci
@@ -128,7 +145,7 @@ make ci
 
 Fix anything `make ci` (build `--strict` + lint) flags before handing off.
 
-## Step 7 — Hand off
+## Step 9 — Hand off
 
 Tell the user bootstrap is complete and they can now say **"work on what's next"**
 (or set working the backlog as a standing goal). From here, [loop.md](loop.md)

@@ -56,34 +56,27 @@ toolkit image (see [TOOLKIT.md](TOOLKIT.md)).
 
 ### The bootstrap prompt
 
-Paste this and replace the `<PLACEHOLDERS>` with your product's details:
+The agent discovers the shape of your system (domains, stack, datastores, APIs,
+webhooks, SDKs, surfaces, integrations, roles) by reading the code — so you only
+have to tell it **where the code is and how to read it**. Paste this, filling the
+two placeholders:
 
 ```text
 Read AGENTS.md, then follow the new-project bootstrap to set up documentation for
-my product. Here are answers to its questions:
+my product.
 
-- Product: <NAME> — <one sentence on what it does>.
-- Domains (rough is fine): <e.g. accounts, billing, messaging>.
-- Repositories (a product = many repos):
-    - <repo-name> — <git URL or local path>, <language/stack>, <role>
-    - <repo-name> — <...>
-- Code access: <how an agent should read the source, e.g. read-only clones at
-  ~/code/<product>/<repo>, mounted read-only at /src>. Treat the code as read-only.
-- Provenance: cite sources as <repo>@<short-sha>.
-- Stack: <backend languages> · <datastores> · <queues> · <frontends>.
-- Public interfaces: API <none / REST / GraphQL>; webhooks <yes/no>;
-  SDKs <languages>; auth <API keys / OAuth / ...>.
-- Surfaces (frontends): <B2C app / partner portal / admin console / marketing>.
-- Third-party integrations: <payments / email / SMS / CRM / ...>.
-- Start with: <which domain or area to seed first>.
-- Out of scope: <anything to skip>.
+- Code access: <how an agent should read the source — e.g. read-only clones at
+  ~/code/<product>/*, or mounted read-only at /src>. Treat the code as read-only.
+- Product (one line, optional): <NAME> — <what it does>. Infer it if obvious.
 
-Stop and ask me about anything unclear, then seed the plan and backlog and tell me
-when it's ready for "work on what's next".
+Explore the code to work out the rest yourself. Stop and ask me only what you
+genuinely can't determine from the source or that needs my judgment — then propose
+where to start and what's out of scope, seed the plan and backlog, and tell me when
+it's ready for "work on what's next".
 ```
 
-Prefer to answer interactively? Just paste **`Read AGENTS.md and set up a new
-project.`** — the bootstrap asks you these questions itself.
+Even shorter: paste **`Read AGENTS.md and set up a new project.`** — it'll ask for
+code access, then explore and propose the rest itself.
 
 ## What's in the box
 
