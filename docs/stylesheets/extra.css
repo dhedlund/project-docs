@@ -101,13 +101,14 @@
 .dz-help { color: #fff; font-size: 0.72rem; text-decoration: none; opacity: 0.9; }
 .dz-help:hover { text-decoration: underline; }
 
-/* Key panel: the matching legend section, pulled from the reading guide. */
+/* Key panel: the matching legend section, pulled from the reading guide. Anchored
+   on the LEFT so it never overlaps the close button (top-right). */
 .dz-panel {
-  position: fixed; top: 0; right: 0; z-index: 1001;
+  position: fixed; top: 0; left: 0; z-index: 1001;
   width: min(22rem, 82vw); height: 100%; overflow: auto;
   padding: 1.4rem 1.4rem 2rem;
   background: var(--md-default-bg-color); color: var(--md-default-fg-color);
-  box-shadow: -0.2rem 0 0.7rem rgba(0, 0, 0, 0.35);
+  box-shadow: 0.2rem 0 0.7rem rgba(0, 0, 0, 0.35);
 }
 .dz-panel[hidden] { display: none; }
 .dz-panel h1, .dz-panel h2, .dz-panel h3 { margin-top: 0; font-size: 1rem; }

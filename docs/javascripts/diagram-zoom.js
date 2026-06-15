@@ -35,14 +35,26 @@
   // the shadow boundary, so --md-mermaid-edge-color resolves correctly here. We
   // scope to flowchart point markers to avoid disturbing class/sequence diagrams,
   // which Material colours deliberately.
-  function fixArrows(host) {
+  function fixMermaid(host) {
     var sr = host.shadowRoot;
-    if (!sr || sr.querySelector("style[data-dz-arrows]")) return;
-    var s = document.createElement("style");
-    s.setAttribute("data-dz-arrows", "1");
-    s.textContent =
+    if (!sr || sr.querySelector("style[data-dz-fix]")) return;
+    var svg = sr.querySelector("svg");
+    var role = svg && svg.getAttribute("aria-roledescription");
+    // Flowchart arrowheads need a fill — Material themes the stroke but not the
+    // fill, so they go dark/invisible in dark mode.
+    var css =
       'marker[id*="flowchart-point"] path,marker[id*="flowchart-circle"] path,' +
       'marker[id*="flowchart-cross"] path{fill:var(--md-mermaid-edge-color)!important;stroke:none}';
+    if (role === "er") {
+      // ER relationship markers (crow's foot, bars, the "zero" circle) are meant
+      // to be open OUTLINES. Material's blanket `marker{fill}` fills them into
+      // solid "leaf" blobs that sit on the entity boxes — force them back to
+      // outline. (This style lives inside this ER diagram's shadow root only.)
+      css += 'marker path{fill:none!important;stroke:var(--md-mermaid-edge-color)!important}';
+    }
+    var s = document.createElement("style");
+    s.setAttribute("data-dz-fix", "1");
+    s.textContent = css;
     sr.appendChild(s);
   }
 
@@ -127,8 +139,7 @@
       '<button class="dz-close" type="button" aria-label="Close">✕</button>' +
       '<aside class="dz-panel" hidden></aside>' +
       '<div class="dz-bar">' +
-      '<button class="dz-key" type="button">Key</button>' +
-      '<a class="dz-help" target="_blank" rel="noopener">How to read this diagram ↗</a>' +
+      '<button class="dz-key" type="button" aria-pressed="true">Key</button>' +
       '<span class="dz-hint">scroll to zoom · drag to pan · Esc to close</span>' +
       "</div>";
     document.body.appendChild(modal);
@@ -137,8 +148,7 @@
     var content = modal.querySelector(".dz-content");
     var panel = modal.querySelector(".dz-panel");
     var keyBtn = modal.querySelector(".dz-key");
-    var helpLink = modal.querySelector(".dz-help");
-    var curAnchor = "";
+    var curAnchor = "", helpURL = "";
     var box = null, placeholder = null;        // the diagram + where it came from
     var baseW = 1, baseH = 1;                   // content size at scale 1
     var scale = 1, fitScale = 1, minScale = 1, maxScale = 1;
@@ -158,6 +168,43 @@
       content.style.transform = "translate(" + tx + "px," + ty + "px) scale(" + scale + ")";
     }
 
+    // Fit + centre the diagram in the area NOT covered by the legend panel, so the
+    // default view (panel open) looks right and hiding the panel re-fits larger.
+    function fitView() {
+      if (!box) return;
+      var r = stage.getBoundingClientRect();
+      var panelW = panel.hidden ? 0 : (panel.offsetWidth || 0);
+      var availW = Math.max(50, r.width - panelW);
+      fitScale = Math.min((availW * 0.92) / baseW, (r.height * 0.9) / baseH) || 1;
+      minScale = Math.min((availW * MIN_FRAC) / baseW, (r.height * MIN_FRAC) / baseH) || fitScale;
+      maxScale = Math.max(fitScale * MAX_ZOOM_MULT, 12);
+      scale = fitScale;
+      tx = panelW + (availW - baseW * scale) / 2;
+      ty = (r.height - baseH * scale) / 2;
+      apply();
+    }
+
+    // Load the legend for the current diagram type from the guide page (cached).
+    function loadPanel() {
+      if (panel.dataset.loaded === curAnchor) return;
+      panel.dataset.loaded = curAnchor;
+      panel.innerHTML = '<p class="dz-panel-note">Loading…</p>';
+      fetchReadingDoc().then(function (doc) {
+        var frag = sectionFragment(doc, curAnchor);
+        panel.innerHTML = "";
+        if (frag) panel.appendChild(frag);
+        else panel.innerHTML = '<p class="dz-panel-note">No legend for this diagram type yet.</p>';
+        var more = document.createElement("p");
+        more.className = "dz-panel-more";
+        more.innerHTML = '<a href="' + helpURL + '" target="_blank" rel="noopener">Full reading guide ↗</a>';
+        panel.appendChild(more);
+      }).catch(function () {
+        panel.dataset.loaded = "";
+        panel.innerHTML = '<p class="dz-panel-note">Can’t load the key here (try over <code>make serve</code>). ' +
+          '<a href="' + helpURL + '" target="_blank" rel="noopener">Open the reading guide ↗</a></p>';
+      });
+    }
+
     function close() {
       if (box && placeholder && placeholder.parentNode) {
         placeholder.parentNode.replaceChild(box, placeholder);
@@ -175,28 +222,13 @@
       if (!modal.hidden && e.key === "Escape") close();
     });
 
-    // "Key" — toggle a side panel showing the legend for this diagram's type,
-    // pulled from the reading guide page (single source of truth).
+    // "Key" — show/hide the legend panel (it's up by default). Re-fits the diagram
+    // to the space that frees up or shrinks.
     keyBtn.addEventListener("click", function () {
-      if (!panel.hidden) { panel.hidden = true; return; }
-      panel.hidden = false;
-      if (panel.dataset.loaded === curAnchor) return;
-      panel.dataset.loaded = curAnchor;
-      panel.innerHTML = '<p class="dz-panel-note">Loading…</p>';
-      fetchReadingDoc().then(function (doc) {
-        var frag = sectionFragment(doc, curAnchor);
-        panel.innerHTML = "";
-        if (frag) panel.appendChild(frag);
-        else panel.innerHTML = '<p class="dz-panel-note">No legend for this diagram type yet.</p>';
-        var more = document.createElement("p");
-        more.className = "dz-panel-more";
-        more.innerHTML = '<a href="' + helpLink.href + '" target="_blank" rel="noopener">Full reading guide ↗</a>';
-        panel.appendChild(more);
-      }).catch(function () {
-        panel.dataset.loaded = "";
-        panel.innerHTML = '<p class="dz-panel-note">Can’t load the key here (try over <code>make serve</code>). ' +
-          '<a href="' + helpLink.href + '" target="_blank" rel="noopener">Open the reading guide ↗</a></p>';
-      });
+      if (panel.hidden) { panel.hidden = false; loadPanel(); }
+      else { panel.hidden = true; }
+      keyBtn.setAttribute("aria-pressed", String(!panel.hidden));
+      fitView();
     });
 
     stage.addEventListener(
@@ -254,14 +286,16 @@
       content.appendChild(el);
       box = el;
 
-      // Type-aware "how to read" target (and reset the key panel for this diagram).
+      // Type-aware legend target, and bring the legend panel up by default.
       curAnchor = diagramAnchor(el);
-      helpLink.href = readingURL(curAnchor);
-      panel.hidden = true;
+      helpURL = readingURL(curAnchor);
 
       // Show the modal BEFORE measuring — a hidden (display:none) modal reports
       // zero sizes, which would collapse the fit/zoom/pan math.
       modal.hidden = false;
+      panel.hidden = false;
+      keyBtn.setAttribute("aria-pressed", "true");
+      loadPanel();
 
       var r = stage.getBoundingClientRect();
       // Render at full stage width first so the diagram's percentage-width SVG
@@ -279,15 +313,7 @@
       var b = content.getBoundingClientRect();
       baseW = b.width || 1;
       baseH = b.height || 1;
-      // Fit ~90% of the viewport in the limiting dimension, then centre.
-      fitScale = Math.min((r.width * 0.92) / baseW, (r.height * 0.9) / baseH) || 1;
-      minScale = Math.min((r.width * MIN_FRAC) / baseW, (r.height * MIN_FRAC) / baseH) || fitScale;
-      maxScale = Math.max(fitScale * MAX_ZOOM_MULT, 12);
-      scale = fitScale;
-      tx = (r.width - baseW * scale) / 2;
-      ty = (r.height - baseH * scale) / 2;
-
-      apply();
+      fitView();
     };
     return modal;
   }
@@ -308,7 +334,7 @@
       var isMermaid = el.matches("div.mermaid");
       if (!isMermaid && !el.querySelector("svg")) continue; // d2 not rendered yet
       el.dataset.dz = "1";
-      if (isMermaid) fixArrows(el);
+      if (isMermaid) fixMermaid(el);
 
       var wrap = document.createElement("div");
       wrap.className = "dz-wrap";

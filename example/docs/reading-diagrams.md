@@ -8,9 +8,8 @@ status: active
 
 Our docs lean on diagrams to show how things fit together. This is a quick legend
 for the symbols you'll see, plus how to drive the diagram viewer. You don't need to
-read it end to end — jump to the type you're looking at. (In the fullscreen viewer,
-the **How to read this diagram** link brings you straight to the right section, and
-**Key** shows the same legend right beside the diagram.)
+read it end to end — jump to the type you're looking at. (The fullscreen viewer shows
+this legend beside the diagram automatically; toggle it with **Key**.)
 
 ## Getting around a diagram {#controls}
 
@@ -20,7 +19,8 @@ viewer:
 - **Scroll or pinch** to zoom; **drag** to pan.
 - **Esc**, the **✕**, or a click on the dark backdrop closes it. Clicking the
   diagram itself never closes it.
-- **Key** shows the legend for that diagram's type without leaving the viewer.
+- The **legend** for the diagram's type opens beside it automatically; the **Key**
+  button hides or brings it back.
 
 Diagrams follow the site's light/dark theme automatically.
 
