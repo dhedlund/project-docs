@@ -35,6 +35,11 @@ model/service/feature pages run business → technical (the depth ladder in
 - **Just enough, just in time.** Tell the reader what they need *here*, and link
   deeper rather than dumping everything at once. Depth is a click away, not in the
   way.
+- **Rich, not padded — and not a stub.** "Just enough" is about cutting *filler*,
+  never about being shallow. A good page tells the whole story: the *why*, the edge
+  cases, the permutations, how it connects to the rest. The pages under `example/`
+  are the depth bar — study them and match that richness. A short, sparse page is a
+  *stub to finish*, not the standard to copy; don't mistake brevity for done.
 - **Anticipate the reader.** Surface the gotcha or the "why" right before they'd
   hit it, and reassure where something looks scarier than it is ("a bad value here
   won't corrupt anything; it's rejected with a clear error").
