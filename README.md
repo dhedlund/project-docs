@@ -149,8 +149,8 @@ make build      # static site -> ./site  (offline, strict)
 make serve      # live preview at http://localhost:8000 (localhost-only; BIND=0.0.0.0 to expose)
 make check      # lint frontmatter + cross-link graph
 make report     # coverage / staleness report
-make ci             # build + check (the local gate)
-make test           # the tooling test suite
+make ci         # build + check (the local gate)
+make test       # the tooling test suite
 make publish-to-branch  # build docs + commit ./site to a local branch (push separately)
 ```
 
@@ -169,6 +169,12 @@ git push <remote> gh-pages   # push when you're ready
 Then on GitHub: **Settings → Pages → Source: Deploy from a branch → `gh-pages` / `(root)`**.
 Re-run + push to update. Override the branch with `make publish-to-branch BRANCH=docs-site`
 (or set `BRANCH=` in `.env`).
+
+**Prefer CI?** An inert `.github/workflows/docs-publish.yml.example` does the same on
+every push to `main` via GitHub Actions — rename it to `docs-publish.yml` and set the
+Pages source to **GitHub Actions** to enable. Pick one path: this workflow *or* the
+branch flow above (a repo has a single Pages source). Nothing auto-runs until you
+rename it.
 
 ## Contributing
 

@@ -55,7 +55,5 @@ jobs:
   # agent_docs/stewardship/source-of-truth.md):
   #   - run: docker run --rm -v "$PWD":/docs -v /path/to/code:/src:ro -w /docs docs-toolkit docs-drift docs
   #
-  # Publish to GitHub Pages (after `permissions: pages: write` + Pages config):
-  #   - uses: actions/upload-pages-artifact@v3
-  #     with: { path: site }
-  #   - uses: actions/deploy-pages@v4
+  # Publishing to GitHub Pages is a separate concern — see docs-publish.yml.example
+  # (CI deploy), or run `make publish-to-branch` locally.

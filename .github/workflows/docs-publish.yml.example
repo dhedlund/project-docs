@@ -1,0 +1,75 @@
+## ─────────────────────────────────────────────────────────────────────────
+## Docs publish — EXAMPLE / TEMPLATE (inert by default)
+##
+## This file ends in `.yml.example`, so GitHub Actions does NOT run it. It's the
+## CI alternative to the manual `make publish-to-branch` flow — enable it only if
+## you want pushes to `main` to publish automatically.
+##
+## To enable:
+##   1. Rename it to `docs-publish.yml` (drop `.example`).
+##   2. GitHub → Settings → Pages → Source: **GitHub Actions**.
+##   3. Adjust the trigger `paths:` / `working-directory` for your layout, commit.
+##
+## Pick ONE publishing path — a repo has a single Pages source:
+##   • this workflow            → Pages source "GitHub Actions"
+##   • `make publish-to-branch` → Pages source "Deploy from a branch" (gh-pages)
+##
+## It builds the SAME way you do locally (through the toolkit image), and only
+## deploys if the build + lint pass, so a broken site never goes live.
+## ─────────────────────────────────────────────────────────────────────────
+
+name: docs-publish
+
+on:
+  push:
+    branches: [main]
+    paths: ["docs/**", "mkdocs.yml", "requirements.txt", "Containerfile", "tools/**"]
+  workflow_dispatch: {}   # also allow a manual run from the Actions tab
+
+# Least privilege; the deploy job needs pages + id-token to publish.
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# One deploy at a time; let an in-progress publish finish.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    # If this repo lives in a monorepo subdirectory, set the path here (and update
+    # the `paths:` above to match).
+    # defaults:
+    #   run:
+    #     working-directory: project-docs
+    steps:
+      - uses: actions/checkout@v4
+
+      # GitHub runners ship Docker; the Containerfile is OCI-standard.
+      - name: Build toolkit image
+        run: docker build -t docs-toolkit -f Containerfile .
+
+      - name: Build site (offline, strict)
+        run: docker run --rm --network none -v "$PWD":/docs -w /docs docs-toolkit mkdocs build --strict
+
+      - name: Lint frontmatter + cross-links
+        run: docker run --rm --network none -v "$PWD":/docs -w /docs docs-toolkit docs-check docs
+
+      - name: Upload the built site as a Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
