@@ -44,6 +44,10 @@ extra_css:
 extra_javascript:
   - javascripts/diagram-zoom.js   # fullscreen pan/zoom for Mermaid & D2 diagrams
 
+# Meta page reached only from the diagram viewer's "How to read this diagram" link.
+not_in_nav: |
+  reading-diagrams.md
+
 # Tooltips for the nav status icons we keep (normal states are hidden in
 # extra.css; only attention-worthy ones show an icon while browsing).
 extra:

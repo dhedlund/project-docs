@@ -48,6 +48,9 @@ extra_css:
 extra_javascript:
   - javascripts/diagram-zoom.js   # fullscreen pan/zoom for Mermaid & D2 diagrams
 
+not_in_nav: |
+  reading-diagrams.md
+
 extra:
   status:
     stub: Stub — incomplete, needs work

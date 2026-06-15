@@ -58,6 +58,62 @@
     '<path d="M5 5h5V3H3v7h2V5m14 0v5h2V3h-7v2h5M5 14H3v7h7v-2H5v-5m16 0h-2v5h-5v2h7v-7z"/>' +
     "</svg>";
 
+  // Map Mermaid's SVG aria-roledescription (and D2) to a section anchor in the
+  // "Reading the diagrams" guide. Type-level only — robust across versions; we do
+  // NOT inspect individual symbols.
+  var TYPE_ANCHOR = {
+    "flowchart-v2": "flowchart", flowchart: "flowchart", graph: "flowchart",
+    sequence: "sequence", er: "er",
+    stateDiagram: "state", "stateDiagram-v2": "state", state: "state",
+    classDiagram: "class", class: "class",
+  };
+
+  function readingURL(anchor) {
+    // Resolve the guide's URL from the site root (the header logo links home),
+    // so it works at any page depth.
+    var logo = document.querySelector(".md-logo");
+    var home = (logo && logo.getAttribute("href")) || ".";
+    var url = new URL("reading-diagrams/", new URL(home, location.href));
+    return url.href + (anchor ? "#" + anchor : "");
+  }
+
+  function diagramAnchor(el) {
+    if (el.matches(".d2") || el.querySelector(".d2-light, .d2-dark")) return "d2";
+    var svg = el.querySelector("svg") || (el.shadowRoot && el.shadowRoot.querySelector("svg"));
+    var role = svg && svg.getAttribute("aria-roledescription");
+    return (role && TYPE_ANCHOR[role]) || "";
+  }
+
+  // The Key panel pulls its content from the guide page itself — one source of
+  // truth, no duplicated legend to drift. Cached after first fetch.
+  var _docCache = null;
+  function fetchReadingDoc() {
+    if (_docCache) return Promise.resolve(_docCache);
+    return fetch(readingURL("")).then(function (r) { return r.text(); }).then(function (html) {
+      _docCache = new DOMParser().parseFromString(html, "text/html");
+      return _docCache;
+    });
+  }
+  function sectionFragment(doc, anchor) {
+    if (!anchor) return null;
+    var heading = doc.getElementById(anchor);
+    if (heading && !/^H[1-6]$/.test(heading.tagName)) heading = heading.closest("h1,h2,h3,h4,h5,h6");
+    if (!heading) return null;
+    var level = +heading.tagName.charAt(1);
+    var frag = document.createElement("div");
+    frag.appendChild(heading.cloneNode(true));
+    var n = heading.nextElementSibling;
+    while (n) {
+      var m = /^H([1-6])$/.exec(n.tagName);
+      if (m && +m[1] <= level) break;
+      frag.appendChild(n.cloneNode(true));
+      n = n.nextElementSibling;
+    }
+    frag.querySelectorAll(".headerlink").forEach(function (a) { a.remove(); });
+    frag.querySelectorAll("[id]").forEach(function (x) { x.removeAttribute("id"); });
+    return frag;
+  }
+
   // Lazily-created singleton modal, reused for every diagram.
   function getModal() {
     var modal = document.querySelector(".dz-modal");
@@ -69,11 +125,20 @@
     modal.innerHTML =
       '<div class="dz-stage"><div class="dz-content"></div></div>' +
       '<button class="dz-close" type="button" aria-label="Close">✕</button>' +
-      '<div class="dz-hint">scroll to zoom · drag to pan · Esc to close</div>';
+      '<aside class="dz-panel" hidden></aside>' +
+      '<div class="dz-bar">' +
+      '<button class="dz-key" type="button">Key</button>' +
+      '<a class="dz-help" target="_blank" rel="noopener">How to read this diagram ↗</a>' +
+      '<span class="dz-hint">scroll to zoom · drag to pan · Esc to close</span>' +
+      "</div>";
     document.body.appendChild(modal);
 
     var stage = modal.querySelector(".dz-stage");
     var content = modal.querySelector(".dz-content");
+    var panel = modal.querySelector(".dz-panel");
+    var keyBtn = modal.querySelector(".dz-key");
+    var helpLink = modal.querySelector(".dz-help");
+    var curAnchor = "";
     var box = null, placeholder = null;        // the diagram + where it came from
     var baseW = 1, baseH = 1;                   // content size at scale 1
     var scale = 1, fitScale = 1, minScale = 1, maxScale = 1;
@@ -99,6 +164,7 @@
       }
       content.innerHTML = "";
       content.removeAttribute("style");
+      panel.hidden = true;
       box = null;
       placeholder = null;
       modal.hidden = true;
@@ -107,6 +173,30 @@
     modal.querySelector(".dz-close").addEventListener("click", close);
     document.addEventListener("keydown", function (e) {
       if (!modal.hidden && e.key === "Escape") close();
+    });
+
+    // "Key" — toggle a side panel showing the legend for this diagram's type,
+    // pulled from the reading guide page (single source of truth).
+    keyBtn.addEventListener("click", function () {
+      if (!panel.hidden) { panel.hidden = true; return; }
+      panel.hidden = false;
+      if (panel.dataset.loaded === curAnchor) return;
+      panel.dataset.loaded = curAnchor;
+      panel.innerHTML = '<p class="dz-panel-note">Loading…</p>';
+      fetchReadingDoc().then(function (doc) {
+        var frag = sectionFragment(doc, curAnchor);
+        panel.innerHTML = "";
+        if (frag) panel.appendChild(frag);
+        else panel.innerHTML = '<p class="dz-panel-note">No legend for this diagram type yet.</p>';
+        var more = document.createElement("p");
+        more.className = "dz-panel-more";
+        more.innerHTML = '<a href="' + helpLink.href + '" target="_blank" rel="noopener">Full reading guide ↗</a>';
+        panel.appendChild(more);
+      }).catch(function () {
+        panel.dataset.loaded = "";
+        panel.innerHTML = '<p class="dz-panel-note">Can’t load the key here (try over <code>make serve</code>). ' +
+          '<a href="' + helpLink.href + '" target="_blank" rel="noopener">Open the reading guide ↗</a></p>';
+      });
     });
 
     stage.addEventListener(
@@ -163,6 +253,11 @@
       el.parentNode.insertBefore(placeholder, el);
       content.appendChild(el);
       box = el;
+
+      // Type-aware "how to read" target (and reset the key panel for this diagram).
+      curAnchor = diagramAnchor(el);
+      helpLink.href = readingURL(curAnchor);
+      panel.hidden = true;
 
       // Show the modal BEFORE measuring — a hidden (display:none) modal reports
       // zero sizes, which would collapse the fit/zoom/pan math.

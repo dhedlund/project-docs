@@ -77,13 +77,43 @@
 }
 
 .dz-close {
-  position: fixed; top: 1rem; right: 1rem; z-index: 1001;
+  position: fixed; top: 1rem; right: 1rem; z-index: 1002;
   width: 2.2rem; height: 2.2rem;
   border: none; border-radius: 0.2rem;
   background: rgba(255, 255, 255, 0.15); color: #fff;
   font-size: 1.3rem; line-height: 1; cursor: pointer;
 }
-.dz-hint {
+
+/* Bottom toolbar: Key toggle + "how to read" link + controls hint. */
+.dz-bar {
   position: fixed; bottom: 1rem; left: 50%; transform: translateX(-50%); z-index: 1001;
-  color: rgba(255, 255, 255, 0.7); font-size: 0.7rem; pointer-events: none;
+  display: flex; align-items: center; gap: 0.9rem;
+  padding: 0.35rem 0.8rem; border-radius: 1rem;
+  background: rgba(0, 0, 0, 0.5);
 }
+.dz-bar .dz-hint { color: rgba(255, 255, 255, 0.7); font-size: 0.7rem; }
+.dz-key {
+  border: none; border-radius: 0.2rem; cursor: pointer;
+  background: rgba(255, 255, 255, 0.18); color: #fff;
+  font-size: 0.72rem; padding: 0.22rem 0.6rem;
+}
+.dz-key:hover { background: rgba(255, 255, 255, 0.3); }
+.dz-help { color: #fff; font-size: 0.72rem; text-decoration: none; opacity: 0.9; }
+.dz-help:hover { text-decoration: underline; }
+
+/* Key panel: the matching legend section, pulled from the reading guide. */
+.dz-panel {
+  position: fixed; top: 0; right: 0; z-index: 1001;
+  width: min(22rem, 82vw); height: 100%; overflow: auto;
+  padding: 1.4rem 1.4rem 2rem;
+  background: var(--md-default-bg-color); color: var(--md-default-fg-color);
+  box-shadow: -0.2rem 0 0.7rem rgba(0, 0, 0, 0.35);
+}
+.dz-panel[hidden] { display: none; }
+.dz-panel h1, .dz-panel h2, .dz-panel h3 { margin-top: 0; font-size: 1rem; }
+.dz-panel p, .dz-panel li { font-size: 0.82rem; line-height: 1.55; }
+.dz-panel ul { padding-left: 1.1rem; }
+.dz-panel li { margin: 0.3rem 0; }
+.dz-panel a { color: var(--md-primary-fg-color); }
+.dz-panel-note { color: var(--md-default-fg-color--light); }
+.dz-panel-more { margin-top: 1.1rem; }
