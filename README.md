@@ -37,7 +37,8 @@ coding agent — e.g. Claude Code — to drive it.)
 > maintenance, a stronger model for the gnarly bits (tricky permutation flows,
 > architecture decisions).
 
-1. **Fork / clone** this repo for your product.
+1. **Fork or copy** this repo into a repo for your product (see [Starting a new
+   product](#starting-a-new-product) for the tradeoffs).
 2. **Open your agent in the directory** so it reads `AGENTS.md` (and `CLAUDE.md`,
    which points to it).
 3. **Paste a bootstrap prompt** (below). The agent stops and asks about anything it
@@ -101,7 +102,15 @@ project.`** — the bootstrap asks you these questions itself.
 
 This repo is the reusable scaffold. To document a product with it:
 
-1. **Copy it into a new repo** for that product (it's self-contained).
+1. **Get the scaffold into a repo for your product**, either way:
+   - **Fork it** — keeps a link to upstream, so you can pull scaffold improvements
+     later (and contribute fixes back).
+   - **Copy the files** — clean history, no upstream link. Drop them at the root of a
+     new repo, or into a subdirectory of an existing one if you're adding docs
+     alongside code (run `make` from that directory; for CI, set the workflow's
+     working directory).
+
+   It's self-contained either way — no submodules or external state.
 2. **Keep `example/` as a reference** while you find your feet; delete it when you no
    longer need it (it's disposable and nothing depends on it).
 3. From the new repo, run an agent and use the **bootstrap prompt** above. After
