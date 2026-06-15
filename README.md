@@ -154,27 +154,30 @@ make test       # the tooling test suite
 make publish-to-branch  # build docs + commit ./site to a local branch (push separately)
 ```
 
-## Publishing to GitHub Pages
+## Publishing your docs
 
-Publishing is **manual and local** — there's deliberately **no CI/Actions workflow**,
-so nothing auto-runs in your fork. `publish-to-branch` builds your docs and commits
-the static site to a local branch (default `gh-pages`); you push it yourself, then
-turn Pages on once:
+`make build` produces a self-contained static site in `./site/` — host it anywhere
+(GitHub Pages, GitLab Pages, Cloudflare Pages, Netlify, an object store, your own
+server). Two convenient paths are built in:
+
+**1. Commit to a branch (host-agnostic, manual).** `publish-to-branch` builds your
+docs and commits the site to a local branch (default `gh-pages`) — nothing auto-runs,
+and you push it yourself:
 
 ```
 make publish-to-branch       # builds ./site and commits it to the gh-pages branch (local only)
 git push <remote> gh-pages   # push when you're ready
 ```
 
-Then on GitHub: **Settings → Pages → Source: Deploy from a branch → `gh-pages` / `(root)`**.
-Re-run + push to update. Override the branch with `make publish-to-branch BRANCH=docs-site`
-(or set `BRANCH=` in `.env`).
+Then point your host at that branch. **If you're on GitHub Pages:** Settings → Pages →
+Source: Deploy from a branch → `gh-pages` / `(root)`. Override the branch with
+`make publish-to-branch BRANCH=docs-site` (or set `BRANCH=` in `.env`).
 
-**Prefer CI?** An inert `.github/workflows/docs-publish.yml.example` does the same on
-every push to `main` via GitHub Actions — rename it to `docs-publish.yml` and set the
-Pages source to **GitHub Actions** to enable. Pick one path: this workflow *or* the
-branch flow above (a repo has a single Pages source). Nothing auto-runs until you
-rename it.
+**2. CI deploy (GitHub Actions, opt-in).** An inert
+`.github/workflows/docs-publish.yml.example` builds and deploys on every push to
+`main`. Rename it to `docs-publish.yml` and set the Pages source to **GitHub Actions**
+to enable. Pick one path — a repo has a single Pages source — and nothing auto-runs
+until you rename it.
 
 ## Contributing
 

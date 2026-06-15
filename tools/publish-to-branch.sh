@@ -23,7 +23,8 @@ if [ ! -f "$SITE/index.html" ]; then
   exit 1
 fi
 
-# GitHub Pages would otherwise run Jekyll and drop files; opt out.
+# .nojekyll stops GitHub Pages running Jekyll over the site (which would drop files
+# like assets whose names start with "_"). Harmless on any other host.
 touch "$SITE/.nojekyll"
 
 # Build a tree from the site dir via a throwaway index (force past .gitignore).
@@ -46,4 +47,5 @@ echo "Committed the site to local branch '$BRANCH' ($COMMIT)."
 echo
 echo "Next steps (done separately, with your own remote):"
 echo "  git push <remote> $BRANCH"
-echo "  then once: GitHub -> Settings -> Pages -> Deploy from a branch -> $BRANCH / (root)"
+echo "  then point your static host at that branch."
+echo "  If you're on GitHub Pages: Settings -> Pages -> Deploy from a branch -> $BRANCH / (root)"
