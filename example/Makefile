@@ -15,6 +15,9 @@ PORT  ?= 8001
 # Override to expose on the LAN, e.g.  make serve BIND=0.0.0.0
 BIND  ?= 127.0.0.1
 
+# Branch that `make publish-to-branch` commits the built site to (push separately).
+BRANCH ?= gh-pages
+
 # Container engine: auto-detect Podman, else Docker. Override with: make ENGINE=docker
 ENGINE ?= $(shell command -v podman >/dev/null 2>&1 && echo podman || echo docker)
 
@@ -26,7 +29,7 @@ RUN := $(ENGINE) run --rm \
 TTY := $(shell [ -t 0 ] && echo -it)
 
 .DEFAULT_GOAL := help
-.PHONY: help image build check report drift ci serve shell clean
+.PHONY: help image build check report drift ci serve shell clean publish-to-branch
 
 help: ## Show this help
 	@echo "Beacon example docs — make targets (engine: $(ENGINE)):"
@@ -49,6 +52,9 @@ drift: image ## Drift vs source repos: make drift SRC=/path/to/code
 	$(RUN) $(if $(SRC),-v "$(SRC)":/src:ro,) --network none $(IMAGE) docs-drift docs /src
 
 ci: build check ## The local gate: build + lint
+
+publish-to-branch: build ## Build the example and commit it to a local branch (BRANCH, default gh-pages); push separately
+	@BRANCH="$(BRANCH)" SITE="example/site" ../tools/publish-to-branch.sh
 
 serve: image ## Live-reload preview (http://localhost:8001; LAN via BIND=0.0.0.0)
 	$(RUN) $(TTY) -p $(BIND):$(PORT):8000 $(IMAGE) mkdocs serve -a 0.0.0.0:8000

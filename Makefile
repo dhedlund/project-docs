@@ -4,7 +4,7 @@
 # macOS with no host tooling beyond a container engine + make. Run `make` for help.
 
 # Optional local overrides (gitignored). Copy .env.example -> .env to set ENGINE,
-# BIND, PORT, REMOTE, BRANCH without typing them each time. Command-line args still
+# BIND, PORT, BRANCH without typing them each time. Command-line args still
 # win (e.g. make serve PORT=9000). Included first so its values beat the ?= defaults.
 -include .env
 
@@ -14,9 +14,8 @@ PORT  ?= 8000
 # Override to expose on the LAN, e.g.  make serve BIND=0.0.0.0
 BIND  ?= 127.0.0.1
 
-# GitHub Pages publish target (make publish-example). Default to the conventional
-# remote; override via .env, env, or args (e.g. make publish-example REMOTE=gh).
-REMOTE ?= origin
+# Branch that `make publish-to-branch` commits the built site to. Override via
+# .env, env, or args (e.g. make publish-to-branch BRANCH=docs-site).
 BRANCH ?= gh-pages
 
 # Container engine: auto-detect Podman, else Docker. Override with: make ENGINE=docker
@@ -33,7 +32,7 @@ RUN := $(ENGINE) run --rm \
 TTY := $(shell [ -t 0 ] && echo -it)
 
 .DEFAULT_GOAL := help
-.PHONY: help image build check report drift ci test serve shell versions clean publish-example
+.PHONY: help image build check report drift ci test serve shell versions clean publish-to-branch
 
 help: ## Show this help
 	@echo "Project docs — make targets (engine: $(ENGINE)):"
@@ -78,12 +77,8 @@ versions: image ## Print the resolved tool versions
 	  echo "asyncapi:    $$(asyncapi --version 2>/dev/null)"; \
 	  echo "schemathesis:$$(schemathesis --version 2>/dev/null)"'
 
-publish-example: image ## Build the example site and publish it to GitHub Pages (REMOTE/BRANCH overridable)
-	$(ENGINE) run --rm -v "$(CURDIR)":/docs:rw -w /docs/example \
-	  --cap-drop=ALL --security-opt no-new-privileges --network none \
-	  $(if $(filter docker,$(ENGINE)),--user $(shell id -u):$(shell id -g),) \
-	  $(IMAGE) mkdocs build --strict
-	@REMOTE="$(REMOTE)" BRANCH="$(BRANCH)" SITE="example/site" tools/gh-publish-example.sh
+publish-to-branch: build ## Build docs and commit ./site to a local branch (BRANCH, default gh-pages); push separately
+	@BRANCH="$(BRANCH)" SITE="site" tools/publish-to-branch.sh
 
 clean: ## Remove the built site
 	rm -rf site example/site

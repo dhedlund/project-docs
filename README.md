@@ -149,32 +149,26 @@ make build      # static site -> ./site  (offline, strict)
 make serve      # live preview at http://localhost:8000 (localhost-only; BIND=0.0.0.0 to expose)
 make check      # lint frontmatter + cross-link graph
 make report     # coverage / staleness report
-make ci         # build + check (the local gate)
-make test       # the tooling test suite
+make ci             # build + check (the local gate)
+make test           # the tooling test suite
+make publish-to-branch  # build docs + commit ./site to a local branch (push separately)
 ```
 
-## Publishing the example to GitHub Pages
+## Publishing to GitHub Pages
 
-The example demo is published **manually** — there's deliberately **no CI/Actions
-workflow**, so nothing auto-runs in your fork. One command builds the example
-(hermetically, in the toolkit image) and pushes the static site to a `gh-pages`
-branch using your local git credentials, which never enter the container:
+Publishing is **manual and local** — there's deliberately **no CI/Actions workflow**,
+so nothing auto-runs in your fork. `publish-to-branch` builds your docs and commits
+the static site to a local branch (default `gh-pages`); you push it yourself, then
+turn Pages on once:
 
 ```
-make publish-example
+make publish-to-branch       # builds ./site and commits it to the gh-pages branch (local only)
+git push <remote> gh-pages   # push when you're ready
 ```
 
-First-time setup (once):
-
-1. Push this repo to GitHub with a remote pointing at it.
-2. Run `make publish-example`. If your remote isn't named `origin`, override it:
-   `make publish-example REMOTE=<name>` — or copy `.env.example` to `.env` and set
-   `REMOTE=` there (that file also overrides `ENGINE` / `BIND` / `PORT`).
-3. On GitHub: **Settings → Pages → Source: Deploy from a branch → `gh-pages` / `(root)`**.
-
-Re-run `make publish-example` whenever you want to refresh the live demo. Forks
-receive the `gh-pages` branch but **not** Pages itself — GitHub doesn't enable Pages
-on forks — so nothing publishes unless a fork owner turns it on.
+Then on GitHub: **Settings → Pages → Source: Deploy from a branch → `gh-pages` / `(root)`**.
+Re-run + push to update. Override the branch with `make publish-to-branch BRANCH=docs-site`
+(or set `BRANCH=` in `.env`).
 
 ## Contributing
 
