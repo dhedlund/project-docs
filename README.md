@@ -56,27 +56,17 @@ toolkit image (see [TOOLKIT.md](TOOLKIT.md)).
 
 ### The bootstrap prompt
 
-The agent discovers the shape of your system (domains, stack, datastores, APIs,
-webhooks, SDKs, surfaces, integrations, roles) by reading the code — so you only
-have to tell it **where the code is and how to read it**. Paste this, filling the
-two placeholders:
+You only need to tell the agent **where the code is** — it discovers the rest
+(domains, stack, datastores, APIs, webhooks, SDKs, surfaces, integrations, roles) by
+reading the source, and asks you only what it can't:
 
 ```text
-Read AGENTS.md, then follow the new-project bootstrap to set up documentation for
-my product.
-
-- Code access: <how an agent should read the source — e.g. read-only clones at
-  ~/code/<product>/*, or mounted read-only at /src>. Treat the code as read-only.
-- Product (one line, optional): <NAME> — <what it does>. Infer it if obvious.
-
-Explore the code to work out the rest yourself. Stop and ask me only what you
-genuinely can't determine from the source or that needs my judgment — then propose
-where to start and what's out of scope, seed the plan and backlog, and tell me when
-it's ready for "work on what's next".
+Read AGENTS.md and set up a new project. The source is at <where / how to read it —
+e.g. read-only clones in ~/code/<product>/, or mounted read-only at /src>.
 ```
 
-Even shorter: paste **`Read AGENTS.md and set up a new project.`** — it'll ask for
-code access, then explore and propose the rest itself.
+Don't have the access details handy? Just **`Read AGENTS.md and set up a new
+project.`** — it'll ask.
 
 ## What's in the box
 
