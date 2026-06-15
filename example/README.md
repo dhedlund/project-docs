@@ -17,9 +17,15 @@ This is a **complete, self-contained miniature** of the docs setup, built around
 
 While this directory exists, **its config is the source of truth.** Tune
 `mkdocs.yml`, extensions, and tooling here first (where you can run them), then
-promote proven changes up to the root `mkdocs.yml`. Templates remain canonical at
-the repo root (`../templates/`); the pages here are simply filled-in instances of
-those templates.
+promote proven changes up to the root `mkdocs.yml`.
+
+**It's a faithful standalone.** The shared scaffold — `AGENTS.md`, `CLAUDE.md`,
+`CONVENTIONS.md`, `TOOLKIT.md`, `templates/`, and the `agent_docs/` process +
+stewardship guides — is **symlinked from the repo root**, so an agent can be pointed
+straight at `example/` and find everything, while these stay in sync with the root
+(no duplication, no drift). Only the *product-specific* docs are real files here: the
+pages under `docs/`, the `contracts/`, and the bootstrapped
+`agent_docs/process/{plan,backlog}.md` + `agent_docs/stewardship/{product,source-of-truth}.md`.
 
 ## Delete me when…
 
