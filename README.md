@@ -1,111 +1,182 @@
 # Project Docs
 
-A single, product-wide knowledge base for our multi-service system, authored and
-maintained primarily by agents over many passes, version-controlled, and rendered
-as a [MkDocs Material](https://squidfunk.github.io/mkdocs-material/) site.
+**An agent-driven system for building and maintaining comprehensive, code-true
+documentation of large multi-service, multi-language systems.**
 
-The goal: rebuild a shared understanding of the system **layer by layer** — from
-product features down through service boundaries to the data models behind them —
-and keep it discoverable, cross-linked, and honest about confidence.
+You fork this repo, point an AI coding agent at it, and it documents your product —
+across many repositories, over many passes — as Markdown + diagrams rendered with
+[MkDocs Material](https://squidfunk.github.io/mkdocs-material/). The docs stay honest
+about *what they know*: every page carries a confidence score and a provenance ref to
+the source it was verified against, and a drift checker flags pages whose code has
+since changed.
+
+> It's a scaffold + process harness, not a finished site. The docs are authored by
+> agents from your source code; trust is made legible (confidence, provenance, drift,
+> audits), not assumed.
+
+## Why
+
+Big systems drift out of understanding: nobody holds the whole picture, product docs
+go stale, and the "why" lives in tickets nobody re-reads. This rebuilds that
+understanding **layer by layer from the code** — services as black boxes with
+testable contracts, data models and how they really map to storage, the product
+surface (features, flows, options), and the integration surface (public API,
+webhooks, SDKs) — and keeps it current as the code changes.
+
+## Quick start
+
+**Requirements:** [Podman](https://podman.io) or Docker, plus `make`. (And an AI
+coding agent — e.g. Claude Code — to drive it.)
+
+> **Model choice.** The system is model-agnostic — any capable coding agent works.
+> The work here is highly structured (clear templates, well-scoped loop steps,
+> explicit conventions), so you don't need a frontier model for most of it: cheaper,
+> faster, open-weights models like **DeepSeek V4 Flash** — a fraction of frontier
+> pricing — tend to give strong value, which adds up when you're running long
+> autonomous loops. A common split: a budget model for the bulk authoring and
+> maintenance, a stronger model for the gnarly bits (tricky permutation flows,
+> architecture decisions).
+
+1. **Fork / clone** this repo for your product.
+2. **Open your agent in the directory** so it reads `AGENTS.md` (and `CLAUDE.md`,
+   which points to it).
+3. **Paste a bootstrap prompt** (below). The agent stops and asks about anything it
+   needs, then scaffolds and seeds your docs.
+4. Drive it with **"work on what's next"** (optionally on a loop).
+5. Preview anytime: `make serve` → http://localhost:8000.
+
+No host tooling beyond Podman/Docker + `make` — everything runs in one portable
+toolkit image (see [TOOLKIT.md](TOOLKIT.md)).
+
+### The bootstrap prompt
+
+Paste this and replace the `<PLACEHOLDERS>` with your product's details:
+
+```text
+Read AGENTS.md, then follow the new-project bootstrap to set up documentation for
+my product. Here are answers to its questions:
+
+- Product: <NAME> — <one sentence on what it does>.
+- Domains (rough is fine): <e.g. accounts, billing, messaging>.
+- Repositories (a product = many repos):
+    - <repo-name> — <git URL or local path>, <language/stack>, <role>
+    - <repo-name> — <...>
+- Code access: <how an agent should read the source, e.g. read-only clones at
+  ~/code/<product>/<repo>, mounted read-only at /src>. Treat the code as read-only.
+- Provenance: cite sources as <repo>@<short-sha>.
+- Stack: <backend languages> · <datastores> · <queues> · <frontends>.
+- Public interfaces: API <none / REST / GraphQL>; webhooks <yes/no>;
+  SDKs <languages>; auth <API keys / OAuth / ...>.
+- Surfaces (frontends): <B2C app / partner portal / admin console / marketing>.
+- Third-party integrations: <payments / email / SMS / CRM / ...>.
+- Start with: <which domain or area to seed first>.
+- Out of scope: <anything to skip>.
+
+Stop and ask me about anything unclear, then seed the plan and backlog and tell me
+when it's ready for "work on what's next".
+```
+
+Prefer to answer interactively? Just paste **`Read AGENTS.md and set up a new
+project.`** — the bootstrap asks you these questions itself.
+
+## What's in the box
+
+- **Page types + templates** for every kind of documentation: domains, features,
+  flows (permutation-heavy behaviour), options/configuration, services, models,
+  datastores, decisions (ADRs), glossary, the integration surface (API, webhooks,
+  SDKs, auth), third-party integrations, frontend surfaces, roles, and machine-
+  readable contracts.
+- **A portable toolkit image** (Podman or Docker): MkDocs Material, Mermaid + D2
+  diagrams, TypeSpec → OpenAPI, oasdiff, Schemathesis, Prism, AsyncAPI CLI, Swagger
+  UI — plus the repo's own `docs-check` / `docs-report` / `docs-drift` tools.
+- **A `make` front door**: `make` (help), `build`, `serve`, `check`, `report`,
+  `drift`, `ci`, `test`.
+- **An agent harness** (`agent_docs/`): a self-sustaining working loop (reflection,
+  routing, research threads), a bootstrap routine, and stewardship docs (scope,
+  confidence/freshness, source-of-truth, enrichment, voice, information architecture).
+- **A worked example product** ("Beacon") under [`example/`](example/) — a complete,
+  buildable reference for what good looks like. Delete it once you don't need it.
 
 ## Starting a new product
 
 This repo is the reusable scaffold. To document a product with it:
 
-1. **Copy it into a new repo** for that product (clone or copy this directory — it's
-   self-contained).
-2. **Keep `example/` as a reference** while you find your feet (it's the worked "what
-   good looks like" demo). Delete it when you no longer need it — it's disposable and
-   nothing depends on it.
-3. From the new repo, tell an agent **"set up new project"**. That runs the
-   [bootstrap](agent_docs/process/new-project-bootstrap.md), which **stops and asks**
-   the questions that shape everything (especially how agents reach your code), then
-   seeds the scaffold. After that, **"work on what's next"** drives the rest.
-
-You need Podman or Docker + `make`, nothing else (see [TOOLKIT.md](TOOLKIT.md)).
+1. **Copy it into a new repo** for that product (it's self-contained).
+2. **Keep `example/` as a reference** while you find your feet; delete it when you no
+   longer need it (it's disposable and nothing depends on it).
+3. From the new repo, run an agent and use the **bootstrap prompt** above. After
+   bootstrap, **"work on what's next"** drives the rest.
 
 ## How it's organized
 
 ```
 project-docs/
-├── docs/              # the site content (what gets built)
-│   ├── index.md       # L0 — product overview / the map
-│   ├── features/      # L1 — product-facing capabilities & journeys
-│   ├── services/      # L2 — services as black boxes + their contracts
-│   ├── models/        # L3 — data/domain models and how they map to storage
-│   ├── datastores/    # the databases & queues services depend on
-│   ├── glossary.md    # shared vocabulary
-│   └── decisions/     # L4 — architecture decision records (ADRs)
-├── contracts/         # machine-readable interface specs (TypeSpec/OpenAPI/AsyncAPI)
+├── AGENTS.md          # agent entry point (CLAUDE.md symlinks to it)
+├── CONVENTIONS.md     # how pages are written (read before authoring)
+├── TOOLKIT.md         # the Podman/Docker toolkit
+├── docs/              # the rendered site content (features, services, models, …)
+├── contracts/        # machine-readable interface specs (TypeSpec/OpenAPI/AsyncAPI)
 ├── templates/         # starting points for new pages + a contract project skeleton
-├── CONVENTIONS.md     # how we write these docs — read this first
-└── mkdocs.yml         # site config
+├── agent_docs/        # the agent harness: process/ (loop, bootstrap) + stewardship/
+├── example/           # a complete worked example product (disposable reference)
+├── Containerfile · Makefile · compose.yaml · mkdocs.yml
 ```
 
-The layers are levels of **hierarchy and understanding**, not separate systems —
-one site holds them all, and pages link up and down between layers so readers
-drop to the right level at the right time.
+The layers are levels of understanding, not separate systems — one site holds them
+all, and pages link up and down so readers drop to the right level at the right time.
+The full map of where each kind of doc lives is
+[`agent_docs/stewardship/information-architecture.md`](agent_docs/stewardship/information-architecture.md).
 
-## Authoring
-
-Read **[CONVENTIONS.md](CONVENTIONS.md)** before writing. The short version:
-
-- Copy a file from `templates/` to start a new page.
-- Treat structure **organically** — evolve it, don't force it. We converge on a
-  standard in a later pass, once patterns emerge.
-- Lead with what matters now; push nuance, history, and cleanup into collapsible
-  sections below.
-- Record a confidence score and what a page was derived from.
-
-## Diagrams
-
-- **Mermaid** is the default (renders inline, no extra tooling). Use it for
-  sequence diagrams (feature flows), ER diagrams, flowcharts, state.
-- **D2** is reserved for large "hero" architecture diagrams where layout quality
-  matters. It needs a render step (Kroki/D2), wired up later — see CONVENTIONS.
-
-## Building the site
-
-Everything runs through one portable container image — **Podman or Docker**, no
-host tooling beyond a container engine + `make` (works on Linux and macOS). The
-`make` targets auto-detect the engine; force one with `make build ENGINE=docker`.
-See [TOOLKIT.md](TOOLKIT.md).
+## Building
 
 ```
 make            # list all targets
 make build      # static site -> ./site  (offline, strict)
-make serve      # live preview at http://localhost:8000
+make serve      # live preview at http://localhost:8000 (localhost-only; BIND=0.0.0.0 to expose)
 make check      # lint frontmatter + cross-link graph
 make report     # coverage / staleness report
-make ci         # build + check (the local gate; what CI runs)
+make ci         # build + check (the local gate)
+make test       # the tooling test suite
 ```
 
-The same targets exist in [`example/`](example/) (preview on port 8001) and are
-the quickest way to confirm your setup works end to end.
+## Contributing
 
-## Service contracts
+Issues and PRs welcome. The system is meant to evolve: new page types are a template
++ a `PAGE_TYPES` entry in `tools/check.py` + an entry in the IA map. Run `make ci`
+and `make test` before submitting.
 
-Service interfaces are the one place we keep **formal, testable** specs. Author in
-**TypeSpec**, compile to **OpenAPI** (HTTP) and pair with **AsyncAPI** (RabbitMQ).
+## Licensing
 
-Verification is a trio of best-of-breed tools (chosen over a single platform like
-Specmatic for being lighter and OpenAPI-centric):
+**The scaffolding is offered under the MIT license** — that's everything in *this*
+repo: the templates, the tools under `tools/`, the agent harness (`agent_docs/`), the
+config (`Containerfile`, `Makefile`, `mkdocs.yml`), and the docs about the system
+itself. The `example/` Beacon content is illustrative and fictional, also MIT.
 
-- **[oasdiff](https://github.com/oasdiff/oasdiff)** (Go) — backward-compatibility
-  gate in CI; detects breaking changes between spec versions.
-- **[Schemathesis](https://github.com/schemathesis/schemathesis)** — property-based
-  testing that verifies a running service actually conforms to its spec (our main
-  "is our reverse-engineered understanding correct?" check).
-- **[Prism](https://github.com/stoplightio/prism)** — validating proxy / mock for
-  watching live traffic against a spec.
+**The documentation you author in a fork is yours.** When you fork this to document
+your product, the pages your agents write under `docs/` are *your* content, under
+whatever license you choose — the scaffolding's MIT terms don't claim them.
 
-A worked example of the whole pipeline lives in `example/contracts/`.
+> There is deliberately **no top-level `LICENSE` file**: in a fork it would look like
+> it covered your content. The scaffolding's terms are stated here instead. If you
+> publish a fork, add your own `LICENSE` for *your* docs.
 
-## The `example/` reference
+### Bundled tools
 
-`example/` is a **self-contained, disposable** copy of this setup, built around a
-fictional product ("Beacon") that mirrors our stack (Java/Ruby/Elixir;
-MySQL/PostgreSQL/MongoDB/RabbitMQ). It exists to show agents *what good looks like*
-and to serve as a live testbed for the site config and contract tooling. Its
-config is **canonical while it exists** — prove changes there, then promote to
-root. Delete it once the real project no longer benefits from it.
+The toolkit image (`make build` etc.) installs third-party tools — invoked as tools,
+not vendored into this repo's source — each under its own license:
+
+| Tool | License |
+|------|---------|
+| MkDocs | BSD-2-Clause |
+| Material for MkDocs · PyMdown Extensions · mkdocs-d2-plugin · mkdocs-glightbox · mkdocs-swagger-ui-tag | MIT |
+| Mermaid (loaded by Material) | MIT |
+| Swagger UI (via mkdocs-swagger-ui-tag) | Apache-2.0 |
+| TypeSpec (`@typespec/*`) · Schemathesis · pytest | MIT |
+| Prism (`@stoplight/prism-cli`) · AsyncAPI CLI · oasdiff | Apache-2.0 |
+| **D2** | **MPL-2.0** |
+| Base images (`python:3.12-slim`, `node:20-bookworm-slim`) | Debian + upstream (many) |
+
+Everything is permissive (MIT / BSD / Apache-2.0) **except D2, which is MPL-2.0**
+(weak, file-level copyleft) — fine for use as a rendering tool; worth knowing if you
+redistribute the built image or modify D2 itself. Check each project for the
+authoritative terms.
