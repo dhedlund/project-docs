@@ -155,7 +155,13 @@ make publish-to-branch  # build docs + commit ./site to a local branch (push sep
 
 `make build` produces a self-contained static site in `./site/` — host it anywhere
 (GitHub Pages, GitLab Pages, Cloudflare Pages, Netlify, an object store, your own
-server). Two convenient paths are built in:
+server).
+
+> Set **`site_url`** in `mkdocs.yml` to where the docs will live (e.g.
+> `https://<user>.github.io/<repo>/`) so canonical links and the sitemap are
+> correct — especially when hosting under a subpath.
+
+Two convenient paths are built in:
 
 **1. Commit to a branch (host-agnostic, manual).** `publish-to-branch` builds your
 docs and commits the site to a local branch (default `gh-pages`) — nothing auto-runs,
