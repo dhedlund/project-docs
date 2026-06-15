@@ -39,19 +39,23 @@
     var sr = host.shadowRoot;
     if (!sr || sr.querySelector("style[data-dz-fix]")) return;
     var svg = sr.querySelector("svg");
-    var role = svg && svg.getAttribute("aria-roledescription");
-    // Flowchart arrowheads need a fill — Material themes the stroke but not the
-    // fill, so they go dark/invisible in dark mode.
-    var css =
-      'marker[id*="flowchart-point"] path,marker[id*="flowchart-circle"] path,' +
-      'marker[id*="flowchart-cross"] path{fill:var(--md-mermaid-edge-color)!important;stroke:none}';
-    if (role === "er") {
-      // ER relationship markers (crow's foot, bars, the "zero" circle) are meant
-      // to be open OUTLINES. Material's blanket `marker{fill}` fills them into
-      // solid "leaf" blobs that sit on the entity boxes — force them back to
-      // outline. (This style lives inside this ER diagram's shadow root only.)
-      css += 'marker path{fill:none!important;stroke:var(--md-mermaid-edge-color)!important}';
+    var role = (svg && svg.getAttribute("aria-roledescription")) || "";
+    // We target `marker path` (not specific ids) because Mermaid 11 prefixes
+    // marker ids, so Material's id-based theming (#arrowhead, flowchart-point…)
+    // misses them and the heads keep a dark default fill. Scope by diagram type
+    // so we don't disturb class diagrams (whose hollow/filled markers are
+    // deliberate). The style lives inside this diagram's shadow root only.
+    var css = "";
+    if (/^(flowchart|graph|sequence)/.test(role)) {
+      // Arrowheads should match the (light) line colour.
+      css = "marker path{fill:var(--md-mermaid-edge-color)!important}";
+    } else if (role === "er") {
+      // ER relationship markers (crow's foot, bars, the "zero" circle) must stay
+      // OPEN outlines — Material's blanket marker{fill} turns them into solid
+      // "leaf" blobs sitting on the entity boxes.
+      css = "marker path{fill:none!important;stroke:var(--md-mermaid-edge-color)!important}";
     }
+    if (!css) return;
     var s = document.createElement("style");
     s.setAttribute("data-dz-fix", "1");
     s.textContent = css;
