@@ -155,7 +155,7 @@
       '<aside class="dz-panel" hidden></aside>' +
       '<div class="dz-bar">' +
       '<button class="dz-key" type="button" aria-pressed="true">Key</button>' +
-      '<span class="dz-hint">scroll to zoom · drag to pan · Esc to close</span>' +
+      '<span class="dz-hint">scroll or pinch to zoom · drag to pan · Esc to close</span>' +
       "</div>";
     document.body.appendChild(modal);
 
@@ -170,6 +170,8 @@
     var tx = 0, ty = 0;
     var dragging = false, startX = 0, startY = 0;
     var downTarget = null, downX0 = 0, downY0 = 0, moved = false;
+    var pointers = new Map();   // active pointerId -> {x, y} (for pinch on touch)
+    var pinchDist = 0;          // last two-finger distance
 
     function apply() {
       scale = clamp(scale, minScale, maxScale);
@@ -248,53 +250,87 @@
       fitView();
     });
 
+    // Zoom by `factor` keeping the point (px,py) (stage-relative) fixed.
+    function zoomAt(px, py, factor) {
+      var next = clamp(scale * factor, minScale, maxScale);
+      var f = next / scale;
+      tx = px - (px - tx) * f;
+      ty = py - (py - ty) * f;
+      scale = next;
+      apply();
+    }
+
     stage.addEventListener(
       "wheel",
       function (e) {
         if (modal.hidden) return;
         e.preventDefault();
         var r = stage.getBoundingClientRect();
-        var px = e.clientX - r.left, py = e.clientY - r.top;
-        var next = clamp(scale * (e.deltaY < 0 ? 1.15 : 1 / 1.15), minScale, maxScale);
-        var f = next / scale;
-        tx = px - (px - tx) * f;
-        ty = py - (py - ty) * f;
-        scale = next;
-        apply();
+        zoomAt(e.clientX - r.left, e.clientY - r.top, e.deltaY < 0 ? 1.15 : 1 / 1.15);
       },
       { passive: false }
     );
     stage.addEventListener("pointerdown", function (e) {
       if (modal.hidden) return;
-      downTarget = e.target;
-      downX0 = e.clientX;
-      downY0 = e.clientY;
-      moved = false;
-      dragging = true;
-      startX = e.clientX - tx;
-      startY = e.clientY - ty;
-      stage.classList.add("dz-dragging");
+      pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
       stage.setPointerCapture(e.pointerId);
+      if (pointers.size === 1) {
+        downTarget = e.target;
+        downX0 = e.clientX;
+        downY0 = e.clientY;
+        moved = false;
+        dragging = true;
+        startX = e.clientX - tx;
+        startY = e.clientY - ty;
+        stage.classList.add("dz-dragging");
+      } else if (pointers.size === 2) {
+        // Second finger — switch from pan to pinch-zoom.
+        dragging = false;
+        moved = true; // a gesture, never a click-to-close
+        var p = Array.from(pointers.values());
+        pinchDist = Math.hypot(p[0].x - p[1].x, p[0].y - p[1].y);
+      }
     });
     stage.addEventListener("pointermove", function (e) {
-      if (!dragging) return;
-      if (Math.abs(e.clientX - downX0) > 5 || Math.abs(e.clientY - downY0) > 5) moved = true;
-      tx = e.clientX - startX;
-      ty = e.clientY - startY;
-      apply();
+      if (!pointers.has(e.pointerId)) return;
+      pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
+      if (pointers.size >= 2) {
+        var p = Array.from(pointers.values());
+        var dist = Math.hypot(p[0].x - p[1].x, p[0].y - p[1].y);
+        if (pinchDist > 0 && dist > 0) {
+          var r = stage.getBoundingClientRect();
+          zoomAt((p[0].x + p[1].x) / 2 - r.left, (p[0].y + p[1].y) / 2 - r.top, dist / pinchDist);
+        }
+        pinchDist = dist;
+      } else if (dragging) {
+        if (Math.abs(e.clientX - downX0) > 5 || Math.abs(e.clientY - downY0) > 5) moved = true;
+        tx = e.clientX - startX;
+        ty = e.clientY - startY;
+        apply();
+      }
     });
-    function endDrag() {
-      dragging = false;
-      stage.classList.remove("dz-dragging");
-      // Close only on a genuine click (no real drag) that landed outside the
-      // diagram itself — i.e. on the dark backdrop. Clicking or dragging the
-      // diagram never closes. (Pointer capture makes the native click target the
-      // stage, so we judge by the pointerdown target instead.)
-      if (!moved && downTarget && box && !box.contains(downTarget)) close();
-      downTarget = null;
+    function endPointer(e) {
+      var wasActive = pointers.delete(e.pointerId);
+      if (pointers.size === 1) {
+        // Back to one finger — resume panning from it without a jump.
+        var p = Array.from(pointers.values())[0];
+        startX = p.x - tx;
+        startY = p.y - ty;
+        dragging = true;
+        pinchDist = 0;
+      } else if (pointers.size === 0) {
+        dragging = false;
+        stage.classList.remove("dz-dragging");
+        pinchDist = 0;
+        // Close only on a genuine tap/click — no drag, no pinch — that landed
+        // outside the diagram (the dark backdrop). Pointer capture makes the
+        // native click target the stage, so we judge by the pointerdown target.
+        if (wasActive && !moved && downTarget && box && !box.contains(downTarget)) close();
+        downTarget = null;
+      }
     }
-    stage.addEventListener("pointerup", endDrag);
-    stage.addEventListener("pointercancel", endDrag);
+    stage.addEventListener("pointerup", endPointer);
+    stage.addEventListener("pointercancel", endPointer);
 
     // Move `el` into the controlled wrapper, size it to the stage, centre it.
     modal.open = function (el) {
