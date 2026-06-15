@@ -18,3 +18,6 @@ package-lock.json
 
 # Plugin caches
 .cache/
+
+# Local overrides (ENGINE / BIND / PORT) — see .env.example
+.env

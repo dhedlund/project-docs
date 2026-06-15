@@ -4,6 +4,11 @@
 #
 # `make image` builds the shared image from the repo root (../Containerfile).
 
+# Optional local overrides for working inside example/ (gitignored; see
+# .env.example). Its own .env — not the root's — so its PORT stays 8001 and can
+# run alongside the root site. Included first so it beats the ?= defaults.
+-include .env
+
 IMAGE := localhost/project-docs-toolkit:latest
 PORT  ?= 8001
 # Host interface the preview binds to — localhost only by default.
