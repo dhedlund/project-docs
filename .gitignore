@@ -17,3 +17,6 @@ _out/
 
 # Plugin caches (d2 render cache, etc.)
 .cache/
+
+# Local overrides (ENGINE / BIND / PORT / REMOTE / BRANCH) — see .env.example
+.env

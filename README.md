@@ -14,6 +14,11 @@ since changed.
 > agents from your source code; trust is made legible (confidence, provenance, drift,
 > audits), not assumed.
 
+**▶ See it live:** the bundled [`example/`](example/) — a fictional product, "Beacon" —
+is published as a worked demo at **<https://dhedlund.github.io/project-docs/>**, a
+complete picture of what this produces (rich pages, diagrams with a fullscreen viewer,
+confidence/provenance footers).
+
 ## Why
 
 Big systems drift out of understanding: nobody holds the whole picture, product docs
@@ -147,6 +152,29 @@ make report     # coverage / staleness report
 make ci         # build + check (the local gate)
 make test       # the tooling test suite
 ```
+
+## Publishing the example to GitHub Pages
+
+The example demo is published **manually** — there's deliberately **no CI/Actions
+workflow**, so nothing auto-runs in your fork. One command builds the example
+(hermetically, in the toolkit image) and pushes the static site to a `gh-pages`
+branch using your local git credentials, which never enter the container:
+
+```
+make publish-example
+```
+
+First-time setup (once):
+
+1. Push this repo to GitHub with a remote pointing at it.
+2. Run `make publish-example`. If your remote isn't named `origin`, override it:
+   `make publish-example REMOTE=<name>` — or copy `.env.example` to `.env` and set
+   `REMOTE=` there (that file also overrides `ENGINE` / `BIND` / `PORT`).
+3. On GitHub: **Settings → Pages → Source: Deploy from a branch → `gh-pages` / `(root)`**.
+
+Re-run `make publish-example` whenever you want to refresh the live demo. Forks
+receive the `gh-pages` branch but **not** Pages itself — GitHub doesn't enable Pages
+on forks — so nothing publishes unless a fork owner turns it on.
 
 ## Contributing
 

@@ -3,11 +3,21 @@
 # (auto-detected; override with ENGINE=docker), so it works the same on Linux and
 # macOS with no host tooling beyond a container engine + make. Run `make` for help.
 
+# Optional local overrides (gitignored). Copy .env.example -> .env to set ENGINE,
+# BIND, PORT, REMOTE, BRANCH without typing them each time. Command-line args still
+# win (e.g. make serve PORT=9000). Included first so its values beat the ?= defaults.
+-include .env
+
 IMAGE := localhost/project-docs-toolkit:latest
 PORT  ?= 8000
 # Host interface the preview binds to — localhost only by default.
 # Override to expose on the LAN, e.g.  make serve BIND=0.0.0.0
 BIND  ?= 127.0.0.1
+
+# GitHub Pages publish target (make publish-example). Default to the conventional
+# remote; override via .env, env, or args (e.g. make publish-example REMOTE=gh).
+REMOTE ?= origin
+BRANCH ?= gh-pages
 
 # Container engine: auto-detect Podman, else Docker. Override with: make ENGINE=docker
 ENGINE ?= $(shell command -v podman >/dev/null 2>&1 && echo podman || echo docker)
@@ -23,7 +33,7 @@ RUN := $(ENGINE) run --rm \
 TTY := $(shell [ -t 0 ] && echo -it)
 
 .DEFAULT_GOAL := help
-.PHONY: help image build check report drift ci test serve shell versions clean
+.PHONY: help image build check report drift ci test serve shell versions clean publish-example
 
 help: ## Show this help
 	@echo "Project docs — make targets (engine: $(ENGINE)):"
@@ -68,5 +78,12 @@ versions: image ## Print the resolved tool versions
 	  echo "asyncapi:    $$(asyncapi --version 2>/dev/null)"; \
 	  echo "schemathesis:$$(schemathesis --version 2>/dev/null)"'
 
+publish-example: image ## Build the example site and publish it to GitHub Pages (REMOTE/BRANCH overridable)
+	$(ENGINE) run --rm -v "$(CURDIR)":/docs:rw -w /docs/example \
+	  --cap-drop=ALL --security-opt no-new-privileges --network none \
+	  $(if $(filter docker,$(ENGINE)),--user $(shell id -u):$(shell id -g),) \
+	  $(IMAGE) mkdocs build --strict
+	@REMOTE="$(REMOTE)" BRANCH="$(BRANCH)" SITE="example/site" tools/gh-publish-example.sh
+
 clean: ## Remove the built site
-	rm -rf site
+	rm -rf site example/site

@@ -1,5 +1,7 @@
 site_name: Beacon Docs (example)
 site_description: Fictional reference product — demonstrates the docs patterns.
+# Published demo (GitHub Pages, project subpath). Update if you host it elsewhere.
+site_url: https://dhedlund.github.io/project-docs/
 
 # Theme / plugins / extensions / hooks mirror the root mkdocs.yml (canonical while
 # example/ exists). Only site_name, site_description, and nav differ.
