@@ -65,6 +65,18 @@
   var MIN_FRAC = 0.55;
   var MAX_ZOOM_MULT = 10;
 
+  // Legend panel preference: closed by default, but remembered once you open it
+  // (persisted across reloads; falls back to in-memory if storage is unavailable).
+  var PREF_KEY = "dz-legend-open";
+  var _legendMem = false;
+  function legendPref() {
+    try { return localStorage.getItem(PREF_KEY) === "1"; } catch (e) { return _legendMem; }
+  }
+  function setLegendPref(v) {
+    _legendMem = v;
+    try { localStorage.setItem(PREF_KEY, v ? "1" : "0"); } catch (e) { /* ignore */ }
+  }
+
   var EXPAND_ICON =
     '<svg viewBox="0 0 24 24" aria-hidden="true">' +
     '<path d="M5 5h5V3H3v7h2V5m14 0v5h2V3h-7v2h5M5 14H3v7h7v-2H5v-5m16 0h-2v5h-5v2h7v-7z"/>' +
@@ -227,7 +239,9 @@
     keyBtn.addEventListener("click", function () {
       if (panel.hidden) { panel.hidden = false; loadPanel(); }
       else { panel.hidden = true; }
-      keyBtn.setAttribute("aria-pressed", String(!panel.hidden));
+      var open = !panel.hidden;
+      keyBtn.setAttribute("aria-pressed", String(open));
+      setLegendPref(open);
       fitView();
     });
 
@@ -286,16 +300,17 @@
       content.appendChild(el);
       box = el;
 
-      // Type-aware legend target, and bring the legend panel up by default.
+      // Type-aware legend target; honour the remembered panel preference.
       curAnchor = diagramAnchor(el);
       helpURL = readingURL(curAnchor);
 
       // Show the modal BEFORE measuring — a hidden (display:none) modal reports
       // zero sizes, which would collapse the fit/zoom/pan math.
       modal.hidden = false;
-      panel.hidden = false;
-      keyBtn.setAttribute("aria-pressed", "true");
-      loadPanel();
+      var legendOpen = legendPref();
+      panel.hidden = !legendOpen;
+      keyBtn.setAttribute("aria-pressed", String(legendOpen));
+      if (legendOpen) loadPanel();
 
       var r = stage.getBoundingClientRect();
       // Render at full stage width first so the diagram's percentage-width SVG
