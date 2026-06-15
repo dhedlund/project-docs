@@ -45,15 +45,14 @@
     // misses them and the heads keep a dark default fill. Scope by diagram type
     // so we don't disturb class diagrams (whose hollow/filled markers are
     // deliberate). The style lives inside this diagram's shadow root only.
+    // ER ("er") markers are intentionally left to Mermaid/Material's solid glyphs:
+    // Mermaid 11 draws the crow's-foot as a CLOSED leaf path meant to be filled,
+    // and SVG paint order (markers over boxes) can't be reordered via CSS, so a
+    // hollow outline only looked worse. We only fix flowchart/sequence arrowheads,
+    // whose ids Mermaid 11 prefixes (so Material's id-based theming misses them).
     var css = "";
     if (/^(flowchart|graph|sequence)/.test(role)) {
-      // Arrowheads should match the (light) line colour.
       css = "marker path{fill:var(--md-mermaid-edge-color)!important}";
-    } else if (role === "er") {
-      // ER relationship markers (crow's foot, bars, the "zero" circle) must stay
-      // OPEN outlines — Material's blanket marker{fill} turns them into solid
-      // "leaf" blobs sitting on the entity boxes.
-      css = "marker path{fill:none!important;stroke:var(--md-mermaid-edge-color)!important}";
     }
     if (!css) return;
     var s = document.createElement("style");
